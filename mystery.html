@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mystery eBooks - Novelista</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* General Styles */
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #101010;
+            color: #333;
+        }
+        .navbar{
+            background-color: rgb(0, 71, 71);
+        }
+        /* Navbar */
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;   
+        }
+        .nav-link{
+            color: #fff;
+            font-weight: bold;
+        }
+        .hover-effect:hover {
+            color: rgb(0, 0, 0) !important;
+            font-weight: bold;
+            border: 2px black !important;
+            transition: all 0.3s ease;
+        }
+
+        .navbar .btn-primary {
+            margin-left: 10px;
+            border-radius: 10px;
+            background-color: #fff;
+            color:rgb(0, 71, 71) ;
+        }
+        .navbar .btn-primary:hover{
+            background-color: black !important;
+            color: #fff;
+        }
+        .category-banner {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/hero.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0 60px;
+            margin-bottom: 40px;
+        }
+
+        /* Fantasy Books Section */
+        .fantasy-section {
+            padding: 60px 0;
+            background-color: #101010;
+            color: #fff;
+            margin-top: auto;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        .see-all {
+            font-size: 14px;
+            color: #d4d4d4;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .see-all:hover {
+            color: #48c78e;
+        }
+        
+        /* Filter Pills */
+        .filter-container {
+            margin-top:60px;
+            margin-bottom: 30px;
+            padding-left: 15px;
+        }
+        
+        .filter-btn {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: rgb(0, 71, 71);
+            color: #fff;
+        }
+        
+        /* Book Cards */
+        .book-card {
+            background-color: #1a1a1a;
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            height: 100%;
+            margin-bottom: 20px;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 150, 0.2);
+        }
+        
+        .book-cover {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .book-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .book-card:hover .book-cover img {
+            transform: scale(1.1);
+        }
+        
+        .book-content {
+            padding: 15px;
+        }
+        
+        .category {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        .book-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        
+        .book-description {
+            font-size: 14px;
+            color: #bbb;
+            margin-bottom: 15px;
+            min-height: 60px;
+        }
+        
+        .read-time {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .btn-custom {
+            background-color: rgb(0, 71, 71);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            width: 100%;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-custom:hover {
+            background-color: #17a365;
+        }
+
+        /* Pagination */
+        .pagination {
+            justify-content: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .page-link {
+            color: #fff;
+            background-color: #222;
+            border-color: #333;
+        }
+        
+        .page-link:hover {
+            background-color: rgb(0, 71, 71);
+            border-color: rgb(0, 71, 71);
+            color: #fff;
+        }
+        
+        .page-item.active .page-link {
+            background-color: rgb(0, 71, 71);
+            border-color: rgb(0, 71, 71);
+        }
+
+        .page-item.disabled .page-link {
+            background-color: #333;
+            border-color: #444;
+            color: #777;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .book-description {
+                min-height: auto;
+            }
+        }
+        .footer {
+            background: #111;
+            color: #ccc;
+            padding: 40px 0;
+            font-size: 14px;
+        }
+
+        .footer-logo img {
+            width: 120px;
+            margin-bottom: 10px;
+        }
+
+        .footer-logo p {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        /* Social Media Icons Below Logo */
+        .social-icons-left {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-icons-left a {
+            color: #ffffff !important;
+            font-size: 20px;
+            transition: color 0.3s ease-in-out;
+            height: 30px;
+            width: 30px;
+        }
+
+        .social-icons-left a:hover {
+            color: #ff6b00;
+        }
+
+        .footer-links h5 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links ul li a i {
+            margin-right: 8px;
+            color: #ff6b00;
+        }
+
+        .footer-links ul li a:hover {
+            color: #ff6b00;
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 10px;
+            font-size: 12px;
+        }
+
+        /* Book source badge */
+        .source-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 71, 71, 0.8);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 10px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"> <img src="images/novelista-logo.png" alt="Novelista Logo" height="50"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="index.html">Home</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="browse.html">Browse</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="reccomendationai.html">Reccomendations</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="about.html">About</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link btn btn-primary text-rgb(71, 5, 5);" href="login.html">Login / Sign Up</a></li>
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+
+    <section class="category-banner">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Mystery Collection</h1>
+            <p class="lead">Unravel secrets and solve puzzles with our collection of classic mystery books</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">All Categories</button>
+            <button class="filter-btn" data-filter="detective">Detective Fiction</button>
+            <button class="filter-btn" data-filter="classic">Classic Mystery</button>
+            <button class="filter-btn" data-filter="crime">Crime</button>
+            <button class="filter-btn" data-filter="thriller">Thriller</button>
+            <button class="filter-btn" data-filter="cozy">Cozy Mystery</button>
+        </div>
+        
+        <div class="row book-row">
+            <!-- Book 1 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item detective">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="mystery-images/The Hound of the Baskervilles.jpg" alt="The Hound of the Baskervilles">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Detective Fiction</span>
+                        <h3 class="book-title">The Hound of the Baskervilles</h3>
+                        <span class="read-time">Arthur Conan Doyle</span>
+                        <p class="book-description">Sherlock Holmes investigates the legend of a supernatural hound.</p>
+                        <a href="mysterybooks/book1.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 2 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item classic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="mystery-images/The Moonstone.jpg" alt="The Moonstone">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Classic Mystery</span>
+                        <h3 class="book-title">The Moonstone</h3>
+                        <span class="read-time">Wilkie Collins</span>
+                        <p class="book-description">A valuable diamond disappears mysteriously, leading to an investigation.</p>
+                        <a href="mysterybooks/book2.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 3 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item classic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="mystery-images/The Woman in White.jpg" alt="The Woman in White">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Classic Mystery</span>
+                        <h3 class="book-title">The Woman in White</h3>
+                        <span class="read-time">Wilkie Collins</span>
+                        <p class="book-description">A mysterious encounter with a woman dressed in white leads to intrigue.</p>
+                        <a href="mysterybooks/book3.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 4 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item detective">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="mystery-images/A Study in Scarlet.jpg" alt="A Study in Scarlet">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Detective Fiction</span>
+                        <h3 class="book-title">A Study in <br>Scarlet</h3>
+                        <span class="read-time">Arthur Conan Doyle</span>
+                        <p class="book-description">The first Sherlock Holmes novel introduces the famous detective duo.</p>
+                        <a href="mysterybooks/book4.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 5 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item crime">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="mystery-images/The Mystery of Edwin Drood.jpg" alt="The Mystery of Edwin Drood">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Crime</span>
+                        <h3 class="book-title">The Mystery of Edwin Drood</h3>
+                        <span class="read-time">Charles Dickens</span>
+                        <p class="book-description">Dickens' unfinished mystery about a young man who vanishes.</p>
+                        <a href="mysterybooks/book5.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 6 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item thriller">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="mystery-images/The Secret Agent.jpg" alt="The Secret Agent">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Thriller</span>
+                        <h3 class="book-title">The Secret Agent</h3>
+                        <span class="read-time">Joseph Conrad</span>
+                        <p class="book-description">A tale of espionage and terrorism in Victorian London.</p>
+                        <a href="mysterybooks/book6.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 7 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item detective">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="mystery-images/The Sign of Four.jpg" alt="The Sign of Four">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Detective Fiction</span>
+                        <h3 class="book-title">The Sign of Four</h3>
+                        <span class="read-time">Arthur Conan Doyle</span>
+                        <p class="book-description">Holmes and Watson investigate a case involving a mysterious treasure.</p>
+                        <a href="mysterybooks/book7.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 8 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item cozy">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="mystery-images/The Murders in the Rue Morgue.jpg" alt="The Murder of Roger Ackroyd">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Cozy Mystery</span>
+                        <h3 class="book-title">The Circular Staircase</h3>
+                        <span class="read-time">Mary Roberts Rinehart</span>
+                        <p class="book-description">A woman's summer rental becomes the scene of mysterious events.</p>
+                        <a href="mysterybooks/book8.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 9 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item crime">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="mystery-images/The Adventures of Sherlock Holmes.jpg" alt="The Adventures of Sherlock Holmes">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Crime</span>
+                        <h3 class="book-title">The Adventures of Sherlock Holmes</h3>
+                        <span class="read-time">Arthur Conan Doyle</span>
+                        <p class="book-description">A collection of twelve short stories featuring the famous detective.</p>
+                        <a href="mysterybooks/book9.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 10 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item cozy">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="mystery-images/The Man in Lower Ten.jpg" alt="The Man in Lower Ten">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Cozy Mystery</span>
+                        <h3 class="book-title">The Man in Lower Ten</h3>
+                        <span class="read-time">Mary Roberts Rinehart</span>
+                        <p class="book-description">A lawyer becomes embroiled in a murder case on a overnight train.</p>
+                        <a href="mysterybooks/book10.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 11 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item thriller">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="mystery-images/The Thirty-Nine Steps.jpg" alt="The Thirty-Nine Steps">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Thriller</span>
+                        <h3 class="book-title">The Thirty-Nine Steps</h3>
+                        <span class="read-time">John Buchan</span>
+                        <p class="book-description">An ordinary man becomes caught in a dangerous conspiracy.</p>
+                        <a href="mysterybooks/book11.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 12 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item classic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="mystery-images/The Strange Case.jpg" alt="The Strange Case of Dr. Jekyll and Mr. Hyde">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Classic Mystery</span>
+                        <h3 class="book-title">The Strange Case of Dr. Jekyll and Mr. Hyde</h3>
+                        <span class="read-time">Robert Louis Stevenson</span>
+                        <p class="book-description">A lawyer investigates the connection between his friend and a mysterious figure.</p>
+                        <a href="mysterybooks/book12.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 13 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item detective">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="mystery-images/The Valley of Fear.jpg" alt="The Valley of Fear">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Detective Fiction</span>
+                        <h3 class="book-title">The Valley of Fear</h3>
+                        <span class="read-time">Arthur Conan Doyle</span>
+                        <p class="book-description">Sherlock Holmes faces a mysterious encrypted message and a murder.</p>
+                        <a href="mysterybooks/book13.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 14 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item thriller">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="mystery-images/Greenmantle.jpg" alt="Greenmantle">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Thriller</span>
+                        <h3 class="book-title">Greenmantle</h3>
+                        <span class="read-time">John Buchan</span>
+                        <p class="book-description">Richard Hannay's second adventure takes him to wartime Constantinople.</p>
+                        <a href="mysterybooks/book14.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 15 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item crime">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="mystery-images/The Memoirs of Sherlock Holmes.jpg" alt="The Memoirs of Sherlock Holmes">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Crime</span>
+                        <h3 class="book-title">The Memoirs of Sherlock Holmes</h3>
+                        <span class="read-time">Arthur Conan Doyle</span>
+                        <p class="book-description">A collection of Holmes stories including his apparent final case.</p>
+                        <a href="mysterybooks/book15.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 16 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item cozy">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="mystery-images/The Window at the White Cat.jpg" alt="The Window at the White Cat">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Cozy Mystery</span>
+                        <h3 class="book-title">The Window at the White Cat</h3>
+                        <span class="read-time">Mary Roberts Rinehart</span>
+                        <p class="book-description">A lawyer investigates a political corruption and disappearance case.</p>
+                        <a href="mysterybooks/book16.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 17 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item thriller">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="mystery-images/The Riddle of the Sands.jpg" alt="The Riddle of the Sands">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Thriller</span>
+                        <h3 class="book-title">The Riddle of the Sands</h3>
+                        <span class="read-time">Erskine Childers</span>
+                        <p class="book-description">Two Englishmen uncover German naval preparations while sailing.</p>
+                        <a href="mysterybooks/book17.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 18 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item crime">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="mystery-images/The Return of Sherlock Holmes.jpg" alt="The Return of Sherlock Holmes">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Crime</span>
+                        <h3 class="book-title">The Return of Sherlock Holmes</h3>
+                        <span class="read-time">Arthur Conan Doyle</span>
+                        <p class="book-description">Holmes returns after his presumed death to solve new cases.</p>
+                        <a href="mysterybooks/book18.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 19 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item classic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="mystery-images/Uncle Silas.jpg" alt="Uncle Silas">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Classic Mystery</span>
+                        <h3 class="book-title">Uncle Silas</h3>
+                        <span class="read-time">J. Sheridan Le Fanu</span>
+                        <p class="book-description">A Gothic mystery about a young heiress placed in the care of her mysterious uncle.</p>
+                        <a href="mysterybooks/book19.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 20 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item detective">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="mystery-images/The Murders in the Rue Morgue.jpg" alt="The Murders in the Rue Morgue">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Detective Fiction</span>
+                        <h3 class="book-title">The Murders in the Rue Morgue</h3>
+                        <span class="read-time">Edgar Allan Poe</span>
+                        <p class="book-description">C. Auguste Dupin investigates a brutal double murder in Paris.</p>
+                        <a href="mysterybooks/book20.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pagination -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- Logo & Social Media -->
+                <div class="col-md-4 footer-logo">
+                    <img src="images/novelista-logo.png" alt="Novelista Logo">
+                    <p>Your gateway to immersive stories and literary adventures.</p>
+    
+                    <!-- Social Media Icons -->
+                    <div class="social-icons-left">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+    
+                <!-- Explore Section -->
+                <div class="col-md-2 footer-links">
+                    <h5><i class="fas fa-book"></i> Explore</h5>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-magic"></i> Fantasy</a></li>
+                        <li><a href="#"><i class="fas fa-user-secret"></i> Mystery</a></li>
+                        <li><a href="#"><i class="fas fa-rocket"></i> Sci-Fi</a></li>
+                        <li><a href="#"><i class="fas fa-heart"></i> Romance</a></li>
+                        <li><a href="#"><i class="fas fa-fire"></i> Trending</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Community Section -->
+                <div class="col-md-3 footer-links">
+                    <h5><i class="fas fa-users"></i> Community</h5>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-comments"></i> Forum</a></li>
+                        <li><a href="#"><i class="fas fa-star"></i> Reviews</a></li>
+                        <li><a href="#"><i class="fas fa-chart-line"></i> Ratings</a></li>
+                        <li><a href="#"><i class="fas fa-thumbs-up"></i> Recommendations</a></li>
+                        <li><a href="#"><i class="fas fa-headset"></i> Support</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Resources Section -->
+                <div class="col-md-3 footer-links">
+                    <h5><i class="fas fa-folder-open"></i> Resources</h5>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-question-circle"></i> Help</a></li>
+                        <li><a href="#"><i class="fas fa-book-open"></i> Guides</a></li>
+                        <li><a href="#"><i class="fas fa-blog"></i> Blog</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+                        <li><a href="#"><i class="fas fa-file-contract"></i> Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+    
+            <!-- Copyright -->
+            <div class="footer-bottom text-center">
+                <p>&copy; 2025 Novelista. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Filter Script -->
+    <script>
+        $(document).ready(function() {
+            // Filter functionality
+            $('.filter-btn').click(function() {
+                $('.filter-btn').removeClass('active');
+                $(this).addClass('active');
+                
+                var filterValue = $(this).attr('data-filter');
+                
+                if (filterValue === 'all') {
+                    $('.book-item').show();
+                } else {
+                    $('.book-item').hide();
+                    $('.book-item.' + filterValue).show();
+                }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const booksPerPage = 4;
+            const bookItems = Array.from(document.querySelectorAll('.book-item'));
+            const paginationContainer = document.querySelector('.pagination');
+            const totalPages = Math.ceil(bookItems.length / booksPerPage);
+        
+            function showPage(page) {
+                bookItems.forEach((item, index) => {
+                    item.style.display = (index >= (page - 1) * booksPerPage && index < page * booksPerPage) ? 'block' : 'none';
+                });
+        
+                // Update pagination active state
+                paginationContainer.innerHTML = `
+                    <li class="page-item ${page === 1 ? 'disabled' : ''}">
+                        <a class="page-link" href="#" data-page="${page - 1}">&laquo;</a>
+                    </li>
+                    ${Array.from({ length: totalPages }, (_, i) => `
+                        <li class="page-item ${i + 1 === page ? 'active' : ''}">
+                            <a class="page-link" href="#" data-page="${i + 1}">${i + 1}</a>
+                        </li>`).join('')}
+                    <li class="page-item ${page === totalPages ? 'disabled' : ''}">
+                        <a class="page-link" href="#" data-page="${page + 1}">&raquo;</a>
+                    </li>
+                `;
+            }
+        
+            // Initial render
+            showPage(1);
+        
+            // Handle pagination click
+            paginationContainer.addEventListener('click', function (e) {
+                if (e.target.classList.contains('page-link')) {
+                    e.preventDefault();
+                    const page = parseInt(e.target.getAttribute('data-page'));
+                    if (page >= 1 && page <= totalPages) {
+                        showPage(page);
+                    }
+                }
+            });
+        });
+        </script>
+        
+</body>
+</html>

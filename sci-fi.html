@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Science Fiction eBooks - Novelista</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #101010;
+            color: #333;
+        }
+        .navbar{
+            background-color: rgb(0, 71, 71);
+        }
+        /* Navbar */
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;   
+        }
+        .nav-link{
+            color: #fff;
+            font-weight: bold;
+        }
+        .hover-effect:hover {
+            color: rgb(0, 0, 0) !important;
+            font-weight: bold;
+            border: 2px black !important;
+            transition: all 0.3s ease;
+        }
+
+        .navbar .btn-primary {
+            margin-left: 10px;
+            border-radius: 10px;
+            background-color: #fff;
+            color:rgb(0, 71, 71) ;
+        }
+        .navbar .btn-primary:hover{
+            background-color: black !important;
+            color: #fff;
+        }
+        .category-banner {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/hero.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0 60px;
+            margin-bottom: 40px;
+        }
+
+        /* Science Fiction Books Section */
+        .scifi-section {
+            padding: 60px 0;
+            background-color: #101010;
+            color: #fff;
+            margin-top: auto;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        .see-all {
+            font-size: 14px;
+            color: #d4d4d4;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .see-all:hover {
+            color: #48c78e;
+        }
+        
+        /* Filter Pills */
+        .filter-container {
+            margin-top:60px;
+            margin-bottom: 30px;
+            padding-left: 15px;
+        }
+        
+        .filter-btn {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: rgb(0, 71, 71);
+            color: #fff;
+        }
+        
+        /* Book Cards */
+        .book-card {
+            background-color: #1a1a1a;
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            height: 100%;
+            margin-bottom: 20px;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 150, 0.2);
+        }
+        
+        .book-cover {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .book-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .book-card:hover .book-cover img {
+            transform: scale(1.1);
+        }
+        
+        .book-content {
+            padding: 15px;
+        }
+        
+        .category {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        .book-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        
+        .book-description {
+            font-size: 14px;
+            color: #bbb;
+            margin-bottom: 15px;
+            min-height: 60px;
+        }
+        
+        .read-time {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .btn-custom {
+            background-color: rgb(0, 71, 71);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            width: 100%;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-custom:hover {
+            background-color: #17a365;
+        }
+
+        /* Pagination */
+        .pagination {
+            justify-content: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .page-link {
+            color: #fff;
+            background-color: #222;
+            border-color: #333;
+        }
+        
+        .page-link:hover {
+            background-color: rgb(0, 71, 71);
+            border-color: rgb(0, 71, 71);
+            color: #fff;
+        }
+        
+        .page-item.active .page-link {
+            background-color: rgb(0, 71, 71);
+            border-color: rgb(0, 71, 71);
+        }
+
+        .page-item.disabled .page-link {
+            background-color: #333;
+            border-color: #444;
+            color: #777;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .book-description {
+                min-height: auto;
+            }
+        }
+        .footer {
+            background: #111;
+            color: #ccc;
+            padding: 40px 0;
+            font-size: 14px;
+        }
+
+        .footer-logo img {
+            width: 120px;
+            margin-bottom: 10px;
+        }
+
+        .footer-logo p {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        /* Social Media Icons Below Logo */
+        .social-icons-left {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-icons-left a {
+            color: #ffffff !important;
+            font-size: 20px;
+            transition: color 0.3s ease-in-out;
+            height: 30px;
+            width: 30px;
+        }
+
+        .social-icons-left a:hover {
+            color: #ff6b00;
+        }
+
+        .footer-links h5 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links ul li a i {
+            margin-right: 8px;
+            color: #ff6b00;
+        }
+
+        .footer-links ul li a:hover {
+            color: #ff6b00;
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 10px;
+            font-size: 12px;
+        }
+
+        /* Book source badge */
+        .source-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 71, 71, 0.8);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 10px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"> <img src="images/novelista-logo.png" alt="Novelista Logo" height="50"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="#">Home</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="browse.html">Browse</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="reccomendationai.html">Reccomendations</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="about.html">About</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link btn btn-primary text-rgb(71, 5, 5);" href="login.html">Login / Sign Up</a></li>
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+
+    <section class="category-banner">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Science Fiction Collection</h1>
+            <p class="lead">Explore futuristic worlds and technological wonders with our classic sci-fi books</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">All Categories</button>
+            <button class="filter-btn" data-filter="space">Space Opera</button>
+            <button class="filter-btn" data-filter="classic">Classic Sci-Fi</button>
+            <button class="filter-btn" data-filter="dystopian">Dystopian</button>
+            <button class="filter-btn" data-filter="time">Time Travel</button>
+            <button class="filter-btn" data-filter="alien">Alien Contact</button>
+        </div>
+        
+        <div class="row book-row">
+            <!-- Book 1 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item space">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="scifi-images/The War of the Worlds.jpg" alt="The War of the Worlds">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Space Opera</span>
+                        <h3 class="book-title">The War of the Worlds</h3>
+                        <span class="read-time">H.G. Wells</span>
+                        <p class="book-description">Earth is invaded by Martians with irresistible weapons and conquering plans.</p>
+                        <a href="scifibooks/book1.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 2 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item classic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="scifi-images/Twenty Thousand Leagues Under the Sea.jpg" alt="Twenty Thousand Leagues Under the Sea">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Classic Sci-Fi</span>
+                        <h3 class="book-title">Twenty Thousand Leagues Under the Sea</h3>
+                        <span class="read-time">Jules Verne</span>
+                        <p class="book-description">A submarine adventure with the enigmatic Captain Nemo.</p>
+                        <a href="scifibooks/book2.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 3 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item time">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="scifi-images/The Time Machine.jpg" alt="The Time Machine">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Time Travel</span>
+                        <h3 class="book-title">The Time Machine</h3>
+                        <span class="read-time">H.G. Wells</span>
+                        <p class="book-description">A scientist travels to the distant future and discovers a divided humanity.</p>
+                        <a href="scifibooks/book3.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 4 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item dystopian">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="scifi-images/The Iron Heel.jpg" alt="The Iron Heel">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Dystopian</span>
+                        <h3 class="book-title">The Iron Heel</h3>
+                        <span class="read-time">Jack London</span>
+                        <p class="book-description">A dystopian society where corporate power has taken over democratic institutions.</p>
+                        <a href="scifibooks/book4.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 5 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item classic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="scifi-images/Frankenstein.jpg" alt="Frankenstein">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Classic Sci-Fi</span>
+                        <h3 class="book-title">Frankenstein</h3>
+                        <span class="read-time">Mary Shelley</span>
+                        <p class="book-description">A scientist creates a living being with catastrophic consequences.</p>
+                        <a href="scifibooks/book5.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 6 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item space">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="scifi-images/from the earth.jpg" alt="From the Earth to the Moon">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Space Opera</span>
+                        <h3 class="book-title">From the Earth to the Moon</h3>
+                        <span class="read-time">Jules Verne</span>
+                        <p class="book-description">Members of a post-Civil War gun club plan to build a cannon to shoot a projectile to the moon.</p>
+                        <a href="scifibooks/book6.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 7 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item classic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="scifi-images/A Journey to the Center of the Earth.jpg" alt="A Journey to the Center of the Earth">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Classic Sci-Fi</span>
+                        <h3 class="book-title">A Journey to the Center of the Earth</h3>
+                        <span class="read-time">Jules Verne</span>
+                        <p class="book-description">Professor Lidenbrock and his companions descend into an extinct volcano towards Earth's center.</p>
+                        <a href="scifibooks/book7.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 8 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item alien">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="scifi-images/The First Men in the Moon.jpg" alt="The First Men in the Moon">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Alien Contact</span>
+                        <h3 class="book-title">The First Men in the Moon</h3>
+                        <span class="read-time">H.G. Wells</span>
+                        <p class="book-description">Two adventurers travel to the moon and discover an insect-like alien civilization.</p>
+                        <a href="scifibooks/book8.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 9 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item dystopian">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="scifi-images/The Last Man.jpg" alt="The Last Man">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Dystopian</span>
+                        <h3 class="book-title">The Last Man</h3>
+                        <span class="read-time">Mary Shelley</span>
+                        <p class="book-description">A deadly plague ravages the world in the late 21st century, leaving few survivors.</p>
+                        <a href="scifibooks/book9.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 10 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item time">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="scifi-images/Looking Backward.jpg" alt="Looking Backward">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Time Travel</span>
+                        <h3 class="book-title">Looking Backward</h3>
+                        <span class="read-time">Edward Bellamy</span>
+                        <p class="book-description">A man from 1887 awakens in the year 2000 to find a transformed socialist utopia.</p>
+                        <a href="scifibooks/book10.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 11 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item space">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="scifi-images/Around the Moon.jpeg" alt="Around the Moon">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Space Opera</span>
+                        <h3 class="book-title">Around the Moon</h3>
+                        <span class="read-time">Jules Verne</span>
+                        <p class="book-description">The sequel to From the Earth to the Moon, following the journey of the projectile and its passengers.</p>
+                        <a href="scifibooks/book11.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 12 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item alien">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="scifi-images/In the Days of the Comet.jpg" alt="In the Days of the Comet">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Alien Contact</span>
+                        <h3 class="book-title">In the Days of the Comet</h3>
+                        <span class="read-time">H.G. Wells</span>
+                        <p class="book-description">A green comet causes strange changes in Earth's atmosphere and human behavior.</p>
+                        <a href="scifibooks/book12.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 13 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item dystopian">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="scifi-images/We.jpeg" alt="We">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Dystopian</span>
+                        <h3 class="book-title">We</h3>
+                        <span class="read-time">Yevgeny Zamyatin</span>
+                        <p class="book-description">A dystopian novel set in a future where people live in a totalitarian state.</p>
+                        <a href="scifibooks/book13.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 14 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item classic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="scifi-images/The Invisible Man.jpg" alt="The Invisible Man">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Classic Sci-Fi</span>
+                        <h3 class="book-title">The Invisible Man</h3>
+                        <span class="read-time">H.G. Wells</span>
+                        <p class="book-description">A scientist discovers the secret of invisibility but struggles with its consequences.</p>
+                        <a href="scifibooks/book14.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 15 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item time">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="scifi-images/A Connecticut Yankee in King Arthur's Court.jpg" alt="A Connecticut Yankee in King Arthur's Court">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Time Travel</span>
+                        <h3 class="book-title">A Connecticut Yankee in King Arthur's Court</h3>
+                        <span class="read-time">Mark Twain</span>
+                        <p class="book-description">A 19th-century engineer is transported back to King Arthur's England.</p>
+                        <a href="scifibooks/book15.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 16 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item space">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="scifi-images/Off on a Comet.jpg" alt="Off on a Comet">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Space Opera</span>
+                        <h3 class="book-title">Off on a Comet</h3>
+                        <span class="read-time">Jules Verne</span>
+                        <p class="book-description">A portion of Earth is sheared off by a comet, sending a group of people on a journey through space.</p>
+                        <a href="scifibooks/book16.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 17 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item alien">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="scifi-images/The Star.jpeg" alt="The Star">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Alien Contact</span>
+                        <h3 class="book-title">The Star</h3>
+                        <span class="read-time">H.G. Wells</span>
+                        <p class="book-description">A star passes close to Earth, causing devastating natural disasters.</p>
+                        <a href="scifibooks/book17.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 18 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item dystopian">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="scifi-images/The Sleeper Awakes.jpeg" alt="The Sleeper Awakes">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Dystopian</span>
+                        <h3 class="book-title">The Sleeper Awakes</h3>
+                        <span class="read-time">H.G. Wells</span>
+                        <p class="book-description">A man awakens after 203 years of suspended animation to find he's the richest man in a dystopian world.</p>
+                        <a href="scifibooks/book18.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 19 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item classic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="scifi-images/The Island of Doctor Moreau.jpg" alt="The Island of Doctor Moreau">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Classic Sci-Fi</span>
+                        <h3 class="book-title">The Island of Doctor Moreau</h3>
+                        <span class="read-time">H.G. Wells</span>
+                        <p class="book-description">A shipwrecked man discovers an island where a scientist creates human-like beings from animals.</p>
+                        <a href="scifibooks/book19.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 20 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item time">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="scifi-images/A Dream of John Ball.jpg" alt="A Dream of John Ball">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Time Travel</span>
+                        <h3 class="book-title">A Dream of John Ball</h3>
+                        <span class="read-time">William Morris</span>
+                        <p class="book-description">A Victorian socialist dreams himself into medieval England during the Peasants' Revolt of 1381.</p>
+                        <a href="scifibooks/book20.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- Pagination -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- Logo & Social Media -->
+                <div class="col-md-4 footer-logo">
+                    <img src="images/novelista-logo.png" alt="Novelista Logo">
+                    <p>Your gateway to immersive stories and literary adventures.</p>
+    
+                    <!-- Social Media Icons -->
+                    <div class="social-icons-left">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+    
+                <!-- Explore Section -->
+                <div class="col-md-2 footer-links">
+                    <h5><i class="fas fa-book"></i> Explore</h5>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-magic"></i> Fantasy</a></li>
+                        <li><a href="#"><i class="fas fa-user-secret"></i> Mystery</a></li>
+                        <li><a href="#"><i class="fas fa-rocket"></i> Sci-Fi</a></li>
+                        <li><a href="#"><i class="fas fa-heart"></i> Romance</a></li>
+                        <li><a href="#"><i class="fas fa-fire"></i> Trending</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Community Section -->
+                <div class="col-md-3 footer-links">
+                    <h5><i class="fas fa-users"></i> Community</h5>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-comments"></i> Forum</a></li>
+                        <li><a href="#"><i class="fas fa-star"></i> Reviews</a></li>
+                        <li><a href="#"><i class="fas fa-chart-line"></i> Ratings</a></li>
+                        <li><a href="#"><i class="fas fa-thumbs-up"></i> Recommendations</a></li>
+                        <li><a href="#"><i class="fas fa-headset"></i> Support</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Resources Section -->
+                <div class="col-md-3 footer-links">
+                    <h5><i class="fas fa-folder-open"></i> Resources</h5>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-question-circle"></i> Help</a></li>
+                        <li><a href="#"><i class="fas fa-book-open"></i> Guides</a></li>
+                        <li><a href="#"><i class="fas fa-blog"></i> Blog</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+                        <li><a href="#"><i class="fas fa-file-contract"></i> Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+    
+            <!-- Copyright -->
+            <div class="footer-bottom text-center">
+                <p>&copy; 2025 Novelista. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const bookItems = document.querySelectorAll('.book-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Get filter value
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Show/hide book items based on filter
+                    bookItems.forEach(item => {
+                        if (filterValue === 'all' || item.classList.contains(filterValue)) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+                
+            });
+        });
+    </script>
+       <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const booksPerPage = 4;
+            const bookItems = Array.from(document.querySelectorAll('.book-item'));
+            const paginationContainer = document.querySelector('.pagination');
+            const totalPages = Math.ceil(bookItems.length / booksPerPage);
+        
+            function showPage(page) {
+                bookItems.forEach((item, index) => {
+                    item.style.display = (index >= (page - 1) * booksPerPage && index < page * booksPerPage) ? 'block' : 'none';
+                });
+        
+                // Update pagination active state
+                paginationContainer.innerHTML = `
+                    <li class="page-item ${page === 1 ? 'disabled' : ''}">
+                        <a class="page-link" href="#" data-page="${page - 1}">&laquo;</a>
+                    </li>
+                    ${Array.from({ length: totalPages }, (_, i) => `
+                        <li class="page-item ${i + 1 === page ? 'active' : ''}">
+                            <a class="page-link" href="#" data-page="${i + 1}">${i + 1}</a>
+                        </li>`).join('')}
+                    <li class="page-item ${page === totalPages ? 'disabled' : ''}">
+                        <a class="page-link" href="#" data-page="${page + 1}">&raquo;</a>
+                    </li>
+                `;
+            }
+        
+            // Initial render
+            showPage(1);
+        
+            // Handle pagination click
+            paginationContainer.addEventListener('click', function (e) {
+                if (e.target.classList.contains('page-link')) {
+                    e.preventDefault();
+                    const page = parseInt(e.target.getAttribute('data-page'));
+                    if (page >= 1 && page <= totalPages) {
+                        showPage(page);
+                    }
+                }
+            });
+        });
+        </script>
+</body>
+</html>

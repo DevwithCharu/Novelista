@@ -1,0 +1,591 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #101010;
+    color: #333;
+}
+.navbar{
+    background-color: rgb(0, 71, 71);
+}
+/* Navbar */
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;   
+}
+.nav-link{
+    color: #fff;
+    font-weight: bold;
+}
+.hover-effect:hover {
+    color: rgb(0, 0, 0) !important;
+    font-weight: bold;
+    border: 2px black !important;
+    transition: all 0.3s ease;
+}
+
+.navbar .btn-primary {
+    margin-left: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+    color:rgb(0, 71, 71) ;
+}
+.navbar .btn-primary:hover{
+    background-color: black !important;
+    color: #fff;
+}
+
+/* Hero Section */
+ .hero-section {
+    padding: 60px 0;
+    margin: 9.5vh !important;
+}
+.hero-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-left: 5vh;
+}
+.hero-text {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-left: 5vh;
+}
+
+.btn-explore {
+    background-color: #008066;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    margin-left: 5vh;
+}
+.btn-join {
+    background-color: transparent;
+    border: 1px solid white;
+    padding: 12px 20px;
+    font-size: 1rem;
+    color: white;
+}
+.btn-join:hover {
+    background-color: white;
+    color: black;
+}
+.book-images img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.book-images img {
+    animation: bounce 3s ease-in-out infinite;
+}
+
+
+
+/* Featured Books */
+.card {
+    background-color: #1a1a1a;
+    border: none;
+    border-radius: 12px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 255, 150, 0.2);
+}
+.card img {
+    border-radius: 12px 12px 0 0;
+    height: 220px;
+    object-fit: cover;
+}
+.btn-custom {
+    background-color: #008066;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+.btn-custom:hover {
+    background-color: #00a57e;
+}
+.intro-section {
+    padding: 80px 0;
+}
+.btn-custom {
+    background-color:rgb(0, 71, 71);
+    border-radius: 10px;
+    font-weight: 500;
+}
+.btn-custom:hover {
+    background-color: #17a365;
+}
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    max-width: 100%;
+    margin:0px !important;
+
+}
+.book-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: transparent;
+    border-radius: 10px;
+    padding: 20px;
+    min-height: 180px;
+    width: 90vh;
+    margin-left: 5vh;
+}
+.book-image {
+    width: 50%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 3px;
+}
+.book-content {
+    width: 60%;
+    margin-left: 10px;
+}
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.image-slide:hover {
+    animation: bounce 0.5s ease-in-out;
+}
+.category {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+}
+.book-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    margin-top: 10px;
+}
+.book-description {
+    font-size: 14px;
+    color: #bbb;
+    margin: 10px 0;
+}
+.book-link {
+    color: #48c78e;
+    text-decoration: none;
+    font-weight: bold;
+}
+.book-link:hover {
+    text-decoration: underline;
+}
+@media (max-width: 768px) {
+    .book-grid {
+        grid-template-columns: 1fr;
+    }
+}
+.read-time {
+    font-size: 14px;
+    margin-left: 10px;
+}
+.book-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #fff;
+}
+.book-description {
+    font-size: 16px;
+    color: #bbb;
+}
+.book-link {
+    color: #48c78e;
+    text-decoration: none;
+    font-weight: bold;
+}
+.book-link:hover {
+    text-decoration: underline;
+}
+.trending-books {
+    background: transparent;
+    text-align: start;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.see-all {
+    font-size: 14px;
+    color: #d4d4d4;
+    text-decoration: none;
+    font-weight: bold;
+    display: flex;
+    align-items: end !important;
+}
+
+.swiper-slide {
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.swiper-slide img {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.swiper-slide:hover img {
+    transform: scale(1.1);
+}
+
+.swiper-slide h5 {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.swiper-slide p {
+    font-size: 14px;
+    color: #ff6b00;
+}
+
+/* Swiper Arrows */
+.swiper-button-next, .swiper-button-prev {
+    color:  #17a365 !important;
+    background: transparent;
+    padding: 10px;
+    border-radius: 50%;
+}
+/* General Testimonials Section */
+/* General Testimonials Section */
+/* General Testimonials Section */
+.testimonials-section {
+    background: #111;
+    color: #fff;
+    padding: 60px 0;
+    text-align: left;
+}
+
+/* Section Titles */
+.section-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.section-subtitle {
+    font-size: 16px;
+    color: #ccc;
+    margin-bottom: 30px;
+}
+
+.testimonials-section {
+    background: #111;
+    color: #fff;
+    padding: 60px 0;
+}
+
+.section-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.section-subtitle {
+    font-size: 16px;
+    color: #ccc;
+    margin-bottom: 30px;
+}
+
+/* Stats */
+.stats {
+    display: flex;
+    gap: 40px;
+}
+
+.stat h3 {
+    font-size: 40px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.stat p {
+    font-size: 14px;
+    color: #ccc;
+}
+
+/* Testimonials */
+.testimonial-card {
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.testimonial-card:hover {
+    transform: scale(1.05);
+}
+
+.testimonial-card img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.testimonial-card h4 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.testimonial-card .role {
+    font-size: 14px;
+    color: #ff6b00;
+    font-style: italic;
+}
+
+.testimonial-card .review {
+    font-size: 14px;
+    color: #ccc;
+    margin-top: 10px;
+}
+
+.footer {
+    background: #111;
+    color: #ccc;
+    padding: 40px 0;
+    font-size: 14px;
+}
+
+.footer-logo img {
+    width: 120px;
+    margin-bottom: 10px;
+}
+
+.footer-logo p {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* Social Media Icons Below Logo */
+.social-icons-left {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icons-left a {
+    color: #ffffff !important;
+    font-size: 20px;
+    transition: color 0.3s ease-in-out;
+    height: 30px;
+    width: 30px;
+}
+
+.social-icons-left a:hover {
+    color: #ff6b00;
+}
+
+.footer-links h5 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links ul li a i {
+    margin-right: 8px;
+    color: #ff6b00;
+}
+
+.footer-links ul li a:hover {
+    color: #ff6b00;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 10px;
+    font-size: 12px;
+}
+/* General Responsiveness */
+@media (max-width: 992px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-text {
+        font-size: 1.1rem;
+    }
+    
+    .book-section {
+        width: auto;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Hero Section */
+    .hero-section {
+        margin: 5vh !important;
+        padding: 40px 0;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+        margin-left: 2vh;
+    }
+    
+    .hero-text {
+        font-size: 1rem;
+        margin-left: 2vh;
+    }
+    
+    .btn-explore, .btn-join {
+        margin-left: 2vh;
+        padding: 10px 15px;
+    }
+    
+    /* Book Section */
+    .book-section {
+        flex-direction: column;
+        width: auto;
+        max-width: 95%;
+        padding: 15px;
+    }
+    
+    .book-image {
+        width: 100%;
+        height: 200px;
+    }
+    
+    .book-content {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 15px;
+    }
+    
+    /* Stats Section */
+    .stats {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    /* Testimonials */
+    .testimonial-card {
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    /* Navbar */
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+    
+    /* Hero Section */
+    .hero-section {
+        margin: 3vh !important;
+        padding: 30px 0;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+        margin-left: 1vh;
+    }
+    
+    .hero-text {
+        font-size: 0.9rem;
+        margin-left: 1vh;
+    }
+    
+    .btn-explore, .btn-join {
+        margin-left: 1vh;
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+    
+    /* Book Grid - Single Column on Small Screens */
+    .book-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Section Titles */
+    .section-title {
+        font-size: 24px;
+    }
+    
+    .section-subtitle {
+        font-size: 14px;
+    }
+    
+    /* Footer */
+    .footer-links {
+        margin-top: 20px;
+    }
+    
+    /* Book Cards */
+    .card img {
+        height: 180px;
+    }
+}
+
+/* Fix for Swiper on Mobile */
+@media (max-width: 480px) {
+    .swiper-slide img {
+        width: 150px;
+        height: 225px;
+    }
+    
+    .book-title {
+        font-size: 18px;
+    }
+    
+    .book-description {
+        font-size: 14px;
+    }
+}
+
+/* Fix for Footer on Small Screens */
+@media (max-width: 768px) {
+    .footer-links {
+        text-align: left;
+        margin-top: 20px;
+    }
+    
+    .social-icons-left {
+        justify-content: flex-start;
+    }
+}

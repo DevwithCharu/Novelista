@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantasy eBooks - Novelista</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #101010;
+            color: #333;
+        }
+        .navbar{
+            background-color: rgb(0, 71, 71);
+        }
+        /* Navbar */
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;   
+        }
+        .nav-link{
+            color: #fff;
+            font-weight: bold;
+        }
+        .hover-effect:hover {
+            color: rgb(0, 0, 0) !important;
+            font-weight: bold;
+            border: 2px black !important;
+            transition: all 0.3s ease;
+        }
+
+        .navbar .btn-primary {
+            margin-left: 10px;
+            border-radius: 10px;
+            background-color: #fff;
+            color:rgb(0, 71, 71) ;
+        }
+        .navbar .btn-primary:hover{
+            background-color: black !important;
+            color: #fff;
+        }
+        .category-banner {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/romance.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0 60px;
+            margin-bottom: 40px;
+        }
+
+        /* Fantasy Books Section */
+        .fantasy-section {
+            padding: 60px 0;
+            background-color: #101010;
+            color: #fff;
+            margin-top: auto;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        .see-all {
+            font-size: 14px;
+            color: #d4d4d4;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .see-all:hover {
+            color: #48c78e;
+        }
+        
+        /* Filter Pills */
+        .filter-container {
+            margin-top:60px;
+            margin-bottom: 30px;
+            padding-left: 15px;
+        }
+        
+        .filter-btn {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: rgb(0, 71, 71);
+            color: #fff;
+        }
+        
+        /* Book Cards */
+        .book-card {
+            background-color: #1a1a1a;
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            height: 100%;
+            margin-bottom: 20px;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 150, 0.2);
+        }
+        
+        .book-cover {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .book-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .book-card:hover .book-cover img {
+            transform: scale(1.1);
+        }
+        
+        .book-content {
+            padding: 15px;
+        }
+        
+        .category {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        .book-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        
+        .book-description {
+            font-size: 14px;
+            color: #bbb;
+            margin-bottom: 15px;
+            min-height: 60px;
+        }
+        
+        .read-time {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .btn-custom {
+            background-color: rgb(0, 71, 71);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            width: 100%;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-custom:hover {
+            background-color: #17a365;
+        }
+
+        /* Pagination */
+        .pagination {
+            justify-content: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .page-link {
+            color: #fff;
+            background-color: #222;
+            border-color: #333;
+        }
+        
+        .page-link:hover {
+            background-color: rgb(0, 71, 71);
+            border-color: rgb(0, 71, 71);
+            color: #fff;
+        }
+        
+        .page-item.active .page-link {
+            background-color: rgb(0, 71, 71);
+            border-color: rgb(0, 71, 71);
+        }
+
+        .page-item.disabled .page-link {
+            background-color: #333;
+            border-color: #444;
+            color: #777;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .book-description {
+                min-height: auto;
+            }
+        }
+        .footer {
+            background: #111;
+            color: #ccc;
+            padding: 40px 0;
+            font-size: 14px;
+        }
+
+        .footer-logo img {
+            width: 120px;
+            margin-bottom: 10px;
+        }
+
+        .footer-logo p {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        /* Social Media Icons Below Logo */
+        .social-icons-left {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-icons-left a {
+            color: #ffffff !important;
+            font-size: 20px;
+            transition: color 0.3s ease-in-out;
+            height: 30px;
+            width: 30px;
+        }
+
+        .social-icons-left a:hover {
+            color: #ff6b00;
+        }
+
+        .footer-links h5 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links ul li a i {
+            margin-right: 8px;
+            color: #ff6b00;
+        }
+
+        .footer-links ul li a:hover {
+            color: #ff6b00;
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 10px;
+            font-size: 12px;
+        }
+
+        /* Book source badge */
+        .source-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 71, 71, 0.8);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 10px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"> <img src="images/novelista-logo.png" alt="Novelista Logo" height="50"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="index.html">Home</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="browse.html">Browse</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="reccomendationai.html">Reccomendations</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="about.html">About</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link btn btn-primary text-rgb(0, 71, 71);" href="login.html">Login / Sign Up</a></li>
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+
+    <section class="category-banner">
+        <div class="container">
+            <h1 class="display-4 fw-bold">The Fantasy World</h1>
+            <p class="lead">Dive into enchanted realms with our collection of classic fantasy books</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">All Categories</button>
+            <button class="filter-btn" data-filter="epic">Epic Fantasy</button>
+            <button class="filter-btn" data-filter="urban">Urban Fantasy</button>
+            <button class="filter-btn" data-filter="dark">Dark Fantasy</button>
+            <button class="filter-btn" data-filter="myth">Mythological</button>
+            <button class="filter-btn" data-filter="ya">Young Adult</button>
+        </div>
+        
+        <div class="row book-row">
+            <!-- Book 1 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item epic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="fantasy-images/The Wonderful Wizard of Oz.jpg" alt="The Wonderful Wizard of Oz">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Epic Fantasy</span>
+                        <h3 class="book-title">The Wonderful Wizard of Oz</h3>
+                        <span class="read-time">L. Frank Baum</span>
+                        <p class="book-description">Follow Dorothy's adventures in the magical land of Oz.</p>
+                        <a href="fantasybooks/book1.html.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 2 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item ya">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="fantasy-images/Alice's Adventures in Wonderland.jpg" alt="Alice's Adventures in Wonderland">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Young Adult</span>
+                        <h3 class="book-title">Alice's Adventures in Wonderland</h3>
+                        <span class="read-time">Lewis Carroll</span>
+                        <p class="book-description">A young girl's journey through a whimsical and nonsensical world.</p>
+                        <a href="fantasybooks/book2.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 3 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item ya">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="fantasy-images/Through the Looking-Glass.jpg" alt="Through the Looking-Glass">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Young Adult</span>
+                        <h3 class="book-title">Through the Looking-Glass</h3>
+                        <span class="read-time">Lewis Carroll</span>
+                        <p class="book-description">The sequel to Alice's Adventures, featuring a world behind the mirror.</p>
+                        <a href="fantasybooks/book3.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 4 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item epic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="fantasy-images/The Marvelous Land of Oz.jpg" alt="The Marvelous Land of Oz">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Epic Fantasy</span>
+                        <h3 class="book-title">The Marvelous Land of <br> Oz</h3>
+                        <span class="read-time">L. Frank Baum</span>
+                        <p class="book-description">Continues the adventures in the land of Oz with new characters.</p>
+                        <a href="fantasybooks/book4.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 5 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item dark">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="fantasy-images/The Story of the Volsungs.jpg" alt="The Story of the Volsungs">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Dark Fantasy</span>
+                        <h3 class="book-title">The Story of the Volsungs</h3>
+                        <span class="read-time">Anonymous</span>
+                        <p class="book-description">A legendary Norse saga of heroes and dragons.</p>
+                        <a href="fantasybooks/book5.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 6 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item myth">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="fantasy-images/The Mabinogion.jpg" alt="The Mabinogion">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Mythological</span>
+                        <h3 class="book-title">The Mabinogion</h3>
+                        <span class="read-time">Anonymous</span>
+                        <p class="book-description">A collection of medieval Welsh tales of mythology and folklore.</p>
+                        <a href="fantasybooks/book6.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 7 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item epic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="fantasy-images/The Book of Wonder.jpg" alt="The Book of Wonder">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Epic Fantasy</span>
+                        <h3 class="book-title">The Book of Wonder</h3>
+                        <span class="read-time">Lord Dunsany</span>
+                        <p class="book-description">Short fantasy stories filled with imagination and magic.</p>
+                        <a href="fantasybooks/book7.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 8 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item epic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="fantasy-images/Phantastes A Faerie Romance for Men and Women.jpg" alt="Phantastes">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Epic Fantasy</span>
+                        <h3 class="book-title">Phantastes</h3>
+                        <span class="read-time">George MacDonald</span>
+                        <p class="book-description">A young man's journey through a mystical fairyland.</p>
+                        <a href="fantasybooks/book8.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 9 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item epic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="fantasy-images/The Princess and the Goblin.jpg" alt="The Princess and the Goblin">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Epic Fantasy</span>
+                        <h3 class="book-title">The Princess and the Goblin</h3>
+                        <span class="read-time">George MacDonald</span>
+                        <p class="book-description">A princess discovers a world of goblins beneath her castle.</p>
+                        <a href="fantasybooks/book9.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 10 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item ya">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="fantasy-images/The Lost World.jpg" alt="The Lost World">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Young Adult</span>
+                        <h3 class="book-title">The Lost <br>World</h3>
+                        <span class="read-time">Arthur Conan Doyle</span>
+                        <p class="book-description">An expedition discovers a plateau with prehistoric creatures.</p>
+                        <a href="fantasybooks/book10.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 11 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item urban">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="fantasy-images/The Man Who Was Thursday A Nightmare.jpg" alt="The Man Who Was Thursday">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Urban Fantasy</span>
+                        <h3 class="book-title">The Man Who Was Thursday</h3>
+                        <span class="read-time">G. K. Chesterton</span>
+                        <p class="book-description">A metaphysical thriller blending fantasy and mystery.</p>
+                        <a href="fantasybooks/book11.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 12 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item ya">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="fantasy-images/The Wind in the Willows.jpg" alt="The Wind in the Willows">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Young Adult</span>
+                        <h3 class="book-title">The Wind in the <br> Willows</h3>
+                        <span class="read-time">Kenneth Grahame</span>
+                        <p class="book-description">Adventures of anthropomorphic animals in pastoral England.</p>
+                        <a href="fantasybooks/book12.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 13 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item urban">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="fantasy-images/A Connecticut Yankee in King Arthur's Court.jpg" alt="A Connecticut Yankee in King Arthur's Court">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Urban Fantasy</span>
+                        <h3 class="book-title">A Connecticut Yankee in King Arthur's Court</h3>
+                        <span class="read-time">Mark Twain</span>
+                        <p class="book-description">A 19th-century man is transported to medieval England.</p>
+                        <a href="fantasybooks/book13.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 14 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item ya">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="fantasy-images/The Enchanted Castle.jpg" alt="The Enchanted Castle">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Young Adult</span>
+                        <h3 class="book-title">The Enchanted <br> Castle</h3>
+                        <span class="read-time">E. Nesbit</span>
+                        <p class="book-description">Children discover a magical castle and a sleeping princess.</p>
+                        <a href="fantasybooks/book14.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 15 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item epic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="fantasy-images/The Gods of Pegana.jpg" alt="The Gods of Pegāna">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Epic Fantasy</span>
+                        <h3 class="book-title">The Gods of <br> Pegāna</h3>
+                        <span class="read-time">Lord Dunsany</span>
+                        <p class="book-description">A collection of short stories about a fictional pantheon.</p>
+                        <a href="fantasybooks/book15.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 16 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item dark">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="fantasy-images/The Shaving of Shagpat.jpg" alt="The Shaving of Shagpat">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Dark Fantasy</span>
+                        <h3 class="book-title">The Shaving of <br>Shagpat</h3>
+                        <span class="read-time">George Meredith</span>
+                        <p class="book-description">An Arabian Nights-style fantasy tale.</p>
+                        <a href="fantasybooks/book16.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 17 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item dark">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="fantasy-images/The Crock of Gold.jpg" alt="The Crock of Gold">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Dark Fantasy</span>
+                        <h3 class="book-title">The Crock of Gold</h3>
+                        <span class="read-time">James Stephens</span>
+                        <p class="book-description">A blend of philosophy, folklore, and fantasy.</p>
+                        <a href="fantasybooks/book17.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 18 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item myth">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="fantasy-images/The Water-Babies.jpg" alt="The Water-Babies">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Mythological</span>
+                        <h3 class="book-title">The Water-Babies</h3>
+                        <span class="read-time">Charles Kingsley</span>
+                        <p class="book-description">A young chimney sweep's transformation into a water-baby.</p>
+                        <a href="fantasybooks/book18.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 19 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item myth">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="fantasy-images/The Light Princess.jpg" alt="The Light Princess">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Mythological</span>
+                        <h3 class="book-title">The Light Princess</h3>
+                        <span class="read-time">George MacDonald</span>
+                        <p class="book-description">A princess cursed to have no gravity.</p>
+                        <a href="fantasybooks/book19.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 20 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item dark">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="fantasy-images/The Professors Experiment.jpg" alt="The Professor's Experiment">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Dark Fantasy</span>
+                        <h3 class="book-title">The Professor's Exp.</h3>
+                        <span class="read-time">E. Phillips Oppenheim</span>
+                        <p class="book-description">A curious tale of a man who controls fate with science and mystery.</p>
+                        <a href="fantasybooks/book20.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination Navigation -->
+        <nav aria-label="Book pagination">
+            <ul class="pagination">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- Logo & Social Media -->
+                <div class="col-md-4 footer-logo">
+                    <img src="images/novelista-logo.png" alt="Novelista Logo">
+                    <p>Your gateway to immersive stories and literary adventures.</p>
+    
+                    <!-- Social Media Icons -->
+                    <div class="social-icons-left">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+    
+                <!-- Explore Section -->
+                <div class="col-md-2 footer-links">
+                    <h5><i class="fas fa-book"></i> Explore</h5>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-magic"></i> Fantasy</a></li>
+                        <li><a href="#"><i class="fas fa-user-secret"></i> Mystery</a></li>
+                        <li><a href="#"><i class="fas fa-rocket"></i> Sci-Fi</a></li>
+                        <li><a href="#"><i class="fas fa-heart"></i> Romance</a></li>
+                        <li><a href="#"><i class="fas fa-fire"></i> Trending</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Community Section -->
+                <div class="col-md-3 footer-links">
+                    <h5><i class="fas fa-users"></i> Community</h5>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-comments"></i> Forum</a></li>
+                        <li><a href="#"><i class="fas fa-star"></i> Reviews</a></li>
+                        <li><a href="#"><i class="fas fa-chart-line"></i> Ratings</a></li>
+                        <li><a href="#"><i class="fas fa-thumbs-up"></i> Recommendations</a></li>
+                        <li><a href="#"><i class="fas fa-headset"></i> Support</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Resources Section -->
+                <div class="col-md-3 footer-links">
+                    <h5><i class="fas fa-folder-open"></i> Resources</h5>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-question-circle"></i> Help</a></li>
+                        <li><a href="#"><i class="fas fa-book-open"></i> Guides</a></li>
+                        <li><a href="#"><i class="fas fa-blog"></i> Blog</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+                        <li><a href="#"><i class="fas fa-file-contract"></i> Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+    
+            <!-- Copyright -->
+            <div class="footer-bottom text-center">
+                <p>&copy; 2025 Novelista. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Offset for the fixed navbar
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbar = document.querySelector('.navbar');
+            const navbarHeight = navbar.offsetHeight;
+            document.body.style.paddingTop = navbarHeight + 'px';
+        });
+        
+        // Category filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Show all books if 'all' selected, otherwise filter
+                    document.querySelectorAll('.book-item').forEach(item => {
+                        if(filterValue === 'all' || item.classList.contains(filterValue)) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const booksPerPage = 4;
+            const bookItems = Array.from(document.querySelectorAll('.book-item'));
+            const paginationContainer = document.querySelector('.pagination');
+            const totalPages = Math.ceil(bookItems.length / booksPerPage);
+        
+            function showPage(page) {
+                bookItems.forEach((item, index) => {
+                    item.style.display = (index >= (page - 1) * booksPerPage && index < page * booksPerPage) ? 'block' : 'none';
+                });
+        
+                // Update pagination active state
+                paginationContainer.innerHTML = `
+                    <li class="page-item ${page === 1 ? 'disabled' : ''}">
+                        <a class="page-link" href="#" data-page="${page - 1}">&laquo;</a>
+                    </li>
+                    ${Array.from({ length: totalPages }, (_, i) => `
+                        <li class="page-item ${i + 1 === page ? 'active' : ''}">
+                            <a class="page-link" href="#" data-page="${i + 1}">${i + 1}</a>
+                        </li>`).join('')}
+                    <li class="page-item ${page === totalPages ? 'disabled' : ''}">
+                        <a class="page-link" href="#" data-page="${page + 1}">&raquo;</a>
+                    </li>
+                `;
+            }
+        
+            // Initial render
+            showPage(1);
+        
+            // Handle pagination click
+            paginationContainer.addEventListener('click', function (e) {
+                if (e.target.classList.contains('page-link')) {
+                    e.preventDefault();
+                    const page = parseInt(e.target.getAttribute('data-page'));
+                    if (page >= 1 && page <= totalPages) {
+                        showPage(page);
+                    }
+                }
+            });
+        });
+        </script>
+        
+</body>
+</html>

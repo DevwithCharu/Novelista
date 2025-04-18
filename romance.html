@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Romance eBooks - Novelista</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #101010;
+            color: #333;
+        }
+        .navbar{
+            background-color: rgb(0, 71, 71);
+        }
+        /* Navbar */
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;   
+        }
+        .nav-link{
+            color: #fff;
+            font-weight: bold;
+        }
+        .hover-effect:hover {
+            color: rgb(0, 0, 0) !important;
+            font-weight: bold;
+            border: 2px black !important;
+            transition: all 0.3s ease;
+        }
+
+        .navbar .btn-primary {
+            margin-left: 10px;
+            border-radius: 10px;
+            background-color: #fff;
+            color:rgb(0, 71, 71) ;
+        }
+        .navbar .btn-primary:hover{
+            background-color: black !important;
+            color: #fff;
+        }
+        .category-banner {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/hero.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0 60px;
+            margin-bottom: 40px;
+        }
+
+        /* Romance Books Section */
+        .romance-section {
+            padding: 60px 0;
+            background-color: #101010;
+            color: #fff;
+            margin-top: auto;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        .see-all {
+            font-size: 14px;
+            color: #d4d4d4;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .see-all:hover {
+            color: #17a365;
+        }
+        
+        /* Filter Pills */
+        .filter-container {
+            margin-top:60px;
+            margin-bottom: 30px;
+            padding-left: 15px;
+        }
+        
+        .filter-btn {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: rgb(0, 71, 71);
+            color: #fff;
+        }
+        
+        /* Book Cards */
+        .book-card {
+            background-color: #1a1a1a;
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            height: 100%;
+            margin-bottom: 20px;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 150, 0.2);
+        }
+        
+        .book-cover {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .book-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .book-card:hover .book-cover img {
+            transform: scale(1.1);
+        }
+        
+        .book-content {
+            padding: 15px;
+        }
+        
+        .category {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        .book-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        
+        .book-description {
+            font-size: 14px;
+            color: #bbb;
+            margin-bottom: 15px;
+            min-height: 60px;
+        }
+        
+        .read-time {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .btn-custom {
+            background-color: rgb(0, 71, 71);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            width: 100%;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-custom:hover {
+            background-color: #17a365;
+        }
+
+        /* Pagination */
+        .pagination {
+            justify-content: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .page-link {
+            color: #fff;
+            background-color: #222;
+            border-color: #333;
+        }
+        
+        .page-link:hover {
+            background-color: rgb(0, 71, 71);
+            border-color: rgb(0, 71, 71);
+            color: #fff;
+        }
+        
+        .page-item.active .page-link {
+            background-color: rgb(0, 71, 71);
+            border-color: rgb(0, 71, 71);
+        }
+
+        .page-item.disabled .page-link {
+            background-color: #333;
+            border-color: #444;
+            color: #777;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .book-description {
+                min-height: auto;
+            }
+        }
+        .footer {
+            background: #111;
+            color: #ccc;
+            padding: 40px 0;
+            font-size: 14px;
+        }
+
+        .footer-logo img {
+            width: 120px;
+            margin-bottom: 10px;
+        }
+
+        .footer-logo p {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        /* Social Media Icons Below Logo */
+        .social-icons-left {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-icons-left a {
+            color: #ffffff !important;
+            font-size: 20px;
+            transition: color 0.3s ease-in-out;
+            height: 30px;
+            width: 30px;
+        }
+
+        .social-icons-left a:hover {
+            color: #ff6b00;
+        }
+
+        .footer-links h5 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links ul li a i {
+            margin-right: 8px;
+            color: #ff6b00;
+        }
+
+        .footer-links ul li a:hover {
+            color: #ff6b00;
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 10px;
+            font-size: 12px;
+        }
+
+        /* Book source badge */
+        .source-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 71, 71, 0.8);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 10px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"> <img src="images/novelista-logo.png" alt="Novelista Logo" height="50"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="index.html">Home</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="browse.html">Browse</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="reccomendationai.html">Reccomendations</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="about.html">About</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link btn btn-primary text-rgb(71, 5, 5);" href="login.html">Login / Sign Up</a></li>
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+
+    <section class="category-banner">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Romance Collection</h1>
+            <p class="lead">Discover timeless love stories and passionate tales from classic literature</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">All Categories</button>
+            <button class="filter-btn" data-filter="classic">Classic Romance</button>
+            <button class="filter-btn" data-filter="period">Period Romance</button>
+            <button class="filter-btn" data-filter="gothic">Gothic Romance</button>
+            <button class="filter-btn" data-filter="tragic">Tragic Romance</button>
+            <button class="filter-btn" data-filter="comedy">Romantic Comedy</button>
+        </div>
+        
+        <div class="row book-row">
+            <!-- Book 1 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item classic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="romance-images/Pride and Prejudice.jpg" alt="Pride and Prejudice">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Classic Romance</span>
+                        <h3 class="book-title">Pride and Prejudice</h3>
+                        <span class="read-time">Jane Austen</span>
+                        <p class="book-description">The story of spirited Elizabeth Bennet and the proud Mr. Darcy overcoming their prejudices for love.</p>
+                        <a href="romancebooks/book1.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 2 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item period">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="romance-images/Jane-Eyre.jpg" alt="Jane Eyre">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Period Romance</span>
+                        <h3 class="book-title">Jane Eyre</h3>
+                        <span class="read-time">Charlotte Brontë</span>
+                        <p class="book-description">A young governess falls in love with her mysterious employer, Mr. Rochester.</p>
+                        <a href="romancebooks/book2.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 3 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item gothic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="romance-images/Wuthering Heights.jpg" alt="Wuthering Heights">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Gothic Romance</span>
+                        <h3 class="book-title">Wuthering Heights</h3>
+                        <span class="read-time">Emily Brontë</span>
+                        <p class="book-description">The passionate and destructive love story of Catherine and Heathcliff on the Yorkshire moors.</p>
+                        <a href="romancebooks/book3.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 4 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item classic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="romance-images/Sense and Sensibility.jpg" alt="Sense and Sensibility">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Classic Romance</span>
+                        <h3 class="book-title">Sense and Sensibility</h3>
+                        <span class="read-time">Jane Austen</span>
+                        <p class="book-description">The story of the Dashwood sisters as they navigate love, heartbreak, and societal expectations.</p>
+                        <a href="romancebooks/book4.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 5 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item tragic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="romance-images/Romeo and Juliet.jpg" alt="Romeo and Juliet">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Tragic Romance</span>
+                        <h3 class="book-title">Romeo and Juliet</h3>
+                        <span class="read-time">William Shakespeare</span>
+                        <p class="book-description">The tragic tale of two young star-crossed lovers whose deaths reconcile their feuding families.</p>
+                        <a href="romancebooks/book5.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 6 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item period">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="romance-images/Persuasion.jpg" alt="Persuasion">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Period Romance</span>
+                        <h3 class="book-title">Persuasion</h3>
+                        <span class="read-time">Jane Austen</span>
+                        <p class="book-description">Anne Elliot is given a second chance at love with Captain Wentworth, whom she was persuaded to reject years earlier.</p>
+                        <a href="romancebooks/book6.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 7 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item gothic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="romance-images/The Phantom of the Opera.jpg" alt="The Phantom of the Opera">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Gothic Romance</span>
+                        <h3 class="book-title">The Phantom of the Opera</h3>
+                        <span class="read-time">Gaston Leroux</span>
+                        <p class="book-description">A disfigured musical genius haunts the Paris Opera House and falls in love with a young soprano.</p>
+                        <a href="romancebooks/book7.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 8 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item classic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="romance-images/Emma.jpeg" alt="Emma">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Classic Romance</span>
+                        <h3 class="book-title">Emma</h3>
+                        <span class="read-time">Jane Austen</span>
+                        <p class="book-description">The story of a matchmaker who must confront her own feelings while meddling in the romantic lives of others.</p>
+                        <a href="romancebooks/book8.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 9 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item tragic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="romance-images/Anna Karenina.jpg" alt="Anna Karenina">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Tragic Romance</span>
+                        <h3 class="book-title">Anna Karenina</h3>
+                        <span class="read-time">Leo Tolstoy</span>
+                        <p class="book-description">The tragic story of a married aristocrat and her affair with the affluent Count Vronsky.</p>
+                        <a href="romancebooks/book9.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 10 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item comedy">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="romance-images/Much Ado About Nothing.jpg" alt="Much Ado About Nothing">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Romantic Comedy</span>
+                        <h3 class="book-title">Much Ado About Nothing</h3>
+                        <span class="read-time">William Shakespeare</span>
+                        <p class="book-description">The witty banter between Beatrice and Benedick leads to an unexpected romance.</p>
+                        <a href="romancebooks/book10.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 11 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item period">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="romance-images/North and South.jpg" alt="North and South">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Period Romance</span>
+                        <h3 class="book-title">North and South</h3>
+                        <span class="read-time">Elizabeth Gaskell</span>
+                        <p class="book-description">Margaret Hale and mill owner John Thornton overcome their differences in this industrial-era romance.</p>
+                        <a href="romancebooks/book11.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 12 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item gothic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="romance-images/The Hunchback of Notre Dame.jpg" alt="The Hunchback of Notre Dame">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Gothic Romance</span>
+                        <h3 class="book-title">The Hunchback of Notre Dame</h3>
+                        <span class="read-time">Victor Hugo</span>
+                        <p class="book-description">The story of Quasimodo's hopeless love for the beautiful Esmeralda in 15th-century Paris.</p>
+                        <a href="romancebooks/book12.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 13 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item classic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="romance-images/Northanger Abbey.jpg" alt="Northanger Abbey">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Classic Romance</span>
+                        <h3 class="book-title">Northanger Abbey</h3>
+                        <span class="read-time">Jane Austen</span>
+                        <p class="book-description">Catherine Morland's overactive imagination complicates her romantic pursuit of Henry Tilney.</p>
+                        <a href="romancebooks/book13.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 14 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item tragic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="romance-images/Madame Bovary.jpg" alt="Madame Bovary">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Tragic Romance</span>
+                        <h3 class="book-title">Madame Bovary</h3>
+                        <span class="read-time">Gustave Flaubert</span>
+                        <p class="book-description">The story of Emma Bovary's adulterous affairs in search of passion and escape from provincial life.</p>
+                        <a href="romancebooks/book14.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 15 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item comedy">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="romance-images/The Importance of Being Earnest.jpeg" alt="The Importance of Being Earnest">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Romantic Comedy</span>
+                        <h3 class="book-title">The Importance of Being Earnest</h3>
+                        <span class="read-time">Oscar Wilde</span>
+                        <p class="book-description">A farcical comedy about the social conventions of late Victorian society and mistaken identities.</p>
+                        <a href="romancebooks/book15.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 16 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item period">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="romance-images/Far From the Madding Crowd.jpg" alt="Far From the Madding Crowd">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Period Romance</span>
+                        <h3 class="book-title">Far From the Madding Crowd</h3>
+                        <span class="read-time">Thomas Hardy</span>
+                        <p class="book-description">Bathsheba Everdene attracts three very different suitors in this rural Victorian romance.</p>
+                        <a href="romancebooks/book16.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 17 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item gothic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="romance-images/Dracula.jpg" alt="Dracula">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Gothic Romance</span>
+                        <h3 class="book-title">Dracula</h3>
+                        <span class="read-time">Bram Stoker</span>
+                        <p class="book-description">The classic tale of Count Dracula and his attempt to move from Transylvania to England.</p>
+                        <a href="romancebooks/book17.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 18 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item tragic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="romance-images/The Great Gatsby.jpg" alt="The Great Gatsby">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Tragic Romance</span>
+                        <h3 class="book-title">The Great Gatsby</h3>
+                        <span class="read-time">F. Scott Fitzgerald</span>
+                        <p class="book-description">Jay Gatsby's impossible love for the beautiful Daisy Buchanan in the Jazz Age.</p>
+                        <a href="romancebooks/book18.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 19 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item comedy">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="romance-images/As You Like It.jpg" alt="As You Like It">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Romantic Comedy</span>
+                        <h3 class="book-title">As You Like It</h3>
+                        <span class="read-time">William Shakespeare</span>
+                        <p class="book-description">Rosalind and Orlando's love story unfolds in the Forest of Arden filled with wit and humor.</p>
+                        <a href="romancebooks/book19.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Book 20 -->
+            <div class="col-12 col-md-6 col-lg-3 mb-4 book-item classic">
+                <div class="book-card">
+                    <div class="book-cover">
+                        <span class="source-badge">Novelista</span>
+                        <img src="romance-images/Little Women.jpg" alt="Little Women">
+                    </div>
+                    <div class="book-content">
+                        <span class="category text-white-50">Classic Romance</span>
+                        <h3 class="book-title">Little Women</h3>
+                        <span class="read-time">Louisa May Alcott</span>
+                        <p class="book-description">The coming-of-age story of the four March sisters with their various romantic entanglements.</p>
+                        <a href="romancebooks/book20.html" class="btn btn-custom">Read Now</a>
+                    </div>
+                    </div>
+                    </div>
+                    
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <nav aria-label="Book navigation">
+                    <ul class="pagination">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                    </nav>
+                    </div>
+                    
+                    <!-- Footer -->
+                    <footer class="footer">
+                        <div class="container">
+                            <div class="row">
+                                <!-- Logo & Social Media -->
+                                <div class="col-md-4 footer-logo">
+                                    <img src="images/novelista-logo.png" alt="Novelista Logo">
+                                    <p>Your gateway to immersive stories and literary adventures.</p>
+                    
+                                    <!-- Social Media Icons -->
+                                    <div class="social-icons-left">
+                                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                        <a href="#"><i class="fab fa-twitter"></i></a>
+                                        <a href="#"><i class="fab fa-instagram"></i></a>
+                                    </div>
+                                </div>
+                    
+                                <!-- Explore Section -->
+                                <div class="col-md-2 footer-links">
+                                    <h5><i class="fas fa-book"></i> Explore</h5>
+                                    <ul>
+                                        <li><a href="#"><i class="fas fa-magic"></i> Fantasy</a></li>
+                                        <li><a href="#"><i class="fas fa-user-secret"></i> Mystery</a></li>
+                                        <li><a href="#"><i class="fas fa-rocket"></i> Sci-Fi</a></li>
+                                        <li><a href="#"><i class="fas fa-heart"></i> Romance</a></li>
+                                        <li><a href="#"><i class="fas fa-fire"></i> Trending</a></li>
+                                    </ul>
+                                </div>
+                    
+                                <!-- Community Section -->
+                                <div class="col-md-3 footer-links">
+                                    <h5><i class="fas fa-users"></i> Community</h5>
+                                    <ul>
+                                        <li><a href="#"><i class="fas fa-comments"></i> Forum</a></li>
+                                        <li><a href="#"><i class="fas fa-star"></i> Reviews</a></li>
+                                        <li><a href="#"><i class="fas fa-chart-line"></i> Ratings</a></li>
+                                        <li><a href="#"><i class="fas fa-thumbs-up"></i> Recommendations</a></li>
+                                        <li><a href="#"><i class="fas fa-headset"></i> Support</a></li>
+                                    </ul>
+                                </div>
+                    
+                                <!-- Resources Section -->
+                                <div class="col-md-3 footer-links">
+                                    <h5><i class="fas fa-folder-open"></i> Resources</h5>
+                                    <ul>
+                                        <li><a href="#"><i class="fas fa-question-circle"></i> Help</a></li>
+                                        <li><a href="#"><i class="fas fa-book-open"></i> Guides</a></li>
+                                        <li><a href="#"><i class="fas fa-blog"></i> Blog</a></li>
+                                        <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+                                        <li><a href="#"><i class="fas fa-file-contract"></i> Terms</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                    
+                            <!-- Copyright -->
+                            <div class="footer-bottom text-center">
+                                <p>&copy; 2025 Novelista. All rights reserved.</p>
+                            </div>
+                        </div>
+                    </footer>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+                    <script>
+                        // Filter functionality
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const filterButtons = document.querySelectorAll('.filter-btn');
+                            const bookItems = document.querySelectorAll('.book-item');
+                            
+                            filterButtons.forEach(button => {
+                                button.addEventListener('click', function() {
+                                    // Remove active class from all buttons
+                                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                                    
+                                    // Add active class to clicked button
+                                    this.classList.add('active');
+                                    
+                                    const filter = this.getAttribute('data-filter');
+                                    
+                                    // Show/hide book items based on filter
+                                    bookItems.forEach(item => {
+                                        if (filter === 'all' || item.classList.contains(filter)) {
+                                            item.style.display = 'block';
+                                        } else {
+                                            item.style.display = 'none';
+                                        }
+                                    });
+                                });
+                            });
+                        });
+                        
+                        // Add fixed-top offset for navbar
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const navbar = document.querySelector('.navbar');
+                            const navbarHeight = navbar.offsetHeight;
+                            document.body.style.paddingTop = navbarHeight + 'px';
+                        });
+                        
+                    </script>
+                           <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                const booksPerPage = 4;
+                                const bookItems = Array.from(document.querySelectorAll('.book-item'));
+                                const paginationContainer = document.querySelector('.pagination');
+                                const totalPages = Math.ceil(bookItems.length / booksPerPage);
+                            
+                                function showPage(page) {
+                                    bookItems.forEach((item, index) => {
+                                        item.style.display = (index >= (page - 1) * booksPerPage && index < page * booksPerPage) ? 'block' : 'none';
+                                    });
+                            
+                                    // Update pagination active state
+                                    paginationContainer.innerHTML = `
+                                        <li class="page-item ${page === 1 ? 'disabled' : ''}">
+                                            <a class="page-link" href="#" data-page="${page - 1}">&laquo;</a>
+                                        </li>
+                                        ${Array.from({ length: totalPages }, (_, i) => `
+                                            <li class="page-item ${i + 1 === page ? 'active' : ''}">
+                                                <a class="page-link" href="#" data-page="${i + 1}">${i + 1}</a>
+                                            </li>`).join('')}
+                                        <li class="page-item ${page === totalPages ? 'disabled' : ''}">
+                                            <a class="page-link" href="#" data-page="${page + 1}">&raquo;</a>
+                                        </li>
+                                    `;
+                                }
+                            
+                                // Initial render
+                                showPage(1);
+                            
+                                // Handle pagination click
+                                paginationContainer.addEventListener('click', function (e) {
+                                    if (e.target.classList.contains('page-link')) {
+                                        e.preventDefault();
+                                        const page = parseInt(e.target.getAttribute('data-page'));
+                                        if (page >= 1 && page <= totalPages) {
+                                            showPage(page);
+                                        }
+                                    }
+                                });
+                            });
+                            </script>
+                    </body>
+                    
+                    </html>

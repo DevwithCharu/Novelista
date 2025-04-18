@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Novel Stream - Read Unlimited Books</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"> <img src="images/novelista-logo.png" alt="Novelista Logo" height="50"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="#">Home</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="browse.html">Browse</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="reccomendationai.html">Reccomendations</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="about.html">About</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link btn btn-primary text-rgb(0, 71, 71);" href="login.html">Login / Sign Up</a></li>
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+
+    <div class="container hero-section">
+        <div class="row align-items-center">
+            <!-- Left Side - Images Grid -->
+            <div class="col-lg-6 book-images">
+                <div class="row g-3">
+                    <div class="col-6"><img src="images/book1.jpg" alt="Book Cover"></div>
+                    <div class="col-6"><img src="images/reading.jpg" alt="Reading"></div>
+                    <div class="col-6"><img src="images/app-ui.jpg" alt="App UI"></div>
+                    <div class="col-6"><img src="images/library.jpg" alt="Bookshelf"></div>
+                </div>
+            </div>
+
+            <!-- Right Side - Text and CTA -->
+            <div class="col-lg-6 text-center text-lg-start">
+                <h1 class="hero-title text-white">Discover captivating stories that ignite your imagination.</h1>
+                <p class="hero-text">
+                    Dive into a world of endless possibilities with our curated selection of novels. 
+                    Whether you're a fan of fantasy, mystery, or romance, there's something here for everyone.
+                </p>
+                <div class="mt-4">
+                    <a href="browse.html" class="btn btn-explore me-3">Explore now</a>
+                    <a href="login.html" class="btn btn-join">Join us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container my-5">
+        <div class="row g-4">
+            <!-- Card 1 -->
+            <div class="col-md-4">
+                <div class="card text-center p-3">
+                    <img src="images/explore.jpg" class="card-img-top" alt="Explore Stories">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold text-white">Explore captivating stories</h5>
+                        <p class="card-text text-white">
+                            Dive into a world of imagination with our curated selection of novels. 
+                            Whether you're a fan of thrilling mysteries or enchanting fantasies, there's something for everyone.
+                        </p>
+                        <a href="browse.html" class="btn btn-custom">Discover more</a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card 2 -->
+            <div class="col-md-4">
+                <div class="card text-center p-3">
+                    <img src="images/recommendations.jpg" class="card-img-top" alt="Join Book Community">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold text-white">Join our book community</h5>
+                        <p class="card-text text-white">
+                            Connect with fellow readers, share your thoughts, and explore new genres. 
+                            Our community is a place where stories come alive through discussion and engagement.
+                        </p>
+                        <a href="login.html" class="btn btn-custom">Join now</a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card 3 -->
+            <div class="col-md-4">
+                <div class="card text-center p-3">
+                    <img src="images/community.jpg" class="card-img-top" alt="Personalized Recommendations">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold text-white">Personalized recommendations</h5>
+                        <p class="card-text text-white">
+                            Let our AI-powered engine guide you to your next favorite read. 
+                            Tailored suggestions ensure you never run out of exciting books to explore.
+                        </p>
+                        <a href="reccomendationai.html" class="btn btn-custom">Get started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row align-items-center intro-section">
+            <div class="col-md-8">
+                <p class="text-uppercase text-secondary small">Explore the world of stories</p>
+                <h1 class="display-5 fw-light text-white">Discover your next favorite novel</h1>
+                <p class="lead text-secondary fw-lighter text-white">Dive into a universe of captivating tales and immersive narratives.</p>
+            </div>
+            <div class="col-md-4 text-md-end text-start">
+                <a href="browse.html" class="btn btn-custom px-4 py-2">Start reading</a>
+            </div>
+        </div>
+    </div>
+    <div class="book-grid">
+        <!-- First Row -->
+        <div class="book-section justify-content-center">
+            <img src="images/bookshelf.jpg" class="book-image image-slide" alt="Book Image">
+            <div class="book-content">
+                <span class="category text-white  fw-light">FANTASY</span> <span class="text-white">7 min read</span>
+                <h3 class="book-title">Unravel magical realms</h3>
+                <p class="book-description">Embark on a journey through enchanted lands and mystical adventures.</p>
+                <a href="fantasy.html" class="book-link">Explore more</a>
+            </div>
+        </div>
+        <div class="book-section justify-content-center">
+            <img src="images/romance.jpg" class="book-image image-slide" alt="Book Image">
+            <div class="book-content">
+                <span class="category text-white  fw-light">MYSTERY</span> <span class="text-white">6 min read</span>
+                <h3 class="book-title">Solve intriguing puzzles</h3>
+                <p class="book-description">Delve into thrilling mysteries and unravel secrets at every turn.</p>
+                <a href="mystery.html" class="book-link">Discover now</a>
+            </div>
+        </div>
+    
+        <!-- Second Row -->
+        <div class="book-section">
+            <img src="images/scifi.jpg" class="book-image image-slide" alt="Book Image">
+            <div class="book-content">
+                <span class="category text-white fw-light">SCI-FI</span> <span class="text-white">8 min read</span>
+                <h3 class="book-title">Venture into the future</h3>
+                <p class="book-description">Experience futuristic worlds and groundbreaking technologies.</p>
+                <a href="sci-fi.html" class="book-link">Learn more</a>
+            </div>
+        </div>
+        <div class="book-section">
+            <img src="images/fantasy.jpg" class="book-image image-slide" alt="Book Image">
+            <div class="book-content">
+                <span class="category text-white fw-light">ROMANCE</span> <span class="text-white">5 min read</span>
+                <h3 class="book-title">Feel the love</h3>
+                <p class="book-description">Immerse yourself in heartwarming tales of love and connection.</p>
+                <a href="romance.html" class="book-link">Read now</a>
+            </div>
+        </div>
+    </div>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+
+    
+            <!-- Swiper Container -->
+            <section class="trending-books">
+                <div class="container">
+                    <div class="row align-items-center intro-section">
+                        <div class="col-md-8">
+                            <h1 class="display-5 fw-light text-white">Popular Books To Read</h1>
+                            <p class="lead text-secondary fw-lighter text-white">Dive into a universe of captivating tales and immersive narratives.</p>
+                        </div>
+                        <div class="col-md-4 text-md-end text-start">
+                            <a href="reccomendationai.html" class="btn btn-custom px-4 py-2">SEE ALL</a>
+                        </div>
+                    </div>
+            
+                    
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            <!-- Book 1 -->
+                            <div class="swiper-slide">
+                                <a href="read/romance/2.html">
+                                    <img src="images/firstbook.jpg" alt="Book 1">
+                                </a>
+                                <h5 class="text-white">Jane Eyre</h5>
+                                <p><em>by Charlotte Brontë</em></p>
+                            </div>
+                            <!-- Book 2 -->
+                            <div class="swiper-slide">
+                                <a href="read/romance/17.html">
+                                    <img src="images/secondbook.jpg" alt="Book 2">
+                                </a>
+                                <h5 class="text-white">Dracula</h5>
+                                <p><em>by Bram Stoker   </em></p>
+                            </div>
+                            <!-- Book 3 -->
+                            <div class="swiper-slide">
+                                <a href="read/thriller/26.html">
+                                    <img src="images1/scifi-images/fromtheearth.jpg" alt="Book 3">
+                                </a>
+                                <h5 class="text-white">From the Earth to the Moon
+                                    </h5>
+                                <p><em>by Jules Verne</em></p>
+                            </div>
+                            <!-- Book 4 -->
+                            <div class="swiper-slide">
+                                <a href="read/sci-fi/41.html">
+                                    <img src="images1/scifi-images/TheWaroftheWorlds.jpg" alt="Book 4">
+                                </a>
+                                <h5 class="text-white">The War of the Worlds
+                                    </h5>
+                                <p><em>by H.G. Wells</em></p>
+                            </div>
+                            <!-- Book 5 -->
+                            <div class="swiper-slide">
+                                <a href="read/fantasy/99.html">
+                                    <img src="images1/fantasy-images/TheLightPrincess.jpg" alt="Book 5">
+                                </a>
+                                <h5 class="text-white">The Light Princess</h5>
+                                <p><em>by George MacDonald</em></p>
+                            </div>
+                        </div>
+                        
+            
+                        <!-- Navigation Arrows -->
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+            </section>
+            
+    
+               
+    
+    <!-- Include Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 4,
+            spaceBetween: 20,
+            loop: true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                768: { slidesPerView: 3 },
+                576: { slidesPerView: 2 },
+                320: { slidesPerView: 1 }
+            }
+        });
+    </script>
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="row">
+                <!-- Left Side: Title & Stats -->
+                <div class="col-md-6">
+                    <h2 class="section-title">What our readers say</h2>
+                    <p class="section-subtitle">
+                        Join thousands of satisfied readers who have found their next favorite book with us. 
+                        Our community is growing every day, and we’re thrilled to share their experiences.
+                    </p>
+    
+                    <div class="stats">
+                        <div class="stat">
+                            <h3>52K+</h3>
+                            <p>Satisfied Readers</p>
+                        </div>
+                        <div class="stat">
+                            <h3>2M+</h3>
+                            <p>Books Read</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Right Side: Testimonials -->
+                <div class="col-md-6">
+                    <div class="row">
+                        <!-- Testimonial 1 -->
+                        <div class="col-md-6">
+                            <div class="testimonial-card">
+                                <img src="images/alex.jpg" alt="Alex Johnson">
+                                <h4>Alex Johnson</h4>
+                                <p class="role">Book Enthusiast</p>
+                                <p class="review">
+                                    This platform has transformed my reading experience. The recommendations are spot on, and I love the community discussions!
+                                </p>
+                            </div>
+                        </div>
+    
+                        <!-- Testimonial 2 -->
+                        <div class="col-md-6">
+                            <div class="testimonial-card">
+                                <img src="images/taylor.jpg" alt="Taylor Smith">
+                                <h4>Taylor Smith</h4>
+                                <p class="role">Avid Reader</p>
+                                <p class="review">
+                                    I’ve discovered so many amazing novels here. The interface is user-friendly, and the night mode is perfect for late-night <br>reading.
+                                </p>
+                            </div>
+                        </div>
+    
+                        <!-- Testimonial 3 -->
+                        <div class="col-md-6">
+                            <div class="testimonial-card">
+                                <img src="images/casey.jpg" alt="Casey Morgan">
+                                <h4>Casey Morgan</h4>
+                                <p class="role">Story Seeker</p>
+                                <p class="review">
+                                    I appreciate the personalized recommendations and the ability to track my reading progress. It’s like having a personal library assistant!
+                                </p>
+                            </div>
+                        </div>
+    
+                        <!-- Testimonial 4 -->
+                        <div class="col-md-6">
+                            <div class="testimonial-card">
+                                <img src="images/jordan.jpg" alt="Jordan Lee">
+                                <h4>Jordan Lee</h4>
+                                <p class="role">Literature Lover</p>
+                                <p class="review">
+                                    The variety of genres and the ease of finding new books make this my go-to site for all things reading <br>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </section>
+    
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <!-- Logo & Social Media -->
+            <div class="col-md-4 footer-logo">
+                <img src="images/novelista-logo.png" alt="Novelista Logo">
+                <p>Your gateway to immersive stories and literary adventures.</p>
+
+                <!-- Social Media Icons -->
+                <div class="social-icons-left">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <!-- Explore Section -->
+            <div class="col-md-2 footer-links">
+                <h5><i class="fas fa-book"></i> Explore</h5>
+                <ul>
+                    <li><a href="#"><i class="fas fa-magic"></i> Fantasy</a></li>
+                    <li><a href="#"><i class="fas fa-user-secret"></i> Mystery</a></li>
+                    <li><a href="#"><i class="fas fa-rocket"></i> Sci-Fi</a></li>
+                    <li><a href="#"><i class="fas fa-heart"></i> Romance</a></li>
+                    <li><a href="#"><i class="fas fa-fire"></i> Trending</a></li>
+                </ul>
+            </div>
+
+            <!-- Community Section -->
+            <div class="col-md-3 footer-links">
+                <h5><i class="fas fa-users"></i> Community</h5>
+                <ul>
+                    <li><a href="#"><i class="fas fa-comments"></i> Forum</a></li>
+                    <li><a href="#"><i class="fas fa-star"></i> Reviews</a></li>
+                    <li><a href="#"><i class="fas fa-chart-line"></i> Ratings</a></li>
+                    <li><a href="#"><i class="fas fa-thumbs-up"></i> Recommendations</a></li>
+                    <li><a href="#"><i class="fas fa-headset"></i> Support</a></li>
+                </ul>
+            </div>
+
+            <!-- Resources Section -->
+            <div class="col-md-3 footer-links">
+                <h5><i class="fas fa-folder-open"></i> Resources</h5>
+                <ul>
+                    <li><a href="#"><i class="fas fa-question-circle"></i> Help</a></li>
+                    <li><a href="#"><i class="fas fa-book-open"></i> Guides</a></li>
+                    <li><a href="#"><i class="fas fa-blog"></i> Blog</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <li><a href="#"><i class="fas fa-file-contract"></i> Terms</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="footer-bottom text-center">
+            <p>&copy; 2025 Novelista. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

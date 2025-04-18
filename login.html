@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Novelista - Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #101010;
+            color: #fff;
+            height: 100vh;
+        }
+        
+        .navbar {
+            background-color: rgb(0, 71, 71);
+        }
+        
+        /* Navbar */
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;   
+        }
+        
+        .nav-link {
+            color: #fff;
+            font-weight: bold;
+        }
+        
+        .hover-effect:hover {
+            color: rgb(0, 0, 0) !important;
+            font-weight: bold;
+            border: 2px black !important;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar .btn-primary {
+            margin-left: 10px;
+            border-radius: 10px;
+            background-color: #fff;
+            color: rgb(0, 71, 71);
+        }
+        
+.login-container {
+min-height: 80vh;
+padding-top: 70px;
+padding-bottom: 50px;
+margin-bottom: 50px;
+}
+.footer {
+margin-top: 50px;
+}
+        .navbar .btn-primary:hover {
+            background-color: black !important;
+            color: #fff;
+        }
+        
+        /* Login Form Styling */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            width: 70%;
+            padding-top: 70px; /* Adds space below the fixed navbar */
+            margin-top: 180px;
+        }
+        
+        .login-card {
+            background: linear-gradient(145deg, #1a1a1a, #222);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 15px 25px rgba(0, 255, 150, 0.1);
+            width: 100%;
+            max-width: 500px;
+            transition: transform 0.3s ease;
+        }
+        
+        .login-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px rgba(0, 255, 150, 0.2);
+        }
+        
+        .login-tabs {
+            display: flex;
+            margin-bottom: 30px;
+        }
+        
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            border-bottom: 3px solid #008066;
+            background-color: rgba(0, 128, 102, 0.1);
+            color: #fff;
+        }
+        
+        .tab:not(.active) {
+            color: #888;
+        }
+        
+        .form-content h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: bold;
+            color: #fff;
+        }
+        
+        .form-control {
+            background-color: #222;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+        }
+        .form-control::placeholder {
+            color: #ccc;
+        }
+
+        
+        .form-control:focus {
+            background-color: #333;
+            box-shadow: 0 0 8px rgba(0, 255, 150, 0.3);
+        }
+        
+        .is-invalid {
+            border: 1px solid #dc3545 !important;
+            background-color: rgba(220, 53, 69, 0.1) !important;
+        }
+
+        .invalid-feedback {
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: -15px;
+            margin-bottom: 15px;
+        }
+        
+        .input-group-text {
+            background-color: #222;
+            border: none;
+            color: #fff; 
+            height: 48px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        
+        .btn-login {
+            background-color: #008066;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            padding: 12px 0;
+            width: 100%;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-login:hover {
+            background-color: #00a57e;
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 30px 0;
+            color: #888;
+        }
+        
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #444;
+        }
+        
+        .divider::before {
+            margin-right: 10px;
+        }
+        
+        .divider::after {
+            margin-left: 10px;
+        }
+        
+        .social-login {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #222;
+            color: #fff;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .google:hover {
+            background-color: #DB4437;
+        }
+        
+        .facebook:hover {
+            background-color: #4267B2;
+        }
+        
+        .twitter:hover {
+            background-color: #1DA1F2;
+        }
+        
+        .login-footer {
+            text-align: center;
+            margin-top: 25px;
+            color: #888;
+        }
+        
+        .login-footer a {
+            color: #48c78e;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Register Form (initially hidden) */
+        #registerForm {
+            display: none;
+        }
+        
+        .form-check-input {
+            background-color: #222;
+            border-color: #444;
+        }
+        
+        .form-check-input:checked {
+            background-color: #008066;
+            border-color: #008066;
+        }
+        .footer {
+            background: #111;
+            color: #ccc;
+            padding: 40px 0;
+            font-size: 14px;
+            margin-top: 150px;
+
+        }
+
+        .footer-logo img {
+            width: 120px;
+            margin-bottom: 10px;
+        }
+
+        .footer-logo p {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        /* Social Media Icons Below Logo */
+        .social-icons-left {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-icons-left a {
+            color: #ffffff !important;
+            font-size: 20px;
+            transition: color 0.3s ease-in-out;
+            height: 30px;
+            width: 30px;
+        }
+
+        .social-icons-left a:hover {
+            color: #ff6b00;
+        }
+
+        .footer-links h5 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links ul li a i {
+            margin-right: 8px;
+            color: #ff6b00;
+        }
+
+        .footer-links ul li a:hover {
+            color: #ff6b00;
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 10px;
+            font-size: 12px;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .login-card {
+                padding: 20px;
+                margin: 0 15px;
+            }
+            
+            .login-container {
+                height: auto;
+                padding-top: 80px;
+                padding-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"> <img src="images/novelista-logo.png" alt="Novelista Logo" height="50"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="index.html">Home</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="browse.html">Browse</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="reccomendationai.html">Reccomendations</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="about.html">About</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link btn btn-primary text-rgb(0, 71, 71);" href="login.html">Login / Sign Up</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Container -->
+    <div class="container login-container">
+        <div class="login-card">
+            <!-- Login/Register Tabs -->
+            <div class="login-tabs">
+                <div class="tab active" id="loginTab">Login</div>
+                <div class="tab" id="registerTab">Register</div>
+            </div>
+            
+            <!-- Login Form -->
+            <div class="form-content" id="loginForm">
+                <h2>Welcome Back!</h2>
+                
+                <!-- Social Login -->
+                <div class="social-login">
+                    <a href="#" class="social-btn google"><i class="fab fa-google"></i></a>
+                    <a href="#" class="social-btn facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-btn twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+                
+                <div class="divider">or continue with email</div>
+                
+                <!-- Login Form -->
+                <form onsubmit="return validateLoginForm()">
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            <input type="email" id="loginEmail" class="form-control" placeholder="Email" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                            <input type="password" id="loginPassword" class="form-control" placeholder="Password" required>
+                            <span class="input-group-text" style="cursor: pointer;" onclick="togglePasswordVisibility('loginPassword', 'loginPasswordToggleIcon')">
+                                <i id="loginPasswordToggleIcon" class="fas fa-eye"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Remember me</label>
+                        </div>
+                        <a href="#" class="text-decoration-none" style="color: #48c78e;">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="btn btn-login">LOGIN</button>
+                </form>
+                
+                <div class="login-footer">
+                    <p>Don't have an account? <a href="#" id="showRegister">Sign up</a></p>
+                </div>
+            </div>
+            
+            <!-- Register Form (initially hidden) -->
+            <div class="form-content" id="registerForm">
+                <h2>Create Account</h2>
+                
+                <!-- Social Login -->
+                <div class="social-login">
+                    <a href="#" class="social-btn google"><i class="fab fa-google"></i></a>
+                    <a href="#" class="social-btn facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-btn twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+                
+                <div class="divider">or register with email</div>
+                
+                <!-- Register Form -->
+                <form onsubmit="return validateRegisterForm()">
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            <input type="text" id="registerName" class="form-control" placeholder="Full Name" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            <input type="email" id="registerEmail" class="form-control" placeholder="Email" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                            <input type="password" id="registerPassword" class="form-control" placeholder="Password" required>
+                            <span class="input-group-text" style="cursor: pointer;" onclick="togglePasswordVisibility('registerPassword', 'registerPasswordToggleIcon')">
+                                <i id="registerPasswordToggleIcon" class="fas fa-eye"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="termsAgree" required>
+                            <label class="form-check-label" for="termsAgree">
+                                I agree to the <a href="#" style="color: #48c78e;">Terms of Service</a> and <a href="#" style="color: #48c78e;">Privacy Policy</a>
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-login">SIGN UP</button>
+                </form>
+                
+                <div class="login-footer">
+                    <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- Logo & Social Media -->
+                <div class="col-md-4 footer-logo">
+                    <img src="images/novelista-logo.png" alt="Novelista Logo">
+                    <p>Your gateway to immersive stories and literary adventures.</p>
+    
+                    <!-- Social Media Icons -->
+                    <div class="social-icons-left">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+    
+                <!-- Explore Section -->
+                <div class="col-md-2 footer-links">
+                    <h5><i class="fas fa-book"></i> Explore</h5>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-magic"></i> Fantasy</a></li>
+                        <li><a href="#"><i class="fas fa-user-secret"></i> Mystery</a></li>
+                        <li><a href="#"><i class="fas fa-rocket"></i> Sci-Fi</a></li>
+                        <li><a href="#"><i class="fas fa-heart"></i> Romance</a></li>
+                        <li><a href="#"><i class="fas fa-fire"></i> Trending</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Community Section -->
+                <div class="col-md-3 footer-links">
+                    <h5><i class="fas fa-users"></i> Community</h5>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-comments"></i> Forum</a></li>
+                        <li><a href="#"><i class="fas fa-star"></i> Reviews</a></li>
+                        <li><a href="#"><i class="fas fa-chart-line"></i> Ratings</a></li>
+                        <li><a href="#"><i class="fas fa-thumbs-up"></i> Recommendations</a></li>
+                        <li><a href="#"><i class="fas fa-headset"></i> Support</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Resources Section -->
+                <div class="col-md-3 footer-links">
+                    <h5><i class="fas fa-folder-open"></i> Resources</h5>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-question-circle"></i> Help</a></li>
+                        <li><a href="#"><i class="fas fa-book-open"></i> Guides</a></li>
+                        <li><a href="#"><i class="fas fa-blog"></i> Blog</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+                        <li><a href="#"><i class="fas fa-file-contract"></i> Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+    
+            <!-- Copyright -->
+            <div class="footer-bottom text-center">
+                <p>&copy; 2025 Novelista. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Tab switching functionality
+        document.getElementById('loginTab').addEventListener('click', function() {
+            this.classList.add('active');
+            document.getElementById('registerTab').classList.remove('active');
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('registerForm').style.display = 'none';
+        });
+        
+        document.getElementById('registerTab').addEventListener('click', function() {
+            this.classList.add('active');
+            document.getElementById('loginTab').classList.remove('active');
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+        });
+        
+        // Login/Register link functionality
+        document.getElementById('showRegister').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('registerTab').click();
+        });
+        
+        document.getElementById('showLogin').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('loginTab').click();
+        });
+        
+        // Password visibility toggle
+        function togglePasswordVisibility(inputId, iconId) {
+            const passwordInput = document.getElementById(inputId);
+            const icon = document.getElementById(iconId);
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+        
+        // Form validation functions
+        function validateLoginForm() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            let isValid = true;
+            
+            if (!isValidEmail(email)) {
+                showValidationError('loginEmail', 'Please enter a valid email address');
+                isValid = false;
+            }
+            
+            if (password.length < 6) {
+                showValidationError('loginPassword', 'Password must be at least 6 characters');
+                isValid = false;
+            }
+            
+            return isValid;
+        }
+
+        function validateRegisterForm() {
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            let isValid = true;
+            
+            if (name.length < 2) {
+                showValidationError('registerName', 'Please enter your full name');
+                isValid = false;
+            }
+            
+            if (!isValidEmail(email)) {
+                showValidationError('registerEmail', 'Please enter a valid email address');
+                isValid = false;
+            }
+            
+            if (password.length < 8) {
+                showValidationError('registerPassword', 'Password must be at least 8 characters');
+                isValid = false;
+            }
+            
+            if (!document.getElementById('termsAgree').checked) {
+                showValidationError('termsAgree', 'You must agree to the Terms and Privacy Policy');
+                isValid = false;
+            }
+            
+            return isValid;
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function showValidationError(fieldId, message) {
+            const field = document.getElementById(fieldId);
+            field.classList.add('is-invalid');
+            
+            // Create error message if it doesn't exist
+            let errorDiv = field.nextElementSibling;
+            if (!errorDiv || !errorDiv.classList.contains('invalid-feedback')) {
+                errorDiv = document.createElement('div');
+                errorDiv.className = 'invalid-feedback';
+                field.parentNode.insertBefore(errorDiv, field.nextSibling);
+            }
+            
+            errorDiv.textContent = message;
+            
+            // Clear validation error when field is focused
+            field.addEventListener('focus', function() {
+                field.classList.remove('is-invalid');
+                if (errorDiv) {
+                    errorDiv.textContent = '';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

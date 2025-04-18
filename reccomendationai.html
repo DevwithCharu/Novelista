@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novelista - 100 Book Recommendations</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+/* Apply the dark theme with teal accents from the first CSS file */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #101010;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar styling - applying the teal color scheme */
+.navbar {
+    background-color: rgb(0, 71, 71);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    padding: 0.5rem 0;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-link {
+    color: #fff;
+    font-weight: bold;
+}
+
+.hover-effect:hover {
+    color: rgb(0, 0, 0) !important;
+    font-weight: bold;
+    border: 2px black !important;
+    transition: all 0.3s ease;
+}
+
+.navbar .btn-primary {
+    margin-left: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+    color: rgb(0, 71, 71);
+}
+
+.navbar .btn-primary:hover {
+    background-color: black !important;
+    color: #fff;
+}
+
+/* Main Content Styling */
+.main-content {
+    margin-top: 80px;
+    padding: 2rem 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-title {
+    margin-bottom: 2rem;
+    color: #ffffff;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bolder;
+}
+
+/* Preference section styling */
+.preference-section {
+    background-color: #1a1a1a;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    margin-top: 50px !important;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.preference-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 255, 150, 0.2);
+    
+}
+
+.section-title {
+    color: #008066;
+    margin-bottom: 1rem;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.preferences-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.preference-item {
+    flex: 1;
+    min-width: 200px;
+}
+
+.preference-item label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #aaa;
+}
+
+.preference-item select, 
+.preference-item input[type="text"] {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 5px;
+    border: 1px solid #444;
+    background-color: #333;
+    color: #fff;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+}
+
+.slider {
+    flex: 1;
+    -webkit-appearance: none;
+    height: 10px;
+    border-radius: 5px;
+    background: #444;
+    outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #008066;
+    cursor: pointer;
+}
+
+.slider-value {
+    width: 40px;
+    text-align: center;
+    margin-left: 10px;
+}
+
+/* Button styling */
+.btn-custom, .action-button {
+    background-color: #008066;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    color: white;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    margin: 0 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.btn-custom:hover, .action-button:hover {
+    background-color: #00a57e;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 255, 150, 0.2);
+}
+
+.action-button.secondary {
+    background-color: transparent;
+    border: 2px solid #008066;
+    color: #008066;
+}
+
+.action-button.secondary:hover {
+    background-color: rgba(0, 128, 102, 0.1);
+}
+
+/* Book card animations and styling */
+.recommendations {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.book-card {
+    background-color: #1a1a1a;
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 255, 150, 0.2);
+}
+
+.book-cover {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s;
+}
+
+.book-info {
+    padding: 1rem;
+}
+
+.book-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #fff;
+    margin: 0 0 0.5rem;
+}
+
+.book-author {
+    color: #aaa;
+    margin: 0 0 0.5rem;
+}
+
+.book-rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.stars {
+    color: #ffab00;
+    margin-right: 0.5rem;
+}
+
+.match-score {
+    background-color: #008066;
+    color: #111;
+    padding: 0.2rem 0.5rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+.book-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.book-tag {
+    background-color: #333;
+    color: #ccc;
+    padding: 0.2rem 0.6rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+}
+
+.ai-explanation {
+    background-color: rgba(0, 128, 102, 0.1);
+    border-left: 3px solid #008066;
+    padding: 1rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.load-more {
+    text-align: center;
+    margin: 3rem 0;
+}
+
+/* Filter controls */
+.filter-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.genre-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.genre-pill {
+    background-color: #333;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.genre-pill.active {
+    background-color: #008066;
+    color: #fff;
+}
+
+.page-navigation {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+    gap: 0.5rem;
+}
+
+.page-number {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.page-number.active {
+    background-color: #008066;
+}
+
+.page-nav-button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.page-nav-button:hover, .page-number:hover {
+    background-color: #00a57e;
+}
+
+/* Search box */
+.search-container {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.search-input {
+    width: 100%;
+    padding: 1rem;
+    padding-left: 3rem;
+    border-radius: 30px;
+    border: none;
+    background-color: #1a1a1a;
+    color: #fff;
+    font-size: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #008066;
+    font-size: 1.2rem;
+}
+
+.sort-dropdown {
+    background-color: #1a1a1a;
+    color: #fff;
+    border: 1px solid #444;
+    padding: 0.8rem;
+    border-radius: 5px;
+    min-width: 200px;
+}
+
+/* View toggle buttons */
+.view-toggle {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: auto;
+}
+
+.view-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.view-button.active {
+    background-color: #008066;
+}
+
+/* Grid and List views */
+.recommendations.list-view {
+    display: block;
+}
+
+.list-view .book-card {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.list-view .book-cover {
+    width: 150px;
+    height: 225px;
+    flex-shrink: 0;
+}
+
+.list-view .book-info {
+    flex: 1;
+}
+
+/* Footer Styling */
+.footer {
+    background-color: #111;
+    color: #ccc;
+    padding: 40px 0;
+    border-top: 1px solid #333;
+    margin-top: 3rem;
+    font-size: 14px;
+}
+
+.footer-logo img {
+    width: 120px;
+    margin-bottom: 10px;
+}
+
+.footer-logo p {
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: #aaa;
+}
+
+/* Social Media Icons Below Logo */
+.social-icons-left {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icons-left a {
+    color: #ffffff !important;
+    font-size: 20px;
+    transition: color 0.3s ease-in-out;
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    background-color: #333;
+    border-radius: 50%;
+    margin-right: 10px;
+    text-align: center;
+    line-height: 36px;
+}
+
+.social-icons-left a:hover {
+    color: #fff;
+    background-color: #008066;
+    transform: translateY(-3px);
+}
+
+.footer-links h5 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color:  #f1f1f1;
+    font-weight: 600;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links ul li a i {
+    margin-right: 8px;
+    color:  #ff6b00;
+    width: 20px;
+}
+
+.footer-links ul li a:hover {
+    color:  #ff6b00;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 10px;
+    font-size: 12px;
+    text-align: center;
+    color: #666;
+}
+
+/* Stats card */
+.stats-card {
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffffff;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    display: block;
+}
+
+.stat-label {
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+/* Loading animation */
+.loading {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #333;
+    border-radius: 50%;
+    border-top-color: #008066;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Tooltips */
+.tooltip-custom {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-custom .tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip-custom:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Category badges */
+.category-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* Book cover overlay */
+.book-cover-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.book-cover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+}
+
+.book-cover-container:hover .book-cover-overlay {
+    opacity: 1;
+}
+
+.quick-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.quick-action-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(0, 128, 102, 0.8);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quick-action-btn:hover {
+    background-color: #008066;
+    transform: scale(1.1);
+}
+
+/* Back to top button */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #008066;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+}
+
+.back-to-top:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 255, 150, 0.2);
+}
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"> <img src="images/novelista-logo.png" alt="Novelista Logo" height="50"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="index.html">Home</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="browse.html">Browse</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="reccomendationai.html">Reccomendations</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="about.html">About</a></li>
+                    <li class="nav-item mx-3"><a class="nav-link btn btn-primary text-rgb(0, 71, 71);" href="login.html">Login / Sign Up</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="main-content">
+        <div class="container">
+            <h1 class="page-title">Delve Deep into the books Which You Like</h1>
+            <div class="recommendations" id="bookContainer"></div>
+            <div class="preference-section">
+                <h2 class="section-title">Customize Your Reading Experience</h2>
+                <div class="preferences-form">
+                    <div class="preference-item">
+                        <label for="genre">Preferred Genres</label>
+                        <select id="genre" multiple class="form-select">
+                            <option selected>All Genres</option>
+                            <option>Classic Romance</option>
+                            <option>Period Romance</option>
+                            <option>Gothic Romance</option>
+                            <option>Tragic Romance</option>
+                            <option>Romantic Comedy</option>
+                            <option>Thriller</option>
+                            <option>Psychological</option>
+                            <option>Crime</option>
+                            <option>Mystery</option>
+                            <option>Gothic</option>
+                            <option>Espionage</option>
+                            <option>Science Fiction</option>
+                            <option>Space Opera</option>
+                            <option>Time Travel</option>
+                            <option>Dystopian</option>
+                            <option>Classic Sci-Fi</option>
+                            <option>Alien Contact</option>
+                            <option>Detective Fiction</option>
+                            <option>Cozy Mystery</option>
+                            <option>Fantasy</option>
+                            <option>Epic Fantasy</option>
+                            <option>Young Adult Fantasy</option>
+                            <option>Dark Fantasy</option>
+                            <option>Mythological Fantasy</option>
+                            <option>Urban Fantasy</option>
+                        </select>
+                    </div>
+                    
+                    <div class="preference-item">
+                        <label for="era">Era</label>
+                        <select id="era" class="form-select">
+                            <option selected>All Eras</option>
+                            <option>Pre-1900</option>
+                            <option>1900-1950</option>
+                            <option>1950-2000</option>
+                            <option>2000-Present</option>
+                        </select>
+                    </div>
+                    
+                    <div class="preference-item">
+                        <label for="length">Book Length</label>
+                        <select id="length" class="form-select">
+                            <option>Any Length</option>
+                            <option>Short (under 300 pages)</option>
+                            <option selected>Medium (300-500 pages)</option>
+                            <option>Long (500+ pages)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="preference-item">
+                        <label for="complexity">Content Complexity</label>
+                        <div class="slider-container">
+                            <input type="range" min="1" max="10" value="5" class="slider" id="complexity">
+                            <span class="slider-value" id="complexityValue">5</span>
+                        </div>
+                    </div>
+                    
+                    <div class="preference-item">
+                        <label for="language">Language</label>
+                        <select id="language" class="form-select">
+                            <option selected>English</option>
+                            <option>French</option>
+                            <option>Spanish</option>
+                            <option>German</option>
+                            <option>Russian</option>
+                        </select>
+                    </div>
+                    
+                    <div class="preference-item">
+                        <label for="rating">Minimum Rating</label>
+                        <div class="slider-container">
+                            <input type="range" min="1" max="5" value="4" step="0.5" class="slider" id="rating">
+                            <span class="slider-value" id="ratingValue">4</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons mt-4 text-center">
+                    <button class="action-button" id="applyFilters">Apply Filters</button>
+                    <button class="action-button secondary" id="resetFilters">Reset Filters</button>
+                </div>
+            </div>
+            
+            <!-- Stats -->
+            <div class="stats-card">
+                <div class="stat-item">
+                    <span class="stat-value" id="totalBooks">100</span>
+                    <span class="stat-label">Total Books</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="genresCount">20+</span>
+                    <span class="stat-label">Genres</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="authorsCount">50+</span>
+                    <span class="stat-label">Authors</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="avgRating">4.6</span>
+                    <span class="stat-label">Avg. Rating</span>
+                </div>
+            </div>
+            
+            <!-- Search and filters -->
+            <div class="row align-items-center mb-4">
+                <div class="col-md-6">
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="searchInput" class="search-input" placeholder="Search by title, author, or genre...">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <select id="sortOptions" class="sort-dropdown">
+                        <option value="match">Sort by Match</option>
+                        <option value="title">Sort by Title (A-Z)</option>
+                        <option value="author">Sort by Author (A-Z)</option>
+                        <option value="rating">Sort by Rating (High-Low)</option>
+                        <option value="popularity">Sort by Popularity</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <div class="view-toggle">
+                        <button class="view-button active" id="gridView"><i class="fas fa-th"></i></button>
+                        <button class="view-button" id="listView"><i class="fas fa-list"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Genre Quick Filters -->
+            <div class="genre-filter" id="genreQuickFilter">
+                <div class="genre-pill active" data-genre="all">All</div>
+                <div class="genre-pill" data-genre="romance">Romance</div>
+                <div class="genre-pill" data-genre="fantasy">Fantasy</div>
+                <div class="genre-pill" data-genre="scifi">Sci-Fi</div>
+                <div class="genre-pill" data-genre="mystery">Mystery</div>
+                <div class="genre-pill" data-genre="thriller">Thriller</div>
+                <div class="genre-pill" data-genre="classic">Classics</div>
+            </div>
+            
+            <!-- Loading Spinner -->
+            <div class="loading" id="loadingSpinner">
+                <div class="spinner"></div>
+                <p>Finding your perfect reads...</p>
+            </div>
+            
+            <!-- Book recommendations -->
+            <div class="recommendations" id="bookContainer">
+                <!-- Books will be dynamically inserted here by JavaScript -->
+            </div>
+            
+            <!-- Pagination -->
+            <div class="page-navigation" id="pagination">
+                <div class="page-nav-button" id="prevPage"><i class="fas fa-chevron-left"></i></div>
+                <!-- Page numbers will be inserted here -->
+                <div class="page-nav-button" id="nextPage"><i class="fas fa-chevron-right"></i></div>
+            </div>
+            
+            <div class="preference-section">
+                <h2 class="section-title">How Our Collection Works</h2>
+                <p>Our hundred books collection showcases a carefully curated selection of classic and influential works across multiple genres:</p>
+                <ul>
+                    <li>This collection spans various genres including romance, thriller, science fiction, mystery, and fantasy</li>
+                    <li>All books are public domain classics that have influenced literature and culture</li>
+                    <li>Our intelligent filtering system helps you discover books that match your unique preferences</li>
+                    <li>Each book includes AI-generated recommendations explaining why it might appeal to you based on your preferences</li>
+                </ul>
+                <p>Explore these timeless works and discover new favorites that align with your reading preferences. As you interact with the collection, our system will learn your tastes and offer increasingly personalized recommendations.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Back to top button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- Logo & Social Media -->
+                <div class="col-md-4 footer-logo">
+                    <img src="images/novelista-logo.png" alt="Novelista Logo">
+                    <p>Your gateway to immersive stories and literary adventures.</p>
+    
+                    <!-- Social Media Icons -->
+                    <div class="social-icons-left">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+    
+                <!-- Explore Section -->
+                <div class="col-md-2 footer-links">
+                    <h5><i class="fas fa-book"></i> Explore</h5>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-magic"></i> Fantasy</a></li>
+                        <li><a href="#"><i class="fas fa-user-secret"></i> Mystery</a></li>
+                        <li><a href="#"><i class="fas fa-rocket"></i> Sci-Fi</a></li>
+                        <li><a href="#"><i class="fas fa-heart"></i> Romance</a></li>
+                        <li><a href="#"><i class="fas fa-fire"></i> Trending</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Community Section -->
+                <div class="col-md-3 footer-links">
+                    <h5><i class="fas fa-users"></i> Community</h5>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-comments"></i> Forum</a></li>
+                        <li><a href="#"><i class="fas fa-star"></i> Reviews</a></li>
+                        <li><a href="#"><i class="fas fa-chart-line"></i> Ratings</a></li>
+                        <li><a href="#"><i class="fas fa-thumbs-up"></i> Recommendations</a></li>
+                        <li><a href="#"><i class="fas fa-headset"></i> Support</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Resources Section -->
+                <div class="col-md-3 footer-links">
+                    <h5><i class="fas fa-folder-open"></i> Resources</h5>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-question-circle"></i> Help</a></li>
+                        <li><a href="#"><i class="fas fa-book-open"></i> Guides</a></li>
+                        <li><a href="#"><i class="fas fa-blog"></i> Blog</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+                        <li><a href="#"><i class="fas fa-file-contract"></i> Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+    
+            <!-- Copyright -->
+            <div class="footer-bottom text-center">
+                <p>&copy; 2025 Novelista. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+                           
+    <script> const books = [
+    // Romance Books
+    { id: 1, title: "Pride and Prejudice", author: "Jane Austen", category: "Classic Romance", genre: "romance", era: "Pre-1900", length: "Medium", complexity: 6, language: "English", rating: 4.7, image: "images/romance-images/Pride and Prejudice.jpg", matchScore: 97, tags: ["Romance", "Classic", "Social Commentary"] },
+{ id: 2, title: "Jane Eyre", author: "Charlotte Brontë", category: "Period Romance", genre: "romance", era: "Pre-1900", length: "Medium", complexity: 7, language: "English", rating: 4.5, image: "images/romance-images/Jane-Eyre.jpg", matchScore: 93, tags: ["Romance", "Gothic", "Coming of Age"] },
+{ id: 3, title: "Wuthering Heights", author: "Emily Brontë", category: "Gothic Romance", genre: "romance", era: "Pre-1900", length: "Medium", complexity: 8, language: "English", rating: 4.4, image: "images/romance-images/Wuthering Heights.jpg", matchScore: 88, tags: ["Romance", "Gothic", "Tragedy"] },
+{ id: 4, title: "Sense and Sensibility", author: "Jane Austen", category: "Classic Romance", genre: "romance", era: "Pre-1900", length: "Medium", complexity: 6, language: "English", rating: 4.3, image: "images/romance-images/Sense and Sensibility.jpg", matchScore: 85, tags: ["Romance", "Classic", "Family"] },
+{ id: 5, title: "Romeo and Juliet", author: "William Shakespeare", category: "Tragic Romance", genre: "romance", era: "Pre-1900", length: "Short", complexity: 9, language: "English", rating: 4.7, image: "images/romance-images/Romeo and Juliet.jpg", matchScore: 83, tags: ["Romance", "Tragedy", "Classic"] },
+{ id: 6, title: "Persuasion", author: "Jane Austen", category: "Period Romance", genre: "romance", era: "Pre-1900", length: "Medium", complexity: 6, language: "English", rating: 4.5, image: "images/romance-images/Persuasion.jpg", matchScore: 86, tags: ["Romance", "Period", "Classic"] },
+{ id: 7, title: "The Phantom of the Opera", author: "Gaston Leroux", category: "Gothic Romance", genre: "romance", era: "1900-1950", length: "Medium", complexity: 7, language: "English", rating: 4.3, image: "images/romance-images/The Phantom of the Opera.jpg", matchScore: 84, tags: ["Romance", "Gothic", "Mystery"] },
+{ id: 8, title: "Emma", author: "Jane Austen", category: "Classic Romance", genre: "romance", era: "Pre-1900", length: "Medium", complexity: 6, language: "English", rating: 4.4, image: "images/romance-images/Emma.jpeg", matchScore: 82, tags: ["Romance", "Classic", "Comedy"] },
+{ id: 9, title: "Anna Karenina", author: "Leo Tolstoy", category: "Tragic Romance", genre: "romance", era: "Pre-1900", length: "Long", complexity: 9, language: "English", rating: 4.6, image: "images/romance-images/Anna Karenina.jpg", matchScore: 89, tags: ["Romance", "Tragedy", "Classic"] },
+{ id: 10, title: "Much Ado About Nothing", author: "William Shakespeare", category: "Romantic Comedy", genre: "romance", era: "Pre-1900", length: "Short", complexity: 6, language: "English", rating: 4.3, image: "images/romance-images/Much Ado About Nothing.jpg", matchScore: 85, tags: ["Romance", "Comedy", "Classic"] },
+{ id: 11, title: "North and South", author: "Elizabeth Gaskell", category: "Period Romance", genre: "romance", era: "Pre-1900", length: "Medium", complexity: 7, language: "English", rating: 4.5, image: "images/romance-images/North and South.jpg", matchScore: 88, tags: ["Romance", "Social Issues", "Classic"] },
+{ id: 12, title: "The Hunchback of Notre Dame", author: "Victor Hugo", category: "Gothic Romance", genre: "romance", era: "Pre-1900", length: "Long", complexity: 8, language: "English", rating: 4.4, image: "images/romance-images/The Hunchback of Notre Dame.jpg", matchScore: 86, tags: ["Romance", "Gothic", "Tragedy"] },
+{ id: 13, title: "Northanger Abbey", author: "Jane Austen", category: "Classic Romance", genre: "romance", era: "Pre-1900", length: "Medium", complexity: 6, language: "English", rating: 4.2, image: "images/romance-images/Northanger Abbey.jpg", matchScore: 81, tags: ["Romance", "Parody", "Classic"] },
+{ id: 14, title: "Madame Bovary", author: "Gustave Flaubert", category: "Tragic Romance", genre: "romance", era: "Pre-1900", length: "Medium", complexity: 8, language: "English", rating: 4.3, image: "images/romance-images/Madame Bovary.jpg", matchScore: 84, tags: ["Romance", "Tragedy", "Realism"] },
+{ id: 15, title: "The Importance of Being Earnest", author: "Oscar Wilde", category: "Romantic Comedy", genre: "romance", era: "Pre-1900", length: "Short", complexity: 5, language: "English", rating: 4.5, image: "images/romance-images/The Importance of Being Earnest.jpeg", matchScore: 83, tags: ["Romance", "Comedy", "Satire"] },
+{ id: 16, title: "Far From the Madding Crowd", author: "Thomas Hardy", category: "Period Romance", genre: "romance", era: "Pre-1900", length: "Medium", complexity: 7, language: "English", rating: 4.4, image: "images/romance-images/Far From the Madding Crowd.jpg", matchScore: 86, tags: ["Romance", "Nature", "Classic"] },
+{ id: 17, title: "Dracula", author: "Bram Stoker", category: "Gothic Romance", genre: "romance", era: "Pre-1900", length: "Long", complexity: 8, language: "English", rating: 4.6, image: "images/romance-images/Dracula.jpg", matchScore: 90, tags: ["Romance", "Gothic", "Horror"] },
+{ id: 18, title: "The Great Gatsby", author: "F. Scott Fitzgerald", category: "Tragic Romance", genre: "romance", era: "1900-1950", length: "Short", complexity: 7, language: "English", rating: 4.7, image: "images/romance-images/The Great Gatsby.jpg", matchScore: 92, tags: ["Romance", "Tragedy", "Classic"] },
+{ id: 19, title: "As You Like It", author: "William Shakespeare", category: "Romantic Comedy", genre: "romance", era: "Pre-1900", length: "Short", complexity: 6, language: "English", rating: 4.2, image: "images/romance-images/As You Like It.jpg", matchScore: 80, tags: ["Romance", "Comedy", "Forest"] },
+{ id: 20, title: "Little Women", author: "Louisa May Alcott", category: "Classic Romance", genre: "romance", era: "Pre-1900", length: "Long", complexity: 6, language: "English", rating: 4.6, image: "images/romance-images/Little Women.jpg", matchScore: 93, tags: ["Romance", "Family", "Coming of Age"] },
+
+    
+    // Thriller Books
+    { id: 21, title: "The Strange Case of Dr. Jekyll and Mr. Hyde", author: "Robert Louis Stevenson", category: "Psychological", genre: "thriller", era: "Pre-1900", length: "Short", complexity: 7, language: "English", rating: 4.3, image: "images/thriller-images/The Strange Case of Dr Jekyll and Mr Hyde.jpg", matchScore: 94, tags: ["Thriller", "Psychological", "Classic"] },
+{ id: 22, title: "The Moonstone", author: "Wilkie Collins", category: "Crime", genre: "thriller", era: "Pre-1900", length: "Long", complexity: 6, language: "English", rating: 4.2, image: "images/thriller-images/The Moonstone.jpg", matchScore: 90, tags: ["Thriller", "Mystery", "Crime"] },
+{ id: 23, title: "The Woman in White", author: "Wilkie Collins", category: "Mystery", genre: "thriller", era: "Pre-1900", length: "Long", complexity: 7, language: "English", rating: 4.4, image: "images/thriller-images/The Woman in White.jpg", matchScore: 87, tags: ["Thriller", "Mystery", "Gothic"] },
+{ id: 24, title: "Dracula", author: "Bram Stoker", category: "Gothic", genre: "thriller", era: "Pre-1900", length: "Long", complexity: 8, language: "English", rating: 4.6, image: "images/thriller-images/Dracula.jpg", matchScore: 90, tags: ["Thriller", "Gothic", "Classic"] },
+{ id: 25, title: "The Picture of Dorian Gray", author: "Oscar Wilde", category: "Psychological", genre: "thriller", era: "Pre-1900", length: "Medium", complexity: 7, language: "English", rating: 4.5, image: "images/thriller-images/The Picture of Dorian Gray.jpg", matchScore: 91, tags: ["Thriller", "Psychological", "Dark"] },
+{ id: 26, title: "The Adventures of Sherlock Holmes", author: "Arthur Conan Doyle", category: "Crime", genre: "thriller", era: "Pre-1900", length: "Medium", complexity: 6, language: "English", rating: 4.7, image: "images/thriller-images/The Adventures of Sherlock Holmes.jpg", matchScore: 94, tags: ["Thriller", "Crime", "Detective"] },
+{ id: 27, title: "The Thirty-Nine Steps", author: "John Buchan", category: "Espionage", genre: "thriller", era: "1900-1950", length: "Medium", complexity: 6, language: "English", rating: 4.4, image: "images/thriller-images/the thirty nine steps.jpg", matchScore: 88, tags: ["Thriller", "Espionage", "Adventure"] },
+{ id: 28, title: "The Turn of the Screw", author: "Henry James", category: "Gothic", genre: "thriller", era: "Pre-1900", length: "Short", complexity: 7, language: "English", rating: 4.2, image: "images/thriller-images/The Turn of the Screw.jpg", matchScore: 85, tags: ["Thriller", "Gothic", "Psychological"] },
+{ id: 29, title: "The Hound of the Baskervilles", author: "Arthur Conan Doyle", category: "Mystery", genre: "thriller", era: "1900-1950", length: "Medium", complexity: 6, language: "English", rating: 4.6, image: "images/thriller-images/The Hound of the Baskervilles.jpg", matchScore: 96, tags: ["Thriller", "Mystery", "Sherlock Holmes"] },
+{ id: 30, title: "The Fall of the House of Usher", author: "Edgar Allan Poe", category: "Psychological", genre: "thriller", era: "Pre-1900", length: "Short", complexity: 8, language: "English", rating: 4.3, image: "images/thriller-images/The Fall of the House of Usher.jpg", matchScore: 87, tags: ["Thriller", "Psychological", "Gothic"] },
+{ id: 31, title: "The Riddle of the Sands", author: "Erskine Childers", category: "Espionage", genre: "thriller", era: "Pre-1900", length: "Medium", complexity: 7, language: "English", rating: 4.1, image: "images/thriller-images/The Riddle of the Sands.jpg", matchScore: 83, tags: ["Thriller", "Espionage", "Classic"] },
+{ id: 32, title: "The Mysterious Affair at Styles", author: "Agatha Christie", category: "Crime", genre: "thriller", era: "1900-1950", length: "Medium", complexity: 6, language: "English", rating: 4.5, image: "images/thriller-images/The Mysterious Affair at Styles.jpg", matchScore: 90, tags: ["Thriller", "Mystery", "Detective"] },
+{ id: 33, title: "The Castle of Otranto", author: "Horace Walpole", category: "Gothic", genre: "thriller", era: "Pre-1900", length: "Short", complexity: 6, language: "English", rating: 4.0, image: "images/thriller-images/The Castle of Otranto.jpg", matchScore: 82, tags: ["Thriller", "Gothic", "Classic"] },
+{ id: 34, title: "The Murder on the Links", author: "Agatha Christie", category: "Mystery", genre: "thriller", era: "1900-1950", length: "Medium", complexity: 6, language: "English", rating: 4.4, image: "images/thriller-images/The Murder on the Links.jpg", matchScore: 88, tags: ["Thriller", "Mystery", "Detective"] },
+{ id: 35, title: "The Tell-Tale Heart", author: "Edgar Allan Poe", category: "Psychological", genre: "thriller", era: "Pre-1900", length: "Short", complexity: 7, language: "English", rating: 4.6, image: "images/thriller-images/The Tell-Tale Heart.jpg", matchScore: 85, tags: ["Thriller", "Psychological", "Short"] },
+{ id: 36, title: "Greenmantle", author: "John Buchan", category: "Espionage", genre: "thriller", era: "1900-1950", length: "Medium", complexity: 7, language: "English", rating: 4.2, image: "images/thriller-images/Greenmantle.jpg", matchScore: 87, tags: ["Thriller", "Espionage", "Adventure"] },
+{ id: 37, title: "The Secret Adversary", author: "Agatha Christie", category: "Crime", genre: "thriller", era: "1900-1950", length: "Medium", complexity: 6, language: "English", rating: 4.3, image: "images/thriller-images/The Secret Adversary.jpg", matchScore: 86, tags: ["Thriller", "Crime", "Detective"] },
+{ id: 38, title: "The Phantom of the Opera", author: "Gaston Leroux", category: "Gothic", genre: "thriller", era: "1900-1950", length: "Medium", complexity: 7, language: "English", rating: 4.3, image: "images/thriller-images/The Phantom of the Opera.jpg", matchScore: 84, tags: ["Thriller", "Gothic", "Mystery"] },
+{ id: 39, title: "The Man in the Brown Suit", author: "Agatha Christie", category: "Mystery", genre: "thriller", era: "1900-1950", length: "Medium", complexity: 6, language: "English", rating: 4.2, image: "images/thriller-images/The Man in the Brown Suit.jpg", matchScore: 85, tags: ["Thriller", "Mystery", "Adventure"] },
+{ id: 40, title: "The Spy Who Came in from the Cold", author: "John le Carré", category: "Espionage", genre: "thriller", era: "1900-1950", length: "Medium", complexity: 8, language: "English", rating: 4.6, image: "images/thriller-images/The Spy Who Came in from the Cold.jpg", matchScore: 89, tags: ["Thriller", "Espionage", "Cold War"] },
+    
+    // Science Fiction Books
+    { id: 41, title: "The War of the Worlds", author: "H.G. Wells", category: "Space Opera", genre: "scifi", era: "1900-1950", length: "Medium", complexity: 6, language: "English", rating: 4.5, image: "images/scifi-images/The War of the Worlds.jpg", matchScore: 95, tags: ["Sci-Fi", "Alien Invasion", "Classic"] },
+{ id: 42, title: "Twenty Thousand Leagues Under the Sea", author: "Jules Verne", category: "Classic Sci-Fi", genre: "scifi", era: "Pre-1900", length: "Medium", complexity: 7, language: "English", rating: 4.4, image: "images/scifi-images/Twenty Thousand Leagues Under the Sea.jpg", matchScore: 92, tags: ["Sci-Fi", "Adventure", "Exploration"] },
+{ id: 43, title: "The Time Machine", author: "H.G. Wells", category: "Time Travel", genre: "scifi", era: "1900-1950", length: "Short", complexity: 7, language: "English", rating: 4.3, image: "images/scifi-images/The Time Machine.jpg", matchScore: 89, tags: ["Sci-Fi", "Time Travel", "Dystopian"] },
+{ id: 44, title: "The Iron Heel", author: "Jack London", category: "Dystopian", genre: "scifi", era: "1900-1950", length: "Medium", complexity: 8, language: "English", rating: 4.2, image: "images/scifi-images/The Iron Heel.jpg", matchScore: 86, tags: ["Sci-Fi", "Dystopian", "Political"] },
+{ id: 45, title: "Frankenstein", author: "Mary Shelley", category: "Classic Sci-Fi", genre: "scifi", era: "Pre-1900", length: "Medium", complexity: 7, language: "English", rating: 4.7, image: "images/scifi-images/Frankenstein.jpg", matchScore: 93, tags: ["Sci-Fi", "Horror", "Classic"] },
+{ id: 46, title: "From the Earth to the Moon", author: "Jules Verne", category: "Space Opera", genre: "scifi", era: "Pre-1900", length: "Medium", complexity: 6, language: "English", rating: 4.3, image: "images/scifi-images/from the earth.jpg", matchScore: 88, tags: ["Sci-Fi", "Exploration", "Classic"] },
+{ id: 47, title: "A Journey to the Center of the Earth", author: "Jules Verne", category: "Classic Sci-Fi", genre: "scifi", era: "Pre-1900", length: "Medium", complexity: 7, language: "English", rating: 4.6, image: "images/scifi-images/A Journey to the Center of the Earth.jpg", matchScore: 92, tags: ["Sci-Fi", "Adventure", "Classic"] },
+{ id: 48, title: "The First Men in the Moon", author: "H.G. Wells", category: "Alien Contact", genre: "scifi", era: "1900-1950", length: "Medium", complexity: 7, language: "English", rating: 4.4, image: "images/scifi-images/The First Men in the Moon.jpg", matchScore: 87, tags: ["Sci-Fi", "Alien", "Exploration"] },
+{ id: 49, title: "The Last Man", author: "Mary Shelley", category: "Dystopian", genre: "scifi", era: "Pre-1900", length: "Long", complexity: 8, language: "English", rating: 4.1, image: "images/scifi-images/The Last Man.jpg", matchScore: 85, tags: ["Sci-Fi", "Dystopian", "Classic"] },
+{ id: 50, title: "Looking Backward", author: "Edward Bellamy", category: "Time Travel", genre: "scifi", era: "Pre-1900", length: "Medium", complexity: 7, language: "English", rating: 4.0, image: "images/scifi-images/Looking Backward.jpg", matchScore: 84, tags: ["Sci-Fi", "Utopia", "Philosophy"] },
+{ id: 51, title: "Around the Moon", author: "Jules Verne", category: "Space Opera", genre: "scifi", era: "Pre-1900", length: "Medium", complexity: 6, language: "English", rating: 4.3, image: "images/scifi-images/Around the Moon.jpeg", matchScore: 87, tags: ["Sci-Fi", "Exploration", "Adventure"] },
+{ id: 52, title: "In the Days of the Comet", author: "H.G. Wells", category: "Alien Contact", genre: "scifi", era: "1900-1950", length: "Medium", complexity: 6, language: "English", rating: 4.1, image: "images/scifi-images/In the Days of the Comet.jpg", matchScore: 83, tags: ["Sci-Fi", "Philosophical", "Comet"] },
+{ id: 53, title: "We", author: "Yevgeny Zamyatin", category: "Dystopian", genre: "scifi", era: "1900-1950", length: "Medium", complexity: 8, language: "English", rating: 4.5, image: "images/scifi-images/We.jpeg", matchScore: 91, tags: ["Sci-Fi", "Dystopian", "Classic"] },
+{ id: 54, title: "The Invisible Man", author: "H.G. Wells", category: "Classic Sci-Fi", genre: "scifi", era: "1900-1950", length: "Short", complexity: 6, language: "English", rating: 4.4, image: "images/scifi-images/The Invisible Man.jpg", matchScore: 89, tags: ["Sci-Fi", "Invisibility", "Classic"] },
+{ id: 55, title: "A Connecticut Yankee in King Arthur's Court", author: "Mark Twain", category: "Time Travel", genre: "scifi", era: "Pre-1900", length: "Medium", complexity: 6, language: "English", rating: 4.2, image: "images/fantasy-images/A Connecticut Yankee in King Arthurs Court.jpg", matchScore: 86, tags: ["Sci-Fi", "Time Travel", "Satire"] },
+{ id: 56, title: "Off on a Comet", author: "Jules Verne", category: "Space Opera", genre: "scifi", era: "Pre-1900", length: "Medium", complexity: 6, language: "English", rating: 4.0, image: "images/scifi-images/Off on a Comet.jpg", matchScore: 83, tags: ["Sci-Fi", "Space", "Adventure"] },
+{ id: 57, title: "The Star", author: "H.G. Wells", category: "Alien Contact", genre: "scifi", era: "1900-1950", length: "Short", complexity: 6, language: "English", rating: 4.1, image: "images/scifi-images/The Star.jpeg", matchScore: 84, tags: ["Sci-Fi", "Apocalyptic", "Classic"] },
+{ id: 58, title: "The Sleeper Awakes", author: "H.G. Wells", category: "Dystopian", genre: "scifi", era: "1900-1950", length: "Medium", complexity: 7, language: "English", rating: 4.3, image: "images/scifi-images/The Sleeper Awakes.jpeg", matchScore: 85, tags: ["Sci-Fi", "Future", "Classic"] },
+{ id: 59, title: "The Island of Doctor Moreau", author: "H.G. Wells", category: "Classic Sci-Fi", genre: "scifi", era: "1900-1950", length: "Medium", complexity: 7, language: "English", rating: 4.4, image: "images/scifi-images/The Island of Doctor Moreau.jpg", matchScore: 88, tags: ["Sci-Fi", "Ethics", "Genetics"] },
+{ id: 60, title: "A Dream of John Ball", author: "William Morris", category: "Time Travel", genre: "scifi", era: "Pre-1900", length: "Short", complexity: 6, language: "English", rating: 4.0, image: "images/scifi-images/A Dream of John Ball.jpg", matchScore: 82, tags: ["Sci-Fi", "Time Travel", "Medieval"] },
+    
+    // Mystery Books
+    { id: 61, title: "The Hound of the Baskervilles", author: "Arthur Conan Doyle", category: "Detective Fiction", genre: "mystery", era: "1900-1950", length: "Medium", complexity: 6, language: "English", rating: 4.6, image: "images/mystery-images/The Hound of the Baskervilles.jpg", matchScore: 96, tags: ["Mystery", "Detective", "Sherlock Holmes"] },
+{ id: 62, title: "The Moonstone", author: "Wilkie Collins", category: "Classic Mystery", genre: "mystery", era: "Pre-1900", length: "Long", complexity: 7, language: "English", rating: 4.2, image: "images/mystery-images/The Moonstone.jpg", matchScore: 90, tags: ["Mystery", "Classic", "Crime"] },
+{ id: 63, title: "The Woman in White", author: "Wilkie Collins", category: "Classic Mystery", genre: "mystery", era: "Pre-1900", length: "Long", complexity: 7, language: "English", rating: 4.4, image: "images/mystery-images/The Woman in White.jpg", matchScore: 88, tags: ["Mystery", "Gothic", "Suspense"] },
+{ id: 64, title: "A Study in Scarlet", author: "Arthur Conan Doyle", category: "Detective Fiction", genre: "mystery", era: "Pre-1900", length: "Medium", complexity: 6, language: "English", rating: 4.5, image: "images/mystery-images/A Study in Scarlet.jpg", matchScore: 91, tags: ["Mystery", "Sherlock Holmes", "Classic"] },
+{ id: 65, title: "The Mystery of Edwin Drood", author: "Charles Dickens", category: "Crime", genre: "mystery", era: "Pre-1900", length: "Medium", complexity: 7, language: "English", rating: 4.1, image: "images/mystery-images/The Mystery of Edwin Drood.jpg", matchScore: 85, tags: ["Mystery", "Unfinished", "Classic"] },
+{ id: 66, title: "The Secret Agent", author: "Joseph Conrad", category: "Thriller", genre: "mystery", era: "1900-1950", length: "Medium", complexity: 8, language: "English", rating: 4.2, image: "images/mystery-images/The Secret Agent.jpg", matchScore: 86, tags: ["Mystery", "Political", "Classic"] },
+{ id: 67, title: "The Sign of Four", author: "Arthur Conan Doyle", category: "Detective Fiction", genre: "mystery", era: "Pre-1900", length: "Medium", complexity: 6, language: "English", rating: 4.5, image: "images/mystery-images/The Sign of Four.jpg", matchScore: 89, tags: ["Mystery", "Sherlock Holmes", "Adventure"] },
+{ id: 68, title: "The Circular Staircase", author: "Mary Roberts Rinehart", category: "Cozy Mystery", genre: "mystery", era: "1900-1950", length: "Medium", complexity: 6, language: "English", rating: 4.3, image: "images/mystery-images/The Circular Staircase.jpg", matchScore: 84, tags: ["Mystery", "Cozy", "Classic"] },
+{ id: 69, title: "The Adventures of Sherlock Holmes", author: "Arthur Conan Doyle", category: "Crime", genre: "mystery", era: "Pre-1900", length: "Medium", complexity: 6, language: "English", rating: 4.7, image: "images/mystery-images/The Adventures of Sherlock Holmes.jpg", matchScore: 94, tags: ["Mystery", "Detective", "Short Stories"] },
+{ id: 70, title: "The Man in Lower Ten", author: "Mary Roberts Rinehart", category: "Cozy Mystery", genre: "mystery", era: "1900-1950", length: "Medium", complexity: 6, language: "English", rating: 4.1, image: "images/mystery-images/The Man in Lower Ten.jpg", matchScore: 82, tags: ["Mystery", "Cozy", "Suspense"] },
+{ id: 71, title: "The Thirty-Nine Steps", author: "John Buchan", category: "Thriller", genre: "mystery", era: "1900-1950", length: "Medium", complexity: 6, language: "English", rating: 4.4, image: "images/mystery-images/The Thirty-Nine Steps.jpg", matchScore: 88, tags: ["Mystery", "Adventure", "Espionage"] },
+{ id: 72, title: "The Strange Case of Dr. Jekyll and Mr. Hyde", author: "Robert Louis Stevenson", category: "Classic Mystery", genre: "mystery", era: "Pre-1900", length: "Short", complexity: 7, language: "English", rating: 4.3, image: "images/thriller-images/The Strange Case of Dr Jekyll and Mr Hyde.jpg", matchScore: 94, tags: ["Mystery", "Psychological", "Classic"] },
+{ id: 73, title: "The Valley of Fear", author: "Arthur Conan Doyle", category: "Detective Fiction", genre: "mystery", era: "1900-1950", length: "Medium", complexity: 7, language: "English", rating: 4.4, image: "images/mystery-images/The Valley of Fear.jpg", matchScore: 89, tags: ["Mystery", "Sherlock Holmes", "Classic"] },
+{ id: 74, title: "Greenmantle", author: "John Buchan", category: "Thriller", genre: "mystery", era: "1900-1950", length: "Medium", complexity: 7, language: "English", rating: 4.2, image: "images/mystery-images/Greenmantle.jpg", matchScore: 87, tags: ["Mystery", "Espionage", "Adventure"] },
+{ id: 75, title: "The Memoirs of Sherlock Holmes", author: "Arthur Conan Doyle", category: "Crime", genre: "mystery", era: "Pre-1900", length: "Medium", complexity: 6, language: "English", rating: 4.6, image: "images/mystery-images/The Memoirs of Sherlock Holmes.jpg", matchScore: 92, tags: ["Mystery", "Detective", "Short Stories"] },
+{ id: 76, title: "The Window at the White Cat", author: "Mary Roberts Rinehart", category: "Cozy Mystery", genre: "mystery", era: "1900-1950", length: "Medium", complexity: 6, language: "English", rating: 4.0, image: "images/mystery-images/The Window at the White Cat.jpg", matchScore: 80, tags: ["Mystery", "Cozy", "Humor"] },
+{ id: 77, title: "The Riddle of the Sands", author: "Erskine Childers", category: "Thriller", genre: "mystery", era: "Pre-1900", length: "Medium", complexity: 7, language: "English", rating: 4.1, image: "images/mystery-images/The Riddle of the Sands.jpg", matchScore: 83, tags: ["Mystery", "Espionage", "Classic"] },
+{ id: 78, title: "The Return of Sherlock Holmes", author: "Arthur Conan Doyle", category: "Crime", genre: "mystery", era: "1900-1950", length: "Medium", complexity: 6, language: "English", rating: 4.6, image: "images/mystery-images/The Return of Sherlock Holmes.jpg", matchScore: 91, tags: ["Mystery", "Detective", "Short Stories"] },
+{ id: 79, title: "Uncle Silas", author: "J. Sheridan Le Fanu", category: "Classic Mystery", genre: "mystery", era: "Pre-1900", length: "Long", complexity: 8, language: "English", rating: 4.3, image: "images/mystery-images/Uncle Silas.jpg", matchScore: 84, tags: ["Mystery", "Gothic", "Classic"] },
+{ id: 80, title: "The Murders in the Rue Morgue", author: "Edgar Allan Poe", category: "Detective Fiction", genre: "mystery", era: "Pre-1900", length: "Short", complexity: 7, language: "English", rating: 4.5, image: "images/mystery-images/The Murders in the Rue Morgue.jpg", matchScore: 90, tags: ["Mystery", "Detective", "Classic"] },
+    // Fantasy Books
+    { id: 81, title: "The Wonderful Wizard of Oz", author: "L. Frank Baum", category: "Epic Fantasy", genre: "fantasy", era: "1900-1950", length: "Short", complexity: 4, language: "English", rating: 4.5, image: "images/fantasy-images/The Wonderful Wizard of Oz.jpg", matchScore: 93, tags: ["Fantasy", "Adventure", "Children"] },
+{ id: 82, title: "Alice's Adventures in Wonderland", author: "Lewis Carroll", category: "Young Adult Fantasy", genre: "fantasy", era: "Pre-1900", length: "Short", complexity: 5, language: "English", rating: 4.7, image: "images/fantasy-images/Alices Adventures in Wonderland.jpg", matchScore: 91, tags: ["Fantasy", "Surreal", "Children"] },
+{ id: 83, title: "Through the Looking-Glass", author: "Lewis Carroll", category: "Young Adult Fantasy", genre: "fantasy", era: "Pre-1900", length: "Short", complexity: 5, language: "English", rating: 4.6, image: "images/fantasy-images/Through the Looking-Glass.jpg", matchScore: 87, tags: ["Fantasy", "Surreal", "Chess"] },
+{ id: 84, title: "The Marvelous Land of Oz", author: "L. Frank Baum", category: "Epic Fantasy", genre: "fantasy", era: "1900-1950", length: "Short", complexity: 4, language: "English", rating: 4.4, image: "images/fantasy-images/The Marvelous Land of Oz.jpg", matchScore: 89, tags: ["Fantasy", "Adventure", "Children"] },
+{ id: 85, title: "The Story of the Volsungs (Volsunga Saga)", author: "Anonymous", category: "Dark Fantasy", genre: "fantasy", era: "Pre-1900", length: "Long", complexity: 6, language: "English", rating: 4.2, image: "images/fantasy-images/The Story of the Volsungs.jpg", matchScore: 85, tags: ["Fantasy", "Mythology", "Epic"] },
+{ id: 86, title: "The Mabinogion", author: "Anonymous", category: "Mythological Fantasy", genre: "fantasy", era: "Pre-1900", length: "Long", complexity: 7, language: "English", rating: 4.3, image: "images/fantasy-images/The Mabinogion.jpg", matchScore: 90, tags: ["Fantasy", "Mythology", "Legend"] },
+{ id: 87, title: "The Book of Wonder", author: "Lord Dunsany", category: "Epic Fantasy", genre: "fantasy", era: "1900-1950", length: "Short", complexity: 5, language: "English", rating: 4.6, image: "images/fantasy-images/The Book of Wonder.jpg", matchScore: 92, tags: ["Fantasy", "Imagination", "Magic"] },
+{ id: 88, title: "Phantastes: A Faerie Romance for Men and Women", author: "George MacDonald", category: "Epic Fantasy", genre: "fantasy", era: "1900-1950", length: "Medium", complexity: 6, language: "English", rating: 4.5, image: "images/romance-images/Phantastes A Faerie Romance for Men and Women.jpg", matchScore: 88, tags: ["Fantasy", "Romance", "Fairyland"] },
+{ id: 89, title: "The Princess and the Goblin", author: "George MacDonald", category: "Epic Fantasy", genre: "fantasy", era: "1900-1950", length: "Short", complexity: 4, language: "English", rating: 4.4, image: "images/fantasy-images/The Princess and the Goblin.jpg", matchScore: 90, tags: ["Fantasy", "Adventure", "Children"] },
+{ id: 90, title: "The Lost World", author: "Arthur Conan Doyle", category: "Young Adult Fantasy", genre: "fantasy", era: "1900-1950", length: "Medium", complexity: 6, language: "English", rating: 4.3, image: "images/fantasy-images/The Lost World.jpg", matchScore: 85, tags: ["Fantasy", "Adventure", "Prehistoric"] },
+{ id: 91, title: "The Man Who Was Thursday: A Nightmare", author: "G. K. Chesterton", category: "Urban Fantasy", genre: "fantasy", era: "1900-1950", length: "Medium", complexity: 7, language: "English", rating: 4.6, image: "images/fantasy-images/The Man Who Was Thursday A Nightmare.jpg", matchScore: 86, tags: ["Fantasy", "Thriller", "Mystery"] },
+{ id: 92, title: "The Wind in the Willows", author: "Kenneth Grahame", category: "Young Adult Fantasy", genre: "fantasy", era: "1900-1950", length: "Medium", complexity: 4, language: "English", rating: 4.8, image: "images/fantasy-images/The Wind in the Willows.jpg", matchScore: 93, tags: ["Fantasy", "Animals", "Adventure"] },
+{ id: 93, title: "A Connecticut Yankee in King Arthur's Court", author: "Mark Twain", category: "Urban Fantasy", genre: "fantasy", era: "1900-1950", length: "Medium", complexity: 6, language: "English", rating: 4.7, image: "images/fantasy-images/A Connecticut Yankee in King Arthurs Court.jpg", matchScore: 89, tags: ["Fantasy", "Adventure", "Historical"] },
+{ id: 94, title: "The Enchanted Castle", author: "E. Nesbit", category: "Young Adult Fantasy", genre: "fantasy", era: "1900-1950", length: "Medium", complexity: 5, language: "English", rating: 4.5, image: "images/fantasy-images/The Enchanted Castle.jpg", matchScore: 87, tags: ["Fantasy", "Adventure", "Children"] },
+{ id: 95, title: "The Gods of Pegāna", author: "Lord Dunsany", category: "Epic Fantasy", genre: "fantasy", era: "1900-1950", length: "Short", complexity: 6, language: "English", rating: 4.6, image: "images/fantasy-images/The Gods of Pegana.jpg", matchScore: 90, tags: ["Fantasy", "Mythology", "Pantheon"] },
+{ id: 96, title: "The Shaving of Shagpat", author: "George Meredith", category: "Dark Fantasy", genre: "fantasy", era: "1900-1950", length: "Long", complexity: 7, language: "English", rating: 4.3, image: "images/fantasy-images/The Shaving of Shagpat.jpg", matchScore: 85, tags: ["Fantasy", "Mythology", "Adventure"] },
+{ id: 97, title: "The Crock of Gold", author: "James Stephens", category: "Dark Fantasy", genre: "fantasy", era: "1900-1950", length: "Medium", complexity: 6, language: "English", rating: 4.4, image: "images/fantasy-images/The Crock of Gold.jpg", matchScore: 88, tags: ["Fantasy", "Philosophy", "Folklore"] },
+{ id: 98, title: "The Water-Babies", author: "Charles Kingsley", category: "Mythological Fantasy", genre: "fantasy", era: "1900-1950", length: "Medium", complexity: 5, language: "English", rating: 4.2, image: "images/fantasy-images/The Water-Babies.jpg", matchScore: 84, tags: ["Fantasy", "Mythology", "Adventure"] },
+{ id: 99, title: "The Light Princess", author: "George MacDonald", category: "Mythological Fantasy", genre: "fantasy", era: "1900-1950", length: "Short", complexity: 4, language: "English", rating: 4.5, image: "images/fantasy-images/The Light Princess.jpg", matchScore: 90, tags: ["Fantasy", "Fairy Tales", "Princess"] },
+{ id: 100, title: "The Professor's Experiment", author: "E. Phillips Oppenheim", category: "Dark Fantasy", genre: "fantasy", era: "1900-1950", length: "Medium", complexity: 6, language: "English", rating: 4.3, image: "images/fantasy-images/The Professors Experiment.jpg", matchScore: 86, tags: ["Fantasy", "Science", "Mystery"] }
+];
+
+
+
+// DOM elements
+const bookContainer = document.getElementById('bookContainer');
+const loadingSpinner = document.getElementById('loadingSpinner');
+const searchInput = document.getElementById('searchInput');
+const sortOptions = document.getElementById('sortOptions');
+const genreQuickFilter = document.getElementById('genreQuickFilter');
+const gridViewBtn = document.getElementById('gridView');
+const listViewBtn = document.getElementById('listView');
+const pagination = document.getElementById('pagination');
+const prevPageBtn = document.getElementById('prevPage');
+const nextPageBtn = document.getElementById('nextPage');
+const backToTopBtn = document.getElementById('backToTop');
+const complexitySlider = document.getElementById('complexity');
+const complexityValue = document.getElementById('complexityValue');
+const ratingSlider = document.getElementById('rating');
+const ratingValue = document.getElementById('ratingValue');
+const applyFiltersBtn = document.getElementById('applyFilters');
+const resetFiltersBtn = document.getElementById('resetFilters');
+
+// Settings
+let currentPage = 1;
+const booksPerPage = 12;
+let filteredBooks = [...books];
+let currentView = 'grid';
+let currentGenreFilter = 'all';
+
+// Initialize the page
+document.addEventListener('DOMContentLoaded', function() {
+    // Simulate loading
+    loadingSpinner.style.display = 'block';
+    setTimeout(() => {
+        loadingSpinner.style.display = 'none';
+        displayBooks();
+        setupPagination();
+    }, 800);
+    
+    // Setup event listeners
+    setupEventListeners();
+});
+
+// Event listeners setup
+function setupEventListeners() {
+    // Search functionality
+    searchInput.addEventListener('input', debounce(function() {
+        currentPage = 1;
+        filterBooks();
+    }, 300));
+    
+    // Sort options
+    sortOptions.addEventListener('change', function() {
+        currentPage = 1;
+        sortBooks(this.value);
+    });
+    
+    // Genre quick filters
+    genreQuickFilter.addEventListener('click', function(e) {
+        if (e.target.classList.contains('genre-pill')) {
+            document.querySelectorAll('.genre-pill').forEach(pill => {
+                pill.classList.remove('active');
+            });
+            e.target.classList.add('active');
+            currentGenreFilter = e.target.dataset.genre;
+            currentPage = 1;
+            filterBooks();
+        }
+    });
+    
+    // View toggle
+    gridViewBtn.addEventListener('click', function() {
+        if (currentView !== 'grid') {
+            currentView = 'grid';
+            updateViewButtons();
+            bookContainer.classList.remove('list-view');
+            displayBooks();
+        }
+    });
+    
+    listViewBtn.addEventListener('click', function() {
+        if (currentView !== 'list') {
+            currentView = 'list';
+            updateViewButtons();
+            bookContainer.classList.add('list-view');
+            displayBooks();
+        }
+    });
+    
+    // Pagination
+    prevPageBtn.addEventListener('click', function() {
+        if (currentPage > 1) {
+            currentPage--;
+            displayBooks();
+            updatePagination();
+            scrollToTop();
+        }
+    });
+    
+    nextPageBtn.addEventListener('click', function() {
+        const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
+        if (currentPage < totalPages) {
+            currentPage++;
+            displayBooks();
+            updatePagination();
+            scrollToTop();
+        }
+    });
+    
+    // Sliders
+    complexitySlider.addEventListener('input', function() {
+        complexityValue.textContent = this.value;
+    });
+    
+    ratingSlider.addEventListener('input', function() {
+        ratingValue.textContent = this.value;
+    });
+    
+    // Apply filters
+    applyFiltersBtn.addEventListener('click', function() {
+        currentPage = 1;
+        filterBooks();
+    });
+    
+    // Reset filters
+    resetFiltersBtn.addEventListener('click', function() {
+        document.getElementById('genre').selectedIndex = 0;
+        document.getElementById('era').selectedIndex = 0;
+        document.getElementById('length').selectedIndex = 0;
+        document.getElementById('language').selectedIndex = 0;
+        complexitySlider.value = 5;
+        complexityValue.textContent = "5";
+        ratingSlider.value = 4;
+        ratingValue.textContent = "4";
+        
+        // Reset genre pills
+        document.querySelectorAll('.genre-pill').forEach(pill => {
+            pill.classList.remove('active');
+        });
+        document.querySelector('.genre-pill[data-genre="all"]').classList.add('active');
+        currentGenreFilter = 'all';
+        
+        // Reset search
+        searchInput.value = '';
+        
+        // Reset filters and display all books
+        filteredBooks = [...books];
+        currentPage = 1;
+        displayBooks();
+        setupPagination();
+    });
+    
+    // Back to top button
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    });
+    
+    backToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    // Handle pagination number clicks
+    pagination.addEventListener('click', function(e) {
+        if (e.target.classList.contains('page-number') && !e.target.classList.contains('active')) {
+            currentPage = parseInt(e.target.textContent);
+            displayBooks();
+            updatePagination();
+            scrollToTop();
+        }
+    });
+}
+
+
+function displayBooks() {
+    bookContainer.innerHTML = '';
+    
+    const startIndex = (currentPage - 1) * booksPerPage;
+    const endIndex = Math.min(startIndex + booksPerPage, filteredBooks.length);
+    const currentBooks = filteredBooks.slice(startIndex, endIndex);
+    if (currentBooks.length === 0) {
+        bookContainer.innerHTML = `
+            <div class="col-12 text-center">
+                <h3>No books found matching your criteria.</h3>
+                <p>Try adjusting your filters or search terms.</p>
+            </div>
+        `;
+        return;
+    }
+    
+    currentBooks.forEach(book => {
+        const bookCard = document.createElement('div');
+        bookCard.className = 'book-card';
+        if (currentView === 'grid') {
+            bookCard.innerHTML = `
+                <a href="read/${book.genre}/${book.id}.html" class="book-link">
+                    <div class="book-cover-container">
+                        <div class="book-cover" style="background-image: url('${book.image}');"></div>
+                        <div class="book-cover-overlay">
+                            <div class="quick-actions">
+                                <div class="quick-action-btn"><i class="fas fa-info-circle"></i></div>
+                                <div class="quick-action-btn"><i class="far fa-heart"></i></div>
+                                <div class="quick-action-btn"><i class="fas fa-share"></i></div>
+                            </div>
+                        </div>
+                        <div class="category-badge">${book.category}</div>
+                    </div>
+                </a>
+                <div class="book-info">
+                    <h3 class="book-title">${book.title}</h3>
+                    <p class="book-author">by ${book.author}</p>
+                    <div class="book-rating">
+                        <div class="stars">${generateStars(book.rating)}</div>
+                        <span>${book.rating}</span>
+                    </div>
+                    <div class="match-score">${book.matchScore}% Match</div>
+                    <div class="book-tags">
+                        ${book.tags.map(tag => `<span class="book-tag">${tag}</span>`).join('')}
+                    </div>
+                    <div class="ai-explanation">
+                        <small>Based on your preferences, this ${book.genre} classic might appeal to your interest in ${book.tags.join(', ')}.</small>
+                    </div>
+                </div>
+            `;
+        } else {
+            // List view with book link
+            bookCard.innerHTML = `
+                <a href="read/${book.genre}/${book.id}.html" class="book-link">
+                    <div class="book-cover" style="background-image: url('${book.image}');"></div>
+                </a>
+                <div class="book-info">
+                    <h3 class="book-title">${book.title}</h3>
+                    <p class="book-author">by ${book.author}</p>
+                    <div class="book-rating">
+                        <div class="stars">${generateStars(book.rating)}</div>
+                        <span>${book.rating}</span>
+                    </div>
+                    <div class="match-score">${book.matchScore}% Match</div>
+                    <div class="book-tags">
+                        ${book.tags.map(tag => `<span class="book-tag">${tag}</span>`).join('')}
+                    </div>
+                    <div class="category-badge">${book.category}</div>
+                    <div class="ai-explanation">
+                        <small>Based on your preferences, this ${book.genre} classic might appeal to your interest in ${book.tags.join(', ')}.</small>
+                    </div>
+                </div>
+            `;
+        }
+        
+        bookContainer.appendChild(bookCard);
+    });
+    
+    // Update pagination
+    updatePagination();
+}
+
+// Filter books based on search, genre, and other filters
+function filterBooks() {
+    loadingSpinner.style.display = 'block';
+    
+    setTimeout(() => {
+     
+        let tempBooks = [...books];
+        
+ 
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        if (searchTerm) {
+            tempBooks = tempBooks.filter(book => 
+                book.title.toLowerCase().includes(searchTerm) ||
+                book.author.toLowerCase().includes(searchTerm) ||
+                book.category.toLowerCase().includes(searchTerm) ||
+                book.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+            );
+        }
+        
+        // Filter by genre quick filter
+        if (currentGenreFilter !== 'all') {
+            tempBooks = tempBooks.filter(book => book.genre === currentGenreFilter);
+        }
+        
+        // Filter by form filters
+        const genreSelect = document.getElementById('genre');
+        const eraSelect = document.getElementById('era');
+        const lengthSelect = document.getElementById('length');
+        const languageSelect = document.getElementById('language');
+        const minComplexity = parseInt(complexitySlider.value);
+        const minRating = parseFloat(ratingSlider.value);
+        if (genreSelect.selectedIndex > 0) {
+            const selectedGenre = genreSelect.options[genreSelect.selectedIndex].text;
+            tempBooks = tempBooks.filter(book => 
+                book.category.includes(selectedGenre) || 
+                book.tags.includes(selectedGenre)
+            );
+        }
+        
+        if (eraSelect.selectedIndex > 0) {
+            const selectedEra = eraSelect.options[eraSelect.selectedIndex].text;
+            tempBooks = tempBooks.filter(book => book.era === selectedEra);
+        }
+        
+        if (lengthSelect.selectedIndex > 0) {
+            const selectedLength = lengthSelect.options[lengthSelect.selectedIndex].text;
+            tempBooks = tempBooks.filter(book => {
+                if (selectedLength.includes("Short")) return book.length === "Short";
+                if (selectedLength.includes("Medium")) return book.length === "Medium";
+                if (selectedLength.includes("Long")) return book.length === "Long";
+                return true;
+            });
+        }
+        
+        if (languageSelect.selectedIndex > 0) {
+            const selectedLanguage = languageSelect.options[languageSelect.selectedIndex].text;
+            tempBooks = tempBooks.filter(book => book.language === selectedLanguage);
+        }
+        
+        // Filter by minimum complexity and rating
+        tempBooks = tempBooks.filter(book => 
+            book.complexity >= minComplexity && 
+            book.rating >= minRating
+        );
+        
+        // Update filtered books
+        filteredBooks = tempBooks;
+        
+        // Sort by current sort option
+        sortBooks(sortOptions.value);
+        
+        // Display books and update UI
+        displayBooks();
+        setupPagination();
+        
+        // Update stats
+        document.getElementById('totalBooks').textContent = filteredBooks.length;
+        
+        loadingSpinner.style.display = 'none';
+    }, 400);
+}
+
+// Sort books based on selected option
+function sortBooks(sortBy) {
+    switch (sortBy) {
+        case 'match':
+            filteredBooks.sort((a, b) => b.matchScore - a.matchScore);
+            break;
+        case 'title':
+            filteredBooks.sort((a, b) => a.title.localeCompare(b.title));
+            break;
+        case 'author':
+            filteredBooks.sort((a, b) => a.author.localeCompare(b.author));
+            break;
+        case 'rating':
+            filteredBooks.sort((a, b) => b.rating - a.rating);
+            break;
+        case 'popularity':
+            // Assuming popularity is based on matchScore + rating
+            filteredBooks.sort((a, b) => 
+                (b.matchScore / 20 + b.rating) - (a.matchScore / 20 + a.rating)
+            );
+            break;
+    }
+    
+    displayBooks();
+}
+
+// Setup pagination based on filtered books
+function setupPagination() {
+    const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
+    
+    // Clear pagination (except prev/next buttons)
+    const pageNumbers = pagination.querySelectorAll('.page-number');
+    pageNumbers.forEach(num => pagination.removeChild(num));
+    
+    // Add page numbers
+    const maxVisiblePages = 5;
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+    
+    // Adjust if we're near the end
+    if (endPage - startPage + 1 < maxVisiblePages && startPage > 1) {
+        startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+    
+    for (let i = startPage; i <= endPage; i++) {
+        const pageNum = document.createElement('div');
+        pageNum.className = 'page-number' + (i === currentPage ? ' active' : '');
+        pageNum.textContent = i;
+        
+        // Insert before the next button
+        pagination.insertBefore(pageNum, nextPageBtn);
+    }
+    
+    // Update prev/next buttons
+    prevPageBtn.style.opacity = currentPage === 1 ? '0.5' : '1';
+    nextPageBtn.style.opacity = currentPage === totalPages ? '0.5' : '1';
+    
+    // Show/hide pagination
+    pagination.style.display = totalPages > 1 ? 'flex' : 'none';
+}
+
+// Update pagination when page changes
+function updatePagination() {
+    // Update active page
+    const pageNumbers = pagination.querySelectorAll('.page-number');
+    pageNumbers.forEach(num => {
+        if (parseInt(num.textContent) === currentPage) {
+            num.classList.add('active');
+        } else {
+            num.classList.remove('active');
+        }
+    });
+    
+    // Update prev/next buttons
+    const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
+    prevPageBtn.style.opacity = currentPage === 1 ? '0.5' : '1';
+    nextPageBtn.style.opacity = currentPage === totalPages ? '0.5' : '1';
+}
+
+// Update view buttons styling
+function updateViewButtons() {
+    if (currentView === 'grid') {
+        gridViewBtn.classList.add('active');
+        listViewBtn.classList.remove('active');
+    } else {
+        gridViewBtn.classList.remove('active');
+        listViewBtn.classList.add('active');
+    }
+}
+
+// Generate star rating HTML
+function generateStars(rating) {
+    let starsHtml = '';
+    const fullStars = Math.floor(rating);
+    const halfStar = rating % 1 >= 0.5;
+    
+    // Add full stars
+    for (let i = 0; i < fullStars; i++) {
+        starsHtml += '<i class="fas fa-star"></i>';
+    }
+    
+    // Add half star if needed
+    if (halfStar) {
+        starsHtml += '<i class="fas fa-star-half-alt"></i>';
+    }
+    
+    // Add empty stars
+    const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+    for (let i = 0; i < emptyStars; i++) {
+        starsHtml += '<i class="far fa-star"></i>';
+    }
+    
+    return starsHtml;
+}
+
+// Smooth scroll to top
+function scrollToTop() {
+    window.scrollTo({
+        top: document.querySelector('.main-content').offsetTop - 80,
+        behavior: 'smooth'
+    });
+}
+
+// Debounce function for search input
+function debounce(func, delay) {
+    let timeout;
+    return function() {
+        const context = this;
+        const args = arguments;
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(context, args), delay);
+    };
+}
+
+// Initial load
+displayBooks();
+setupPagination();
+</script>
+<script>
+function createBookCard(book) {
+    const imagePath = book.image;
+
+    return `
+    <div class="book-card">
+        <div class="book-cover-container">
+            <div class="book-cover" style="background-image: url('${imagePath}');"></div>
+            <div class="book-cover-overlay">
+                <div class="quick-actions">
+                    <a href="read/${book.genre}/${book.id}.html" class="btn btn-sm btn-custom">Read Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="book-info">
+            <h3 class="book-title">${book.title}</h3>
+            <p class="book-author">by ${book.author}</p>
+        </div>
+    </div>`;
+}
+</script>
+    
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const bookContainer = document.getElementById("bookContainer");
+  
+      function slugify(title) {
+        return title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+      }
+  
+      function renderBooks() {
+        bookContainer.innerHTML = "";
+  
+        books.forEach(book => {
+          const tagsHTML = book.tags.map(tag => `<span class="book-tag">${tag}</span>`).join("");
+          const bookSlug = slugify(book.title);
+          const bookPage = `books/${bookSlug}.html`; 
+  
+          const bookHTML = `
+            <div class="book-card">
+              <a href="${bookPage}" target="_blank">
+                <div class="book-cover" style="background-image: url('${book.image}')"></div>
+              </a>
+              <div class="book-info">
+                <h3 class="book-title">${book.title}</h3>
+                <p class="book-author">${book.author}</p>
+                <div class="book-rating">
+                  <span class="stars">⭐ ${book.rating}</span>
+                </div>
+                <div class="match-score">Match: ${book.matchScore}%</div>
+                <div class="book-tags">${tagsHTML}</div>
+              </div>
+            </div>
+          `;
+  
+          bookContainer.insertAdjacentHTML("beforeend", bookHTML);
+        });
+      }
+  
+      renderBooks();
+    });
+  </script>
+  
+</body> 
+</html>   

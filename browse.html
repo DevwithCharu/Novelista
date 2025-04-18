@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Browser</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            padding-top: 20px;
+            background-color: #121212;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .navbar{
+    background-color: rgb(0, 71, 71);
+}
+/* Navbar */
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;   
+}
+.nav-link{
+    color: #fff;
+    font-weight: bold;
+}
+.hover-effect:hover {
+    color: rgb(0, 0, 0) !important;
+    font-weight: bold;
+    border: 2px black !important;
+    transition: all 0.3s ease;
+}
+
+.navbar .btn-primary {
+    margin-left: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+    color:rgb(0, 71, 71) ;
+}
+.navbar .btn-primary:hover{
+    background-color: black !important;
+    color: #fff;
+}
+.category-banner {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/bookshelf.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0 60px;
+            margin-bottom: 40px;
+        }
+        
+        .btn-custom {
+            background-color: rgb(0, 71, 71);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-custom:hover {
+            background-color: rgb(0, 255, 150);
+            color: #121212;
+            transform: translateY(-2px);
+        }
+        
+        .card {
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            overflow: hidden;
+            border: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 150, 0.2);
+        }
+        
+        .footer {
+    background: #111;
+    color: #ccc;
+    padding: 40px 0;
+    font-size: 14px;
+}
+
+.footer-logo img {
+    width: 120px;
+    margin-bottom: 10px;
+}
+
+.footer-logo p {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* Social Media Icons Below Logo */
+.social-icons-left {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icons-left a {
+    color: #ffffff !important;
+    font-size: 20px;
+    transition: color 0.3s ease-in-out;
+    height: 30px;
+    width: 30px;
+}
+
+.social-icons-left a:hover {
+    color: #ff6b00;
+}
+
+.footer-links h5 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links ul li a i {
+    margin-right: 8px;
+    color: #ff6b00;
+}
+
+.footer-links ul li a:hover {
+    color: #ff6b00;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 10px;
+    font-size: 12px;
+}
+        
+        .social-icons-left a {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        
+        .social-icons-left a:hover {
+            background-color: rgb(0, 255, 150);
+            color: #121212;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            margin-top: 50px;
+        }
+        header {
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        header h1 {
+            color: rgb(0, 255, 150);
+        }
+        .search-bar {
+         background-color: #1e1e1e;
+         border-radius: 50px;
+         padding: 4px;
+        }
+        
+        search-input {
+         background-color: white;
+         color: black;
+         border: none;
+         border-top-left-radius: 50px;
+         border-bottom-left-radius: 50px;
+         padding: 0.5rem 1rem;
+         flex: 1;
+        }
+        
+        search-input::placeholder {
+         color: #666;
+        }
+        
+        search-btn {
+         background-color: #004d43;
+         color: white;
+         border: none;
+         border-top-right-radius: 50px;
+         border-bottom-right-radius: 50px;
+         padding: 0 1rem;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+        }
+
+        .filter-section {
+            background-color: #1a1a1a;
+            color: #ccc !important;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+        
+        .book-card {
+            height: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 20px;
+            background-color: #1a1a1a;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 255, 150, 0.2);
+        }
+        
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            height: 48px;
+            overflow: hidden;
+            color: white;
+        }
+        
+        .card-text {
+            height: 60px;
+            overflow: hidden;
+            color: #ccc;
+        }
+        
+        .card-body {
+            padding: 15px;
+        }
+        
+        .card-footer {
+            background-color: #1a1a1a;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .rating {
+            color: #ff6b00;
+        }
+        
+        .genre-badge {
+            margin-right: 5px;
+            margin-bottom: 5px;
+            background-color: rgba(0, 71, 71, 0.8);
+            color: white;
+            border-radius: 20px;
+            font-size: 12px;
+            display: inline-block;
+        }
+        
+        #loading-spinner {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            color: rgb(0, 255, 150);
+        }
+        
+        #top-btn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            cursor: pointer;
+            background-color: rgb(0, 71, 71);
+            color: white;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        #top-btn:hover {
+            background-color: rgb(0, 255, 150);
+            color: #121212;
+            transform: translateY(-2px);
+        }
+        
+        .btn-primary {
+            background-color: rgb(0, 71, 71);
+            color: white;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: rgb(0, 255, 150);
+            color: #121212;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline-primary {
+            border-color: rgb(0, 71, 71);
+            color: rgb(0, 255, 150);
+            background-color: transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: rgb(0, 255, 150);
+            color: #121212;
+            border-color: rgb(0, 255, 150);
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline-secondary {
+            border-color: #333;
+            color: #ccc;
+            background-color: transparent;
+        }
+        
+        .btn-outline-secondary:hover, .btn-outline-secondary.active {
+            background-color: rgb(0, 71, 71);
+            color: white;
+            border-color: rgb(0, 71, 71);
+        }
+        
+        input.form-control, select.form-select {
+            background-color: #2a2a2a;
+            border: 1px solid #333;
+            color: white;
+
+        }
+        /*::placeholder {
+            color: #ccc;
+            opacity: 1;
+        }*/
+
+        
+        input.form-control:focus, select.form-select:focus {
+            background-color: #2a2a2a;
+            border-color: rgb(0, 71, 71);
+            box-shadow: 0 0 0 0.25rem rgba(0, 255, 150, 0.25);
+            color: white;
+        }
+        
+        .pagination .page-link {
+            background-color: #1a1a1a;
+            border-color: #333;
+            color: white;
+        }
+        
+        .pagination .page-link:hover {
+            background-color: rgb(0, 71, 71);
+        }
+        
+        .pagination .active .page-link {
+            background-color: rgb(0, 71, 71);
+            border-color: rgb(0, 71, 71);
+        }
+        
+        .text-muted {
+            color: #aaa !important;
+        }
+        .search-input {
+            background-color: #2a2a2a;
+            color: white;
+            border: 1px solid #333;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            flex: 1;
+        }
+
+        .search-input::placeholder {
+            color: #ccc;
+        }
+
+        .search-btn {
+            background-color: #004d43;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .category-pill {
+  background-color: rgb(35, 35, 35);
+  color: white;
+  padding: 10px 25px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.category-pill:hover {
+  background-color:  rgb(0, 71, 71);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.category-pill.active {
+  background-color:  rgb(0, 71, 71);
+  color: #ffffff;
+}
+
+
+    </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#"> <img src="images/novelista-logo.png" alt="Novelista Logo" height="50"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="index.html">Home</a></li>
+                <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="browse.html">Browse</a></li>
+                <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="reccomendationai.html">Reccomendations</a></li>
+                <li class="nav-item mx-3"><a class="nav-link text-white fw-bold text-primary hover-effect" href="about.html">About</a></li>
+                <li class="nav-item mx-3"><a class="nav-link btn btn-primary text-rgb(0, 71, 71);" href="login.html">Login / Sign Up</a></li>
+            </ul>
+            
+        </div>
+    </div>
+</nav>
+<section class="category-banner">
+  <div class="container">
+      <h1 class="display-4 fw-bold">Explore Our Collection</h1>
+      <p class="lead">Discover hundreds of books across multiple genres</p>
+  </div>
+</section>
+    <div class="container">
+
+
+        <!-- Search and Filters -->
+        <div class="filter-section mb-4">
+          <div class="row g-3">
+              <div class="col-md-9">
+                  <div class="d-flex w-100">
+                      <input type="text" class="form-control search-input text-white me-2" id="search-input" placeholder="Search by title or author..." style="background-color: #2a2a2a; border: 1px solid #333;">
+                      <button class="btn search-btn" id="search-btn">
+                          <i class="fas fa-search"></i>
+                      </button>
+                  </div>
+              </div>
+              <div class="col-md-3">
+                  <select class="form-select" id="sort-by">
+                      <option value="title-asc">Title (A-Z)</option>
+                      <option value="title-desc">Title (Z-A)</option>
+                      <option value="rating-desc">Highest Rating</option>
+                      <option value="rating-asc">Lowest Rating</option>
+                      <option value="year-desc">Newest First</option>
+                      <option value="year-asc">Oldest First</option>
+                  </select>
+              </div>
+          </div>
+      </div>
+      
+      <div class="container mb-5">
+        <div class="d-flex justify-content-center flex-wrap gap-3">
+          <a href="browse.html" class="category-pill active">All</a>
+          <a href="romance.html" class="category-pill">Romance</a>
+          <a href="thriller.html" class="category-pill">Thriller</a>
+          <a href="sci-fi.html" class="category-pill">Sci-Fi</a>
+          <a href="mystery.html" class="category-pill">Mystery</a>
+          <a href="fantasy.html" class="category-pill">Fantasy</a>
+        </div>
+      </div>
+      
+      
+        <!-- Results stats -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div id="results-count" class="text-light">Showing 100 books</div>
+            
+        </div>
+
+        <!-- Loading Spinner -->
+        <div id="loading-spinner" class="spinner-border text-primary" role="status" style="display: none;">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+
+        <!-- Books Container -->
+        <div class="row" id="books-container">
+            <!-- Books will be loaded here -->
+        </div>
+
+        <!-- Pagination -->
+        <nav aria-label="Book navigation" class="my-4">
+            <ul class="pagination justify-content-center" id="pagination">
+                <!-- Pagination will be added here -->
+            </ul>
+        </nav>
+
+        <!-- Back to Top Button -->
+        <button class="btn btn-primary rounded-circle p-3" id="top-btn" title="Back to Top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+    <footer class="footer">
+      <div class="container">
+          <div class="row">
+              <!-- Logo & Social Media -->
+              <div class="col-md-4 footer-logo">
+                  <img src="images/novelista-logo.png" alt="Novelista Logo">
+                  <p>Your gateway to immersive stories and literary adventures.</p>
+  
+                  <!-- Social Media Icons -->
+                  <div class="social-icons-left">
+                      <a href="#"><i class="fab fa-facebook-f"></i></a>
+                      <a href="#"><i class="fab fa-twitter"></i></a>
+                      <a href="#"><i class="fab fa-instagram"></i></a>
+                  </div>
+              </div>
+  
+              <!-- Explore Section -->
+              <div class="col-md-2 footer-links">
+                  <h5><i class="fas fa-book"></i> Explore</h5>
+                  <ul>
+                      <li><a href="#"><i class="fas fa-magic"></i> Fantasy</a></li>
+                      <li><a href="#"><i class="fas fa-user-secret"></i> Mystery</a></li>
+                      <li><a href="#"><i class="fas fa-rocket"></i> Sci-Fi</a></li>
+                      <li><a href="#"><i class="fas fa-heart"></i> Romance</a></li>
+                      <li><a href="#"><i class="fas fa-fire"></i> Trending</a></li>
+                  </ul>
+              </div>
+  
+              <!-- Community Section -->
+              <div class="col-md-3 footer-links">
+                  <h5><i class="fas fa-users"></i> Community</h5>
+                  <ul>
+                      <li><a href="#"><i class="fas fa-comments"></i> Forum</a></li>
+                      <li><a href="#"><i class="fas fa-star"></i> Reviews</a></li>
+                      <li><a href="#"><i class="fas fa-chart-line"></i> Ratings</a></li>
+                      <li><a href="#"><i class="fas fa-thumbs-up"></i> Recommendations</a></li>
+                      <li><a href="#"><i class="fas fa-headset"></i> Support</a></li>
+                  </ul>
+              </div>
+  
+              <!-- Resources Section -->
+              <div class="col-md-3 footer-links">
+                  <h5><i class="fas fa-folder-open"></i> Resources</h5>
+                  <ul>
+                      <li><a href="#"><i class="fas fa-question-circle"></i> Help</a></li>
+                      <li><a href="#"><i class="fas fa-book-open"></i> Guides</a></li>
+                      <li><a href="#"><i class="fas fa-blog"></i> Blog</a></li>
+                      <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+                      <li><a href="#"><i class="fas fa-file-contract"></i> Terms</a></li>
+                  </ul>
+              </div>
+          </div>
+  
+          <!-- Copyright -->
+          <div class="footer-bottom text-center">
+              <p>&copy; 2025 Novelista. All rights reserved.</p>
+          </div>
+      </div>
+  </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+  const books = [
+  { title: "Pride and Prejudice", author: "Jane Austen", genre: "Romance", category: "Classic Romance", image: "images1//romance-images/PrideandPrejudice.jpg" },
+  { title: "Jane Eyre", author: "Charlotte Brontë", genre: "Romance", category: "Period Romance", image: "images1//romance-images/JaneEyre.jpg" },
+  { title: "Wuthering Heights", author: "Emily Brontë", genre: "Romance", category: "Gothic Romance", image: "images1/romance-images/Wuthering Heights.jpg" },
+  { title: "Sense and Sensibility", author: "Jane Austen", genre: "Romance", category: "Classic Romance", image: "images1//romance-images/SenseandSensibility.jpg" },
+  { title: "Romeo and Juliet", author: "William Shakespeare", genre: "Romance", category: "Tragic Romance", image: "images1//romance-images/RomeoandJuliet.jpg" },
+  { title: "Persuasion", author: "Jane Austen", genre: "Romance", category: "Period Romance", image: "images1//romance-images/Persuasion.jpg" },
+  { title: "The Phantom of the Opera", author: "Gaston Leroux", genre: "Romance", category: "Gothic Romance", image: "images1//thriller-images/ThePhantomoftheOpera.jpg" },
+  { title: "Emma", author: "Jane Austen", genre: "Romance", category: "Classic Romance", image: "images1//romance-images/Emma.jpeg" },
+  { title: "Anna Karenina", author: "Leo Tolstoy", genre: "Romance", category: "Tragic Romance", image: "images1//romance-images/AnnaKarenina.jpg" },
+  { title: "Much Ado About Nothing", author: "William Shakespeare", genre: "Romance", category: "Romantic Comedy", image: "images1//romance-images/MuchAdoAboutNothing.jpg" },
+  { title: "North and South", author: "Elizabeth Gaskell", genre: "Romance", category: "Period Romance", image: "images1//romance-images/NorthandSouth.jpg" },
+  { title: "The Hunchback of Notre Dame", author: "Victor Hugo", genre: "Romance", category: "Gothic Romance", image: "images1//romance-images/TheHunchbackofNotreDame.jpg" },
+  { title: "Northanger Abbey", author: "Jane Austen", genre: "Romance", category: "Classic Romance", image: "images1//romance-images/NorthangerAbbey.jpg" },
+  { title: "Madame Bovary", author: "Gustave Flaubert", genre: "Romance", category: "Tragic Romance", image: "images1//romance-images/MadameBovary.jpg" },
+  { title: "The Importance of Being Earnest", author: "Oscar Wilde", genre: "Romance", category: "Romantic Comedy", image: "images1//romance-images/TheImportanceofBeingEarnest.jpeg" },
+  { title: "Far From the Madding Crowd", author: "Thomas Hardy", genre: "Romance", category: "Period Romance", image: "images1//romance-images/FarFromtheMaddingCrowd.jpg" },
+  { title: "Dracula", author: "Bram Stoker", genre: "Romance", category: "Gothic Romance", image: "images1//thriller-images/Dracula.jpg" },
+  { title: "The Great Gatsby", author: "F. Scott Fitzgerald", genre: "Romance", category: "Tragic Romance", image: "images1//romance-images/TheGreatGatsby.jpg" },
+  { title: "As You Like It", author: "William Shakespeare", genre: "Romance", category: "Romantic Comedy", image: "images1//romance-images/AsYouLikeIt.jpg" },
+  { title: "Little Women", author: "Louisa May Alcott", genre: "Romance", category: "Classic Romance", image: "images1//romance-images/LittleWomen.jpg" },
+  { title: "The Strange Case of Dr. Jekyll and Mr. Hyde", author: "Robert Louis Stevenson", genre: "Thriller", category: "Psychological", image: "images1//thriller-images/TheStrangeCaseofDrJekyllandMrHyde.jpg" },
+  { title: "The Moonstone", author: "Wilkie Collins", genre: "Thriller", category: "Crime", image: "images1//thriller-images/TheMoonstone.jpg" },
+  { title: "The Woman in White", author: "Wilkie Collins", genre: "Thriller", category: "Mystery", image: "images1//thriller-images/TheWomaninWhite.jpg" },
+  { title: "Dracula", author: "Bram Stoker", genre: "Thriller", category: "Gothic", image: "images1//thriller-images/Dracula.jpg" },
+  { title: "The Picture of Dorian Gray", author: "Oscar Wilde", genre: "Thriller", category: "Psychological", image: "images1//thriller-images/ThePictureofDorianGray.jpg" },
+  { title: "The Adventures of Sherlock Holmes", author: "Arthur Conan Doyle", genre: "Thriller", category: "Crime", image: "images1//mystery-images/TheAdventuresofSherlockHolmes.jpg" },
+  { title: "The Thirty-Nine Steps", author: "John Buchan", genre: "Thriller", category: "Espionage", image: "images1//mystery-images/TheThirtyNineSteps.jpg" },
+  { title: "The Turn of the Screw", author: "Henry James", genre: "Thriller", category: "Gothic", image: "images1//thriller-images/TheTurnoftheScrew.jpg" },
+  { title: "The Hound of the Baskervilles", author: "Arthur Conan Doyle", genre: "Thriller", category: "Mystery", image: "images1//thriller-images/TheHoundoftheBaskervilles.jpg" },
+  { title: "The Fall of the House of Usher", author: "Edgar Allan Poe", genre: "Thriller", category: "Psychological", image: "images1//thriller-images/TheFalloftheHouseofUsher.jpg" },
+  { title: "The Riddle of the Sands", author: "Erskine Childers", genre: "Thriller", category: "Espionage", image: "images1//mystery-images/TheRiddleoftheSands.jpg" },
+  { title: "The Mysterious Affair at Styles", author: "Agatha Christie", genre: "Thriller", category: "Crime", image: "images1//thriller-images/TheMysteriousAffairatStyles.jpg" },
+  { title: "The Castle of Otranto", author: "Horace Walpole", genre: "Thriller", category: "Gothic", image: "images1//thriller-images/TheCastleofOtranto.jpg" },
+  { title: "The Murder on the Links", author: "Agatha Christie", genre: "Thriller", category: "Mystery", image: "images1//thriller-images/TheMurderontheLinks.jpg" },
+  { title: "The Tell-Tale Heart", author: "Edgar Allan Poe", genre: "Thriller", category: "Psychological", image: "images1//thriller-images/TheTellTaleHeart.jpg" },
+  { title: "Greenmantle", author: "John Buchan", genre: "Thriller", category: "Espionage", image: "images1//thriller-images/Greenmantle.jpg" },
+  { title: "The Secret Adversary", author: "Agatha Christie", genre: "Thriller", category: "Crime", image: "images1//thriller-images/TheSecretAdversary.jpg" },
+  { title: "The Phantom of the Opera", author: "Gaston Leroux", genre: "Thriller", category: "Gothic", image: "images1//thriller-images/ThePhantomoftheOpera.jpg" },
+  { title: "The Man in the Brown Suit", author: "Agatha Christie", genre: "Thriller", category: "Mystery", image: "images1//thriller-images/TheManintheBrownSuit.jpg" },
+  { title: "The Spy Who Came in from the Cold", author: "John le Carré", genre: "Thriller", category: "Espionage", image: "images1//thriller-images/TheSpyWhoCameinfromtheCold.jpg" },
+  { title: "The War of the Worlds", author: "H.G. Wells", genre: "Sci-Fi", category: "Space Opera", image: "images1//scifi-images/TheWaroftheWorlds.jpg" },
+  { title: "Twenty Thousand Leagues Under the Sea", author: "Jules Verne", genre: "Sci-Fi", category: "Classic Sci-Fi", image: "images1//scifi-images/Twenty Thousand Leagues Under the Sea.jpg" },
+  { title: "The Time Machine", author: "H.G. Wells", genre: "Sci-Fi", category: "Time Travel", image: "images1//scifi-images/TheTimeMachine.jpg" },
+  { title: "The Iron Heel", author: "Jack London", genre: "Sci-Fi", category: "Dystopian", image: "images1//scifi-images/TheIronHeel.jpg" },
+  { title: "Frankenstein", author: "Mary Shelley", genre: "Sci-Fi", category: "Classic Sci-Fi", image: "images1//scifi-images/Frankenstein.jpg" },
+  { title: "From the Earth to the Moon", author: "Jules Verne", genre: "Sci-Fi", category: "Space Opera", image: "images1//scifi-images/fromtheearth.jpg" },
+  { title: "A Journey to the Center of the Earth", author: "Jules Verne", genre: "Sci-Fi", category: "Classic Sci-Fi", image: "images1//scifi-images/AJourneytotheCenteroftheEarth.jpg" },
+  { title: "The First Men in the Moon", author: "H.G. Wells", genre: "Sci-Fi", category: "Alien Contact", image: "images1//scifi-images/TheFirstMenintheMoon.jpg" },
+  { title: "The Last Man", author: "Mary Shelley", genre: "Sci-Fi", category: "Dystopian", image: "images1//scifi-images/TheLastMan.jpg" },
+  { title: "Looking Backward", author: "Edward Bellamy", genre: "Sci-Fi", category: "Time Travel", image: "images1//scifi-images/LookingBackward.jpg" },
+  { title: "Around the Moon", author: "Jules Verne", genre: "Sci-Fi", category: "Space Opera", image: "images1/scifi-images/AroundtheMoon.jpeg" },
+  { title: "In the Days of the Comet", author: "H.G. Wells", genre: "Sci-Fi", category: "Alien Contact", image: "images1//scifi-images/IntheDaysoftheComet.jpg" },
+  { title: "We", author: "Yevgeny Zamyatin", genre: "Sci-Fi", category: "Dystopian", image: "images1//scifi-images/We.jpeg" },
+  { title: "The Invisible Man", author: "H.G. Wells", genre: "Sci-Fi", category: "Classic Sci-Fi", image: "images1//scifi-images/TheInvisibleMan.jpg" },
+  { title: "A Connecticut Yankee in King Arthur's Court", author: "Mark Twain", genre: "Sci-Fi", category: "Time Travel", image: "images1//scifi-images/AConnecticutYankeeinKingArthursCourt.jpg" },
+  { title: "Off on a Comet", author: "Jules Verne", genre: "Sci-Fi", category: "Space Opera", image: "images1//scifi-images/OffonaComet.jpg" },
+  { title: "The Star", author: "H.G. Wells", genre: "Sci-Fi", category: "Alien Contact", image: "images1//scifi-images/TheStar.jpeg" },
+  { title: "The Sleeper Awakes", author: "H.G. Wells", genre: "Sci-Fi", category: "Dystopian", image: "images1//scifi-images/TheSleeperAwakes.jpeg" },
+  { title: "The Island of Doctor Moreau", author: "H.G. Wells", genre: "Sci-Fi", category: "Classic Sci-Fi", image: "images1//scifi-images/TheIslandofDoctorMoreau.jpg" },
+  { title: "A Dream of John Ball", author: "William Morris", genre: "Sci-Fi", category: "Time Travel", image: "images1//scifi-images/ADreamofJohnBall.jpg" },
+  { title: "The Hound of the Baskervilles", author: "Arthur Conan Doyle", genre: "Mystery", category: "Detective Fiction", image: "images1//mystery-images/TheHoundoftheBaskervilles.jpg" },
+  { title: "The Moonstone", author: "Wilkie Collins", genre: "Mystery", category: "Classic Mystery", image: "images1//mystery-images/TheMoonstone.jpg" },
+  { title: "The Woman in White", author: "Wilkie Collins", genre: "Mystery", category: "Classic Mystery", image: "images1//mystery-images/TheWomaninWhite.jpg" },
+  { title: "A Study in Scarlet", author: "Arthur Conan Doyle", genre: "Mystery", category: "Detective Fiction", image: "images1//mystery-images/AStudyinScarlet.jpg" },
+  { title: "The Mystery of Edwin Drood", author: "Charles Dickens", genre: "Mystery", category: "Crime", image: "images1//mystery-images/TheMysteryofEdwinDrood.jpg" },
+  { title: "The Secret Agent", author: "Joseph Conrad", genre: "Mystery", category: "Thriller", image: "images1//mystery-images/TheSecretAgent.jpg" },
+  { title: "The Sign of Four", author: "Arthur Conan Doyle", genre: "Mystery", category: "Detective Fiction", image: "images1//mystery-images/TheSignofFour.jpg" },
+  { title: "The Circular Staircase", author: "Mary Roberts Rinehart", genre: "Mystery", category: "Cozy Mystery", image: "images1//mystery-images/TheCircularStaircase.jpg" },
+  { title: "The Adventures of Sherlock Holmes", author: "Arthur Conan Doyle", genre: "Mystery", category: "Crime", image: "images1//mystery-images/TheAdventuresofSherlockHolmes.jpg" },
+  { title: "The Man in Lower Ten", author: "Mary Roberts Rinehart", genre: "Mystery", category: "Cozy Mystery", image: "images1//mystery-images/TheManinLowerTen.jpg" },
+  { title: "The Thirty-Nine Steps", author: "John Buchan", genre: "Mystery", category: "Thriller", image: "images1//mystery-images/TheThirtyNineSteps.jpg" },
+  { title: "The Strange Case of Dr. Jekyll and Mr. Hyde", author: "Robert Louis Stevenson", genre: "Mystery", category: "Classic Mystery", image: "images1//mystery-images/TheStrangeCase.jpg" },
+  { title: "The Valley of Fear", author: "Arthur Conan Doyle", genre: "Mystery", category: "Detective Fiction", image: "images1//mystery-images/TheValleyofFear.jpg" },
+  { title: "Greenmantle", author: "John Buchan", genre: "Mystery", category: "Thriller", image: "images1//mystery-images/Greenmantle.jpg" },
+  { title: "The Memoirs of Sherlock Holmes", author: "Arthur Conan Doyle", genre: "Mystery", category: "Crime", image: "images1//mystery-images/TheMemoirsofSherlockHolmes.jpg" },
+  { title: "The Window at the White Cat", author: "Mary Roberts Rinehart", genre: "Mystery", category: "Cozy Mystery", image: "images1//mystery-images/TheWindowattheWhiteCat.jpg" },
+  { title: "The Riddle of the Sands", author: "Erskine Childers", genre: "Mystery", category: "Thriller", image: "images1//mystery-images/TheRiddleoftheSands.jpg" },
+  { title: "The Return of Sherlock Holmes", author: "Arthur Conan Doyle", genre: "Mystery", category: "Crime", image: "images1//mystery-images/TheReturnofSherlockHolmes.jpg" },
+  { title: "Uncle Silas", author: "J. Sheridan Le Fanu", genre: "Mystery", category: "Classic Mystery", image: "images1//mystery-images/UncleSilas.jpg" },
+  { title: "The Murders in the Rue Morgue", author: "Edgar Allan Poe", genre: "Mystery", category: "Detective Fiction", image: "images1//mystery-images/TheMurdersintheRueMorgue.jpg" },
+  { title: "The Wonderful Wizard of Oz", author: "L. Frank Baum", genre: "Fantasy", category: "Epic Fantasy", image: "images1//fantasy-images/TheWonderfulWizardofOz.jpg" },
+  { title: "Alice's Adventures in Wonderland", author: "Lewis Carroll", genre: "Fantasy", category: "Young Adult Fantasy", image: "images1//fantasy-images/AlicesAdventuresinWonderland.jpg" },
+  { title: "Through the Looking-Glass", author: "Lewis Carroll", genre: "Fantasy", category: "Young Adult Fantasy", image: "images1//fantasy-images/Through the Looking-Glass.jpg" },
+  { title: "The Marvelous Land of Oz", author: "L. Frank Baum", genre: "Fantasy", category: "Epic Fantasy", image: "images1//fantasy-images/TheMarvelousLandofOz.jpg" },
+  { title: "The Story of the Volsungs", author: "Anonymous", genre: "Fantasy", category: "Dark Fantasy", image: "images1//fantasy-images/TheStoryoftheVolsungs.jpg" },
+  { title: "The Mabinogion", author: "Anonymous", genre: "Fantasy", category: "Mythological Fantasy", image: "images1//fantasy-images/TheMabinogion.jpg" },
+  { title: "The Book of Wonder", author: "Lord Dunsany", genre: "Fantasy", category: "Epic Fantasy", image: "images1//fantasy-images/TheBookofWonder.jpg" },
+  { title: "Phantastes - A Faerie Romance for Men and Women", author: "George MacDonald", genre: "Fantasy", category: "Epic Fantasy", image: "images1//romance-images/PhantastesAFaerieRomanceforMenandWomen.jpg" },
+  { title: "The Princess and the Goblin", author: "George MacDonald", genre: "Fantasy", category: "Epic Fantasy", image: "images1//fantasy-images/ThePrincess andtheGoblin.jpg" },
+  { title: "The Lost World", author: "Arthur Conan Doyle", genre: "Fantasy", category: "Young Adult Fantasy", image: "images1//fantasy-images/TheLostWorld.jpg" },
+  { title: "The Man Who Was Thursday - A Nightmare", author: "G. K. Chesterton", genre: "Fantasy", category: "Urban Fantasy", image: "images1//fantasy-images/TheManWhoWasThursdayANightmare.jpg" },
+  { title: "The Wind in the Willows", author: "Kenneth Grahame", genre: "Fantasy", category: "Young Adult Fantasy", image: "images1//fantasy-images/TheWindintheWillows.jpg" },
+  { title: "A Connecticut Yankee in King Arthur's Court", author: "Mark Twain", genre: "Fantasy", category: "Urban Fantasy", image: "images1//scifi-images/AConnecticutYankeeinKingArthursCourt.jpg" },
+  { title: "The Enchanted Castle", author: "E. Nesbit", genre: "Fantasy", category: "Young Adult Fantasy", image: "images1//fantasy-images/TheEnchantedCastle.jpg" },
+  { title: "The Gods of Pegāna", author: "Lord Dunsany", genre: "Fantasy", category: "Epic Fantasy", image: "images1/fantasy-images/TheGodsofPegana.jpg" },
+  { title: "The Shaving of Shagpat", author: "George Meredith", genre: "Fantasy", category: "Dark Fantasy", image: "images1//fantasy-images/TheShavingofShagpat.jpg" },
+  { title: "The Crock of Gold", author: "James Stephens", genre: "Fantasy", category: "Dark Fantasy", image: "images1//fantasy-images/TheCrockofGold.jpg" },
+  { title: "The Water-Babies", author: "Charles Kingsley", genre: "Fantasy", category: "Mythological Fantasy", image: "images1//fantasy-images/TheWaterBabies.jpg" },
+  { title: "The Light Princess", author: "George MacDonald", genre: "Fantasy", category: "Mythological Fantasy", image: "images1//fantasy-images/TheLightPrincess.jpg" },
+  { title: "The Professor's Experiment", author: "E. Phillips Oppenheim", genre: "Fantasy", category: "Dark Fantasy", image: "images1//fantasy-images/TheProfessorsExperiment.jpg" }
+
+
+];
+function displayBooks(booksArray, containerId) {
+  const container = document.getElementById(containerId);
+  
+  // Clear any existing content
+  container.innerHTML = '';
+  
+  // Loop through books and create elements
+booksArray.forEach((book, index) => {
+  const bookNumber = index + 1; // 1-based index
+
+    // Create book card element
+    const bookCard = document.createElement('div');
+    bookCard.className = 'book-card';
+    
+    const coverImage = document.createElement('img');
+    coverImage.src = encodeURI(book.image);
+    coverImage.className = 'card-img-top';
+    coverImage.alt = `${book.title} cover`;
+    
+    // Prevent flicker loop
+    coverImage.onerror = function () {
+      if (this.src.includes('placeholder.jpg')) return; // Prevent loop
+      this.src = 'images/placeholder.jpg';
+    };
+
+    
+    // Create card body with book info
+    const cardBody = document.createElement('div');
+    cardBody.className = 'card-body';
+    
+    // Add title
+    const title = document.createElement('h5');
+    title.className = 'card-title';
+    title.textContent = book.title;
+    
+    // Add author
+    const author = document.createElement('p');
+    author.className = 'card-text';
+    author.textContent = `By ${book.author}`;
+    
+    // Add genre badge
+    const genreBadge = document.createElement('span');
+    genreBadge.className = 'badge genre-badge px-2 py-1';
+    genreBadge.textContent = book.genre;
+    
+    // Add category badge if available
+    let categoryBadge = '';
+    if (book.category) {
+      categoryBadge = document.createElement('span');
+      categoryBadge.className = 'badge genre-badge px-2 py-1';
+      categoryBadge.textContent = book.category;
+    }
+    
+    // Create card footer with rating
+    const cardFooter = document.createElement('div');
+    cardFooter.className = 'card-footer d-flex justify-content-between align-items-center';
+    
+    // Generate random rating between 3.5 and 5.0
+    const rating = (Math.random() * 1.5 + 3.5).toFixed(1);
+    
+    // Add rating stars
+    const ratingStars = document.createElement('div');
+    ratingStars.className = 'rating';
+    
+// Add rating stars (improved style)
+ratingStars.className = 'rating d-flex align-items-center';
+ratingStars.title = `Rating: ${rating} / 5`;
+
+for (let i = 0; i < 5; i++) {
+  const star = document.createElement('i');
+  if (i < Math.floor(rating)) {
+    star.className = 'fas fa-star';
+    star.style.color = '#ffc107';
+  } else if (i === Math.floor(rating) && rating % 1 >= 0.5) {
+    star.className = 'fas fa-star-half-alt';
+    star.style.color = '#ffc107';
+  } else {
+    star.className = 'far fa-star';
+    star.style.color = '#ccc';
+  }
+  ratingStars.appendChild(star);
+}
+    
+const readNowButton = document.createElement('a');
+readNowButton.className = 'btn btn-sm btn-custom';
+readNowButton.textContent = 'Read Now';
+
+// Use the existing bookNumber variable (don't redeclare it)
+let folder = '';
+
+if (bookNumber <= 20) folder = 'romance';
+else if (bookNumber <= 40) folder = 'thriller';
+else if (bookNumber <= 60) folder = 'scifi';
+else if (bookNumber <= 80) folder = 'mystery';
+else if (bookNumber <= 100) folder = 'fantasy';
+
+readNowButton.href = `read/${folder}/${bookNumber}.html`;
+readNowButton.target = '_blank';
+
+    
+    // Assemble the card
+    cardFooter.appendChild(ratingStars);
+    cardFooter.appendChild(readNowButton);
+
+    
+    cardBody.appendChild(title);
+    cardBody.appendChild(author);
+    cardBody.appendChild(genreBadge);
+  
+    
+    const column = document.createElement('div');
+column.className = 'col-lg-3 col-md-4 col-sm-6 mb-4'; // always use grid layout
+
+
+    
+    // Build the final card
+    bookCard.appendChild(coverImage);
+    bookCard.appendChild(cardBody);
+    bookCard.appendChild(cardFooter);
+    column.appendChild(bookCard);
+    
+    // Add to container
+    container.appendChild(column);
+  });
+}
+
+// Initialize pagination
+function setupPagination(totalBooks, booksPerPage) {
+  const pagination = document.getElementById('pagination');
+  pagination.innerHTML = '';
+  
+  const totalPages = Math.ceil(totalBooks.length / booksPerPage);
+  
+  // Previous button
+  const prevLi = document.createElement('li');
+  prevLi.className = 'page-item';
+  const prevLink = document.createElement('a');
+  prevLink.className = 'page-link';
+  prevLink.href = '#';
+  prevLink.setAttribute('aria-label', 'Previous');
+  prevLink.innerHTML = '<span aria-hidden="true">&laquo;</span>';
+  prevLi.appendChild(prevLink);
+  pagination.appendChild(prevLi);
+  
+  // Page numbers
+  for (let i = 1; i <= totalPages; i++) {
+    const pageLi = document.createElement('li');
+    pageLi.className = 'page-item';
+    if (i === 1) {
+      pageLi.classList.add('active');
+    }
+    const pageLink = document.createElement('a');
+    pageLink.className = 'page-link';
+    pageLink.href = '#';
+    pageLink.textContent = i;
+    
+    pageLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      // Update active page
+      document.querySelectorAll('#pagination .page-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      pageLi.classList.add('active');
+      
+      // Get the filtered books
+      const searchTerm = document.getElementById('search-input').value.toLowerCase();
+      const genreFilter = '';
+
+      const sortBy = document.getElementById('sort-by').value;
+      
+      let filteredBooks = filterBooks(books, searchTerm, genreFilter);
+      filteredBooks = sortBooks(filteredBooks, sortBy);
+      
+      // Calculate start and end index
+      const startIndex = (i - 1) * booksPerPage;
+      const endIndex = Math.min(startIndex + booksPerPage, filteredBooks.length);
+      
+      // Display current page
+      displayBooks(filteredBooks.slice(startIndex, endIndex), 'books-container');
+      
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    pageLi.appendChild(pageLink);
+    pagination.appendChild(pageLi);
+  }
+  
+  // Next button
+  const nextLi = document.createElement('li');
+  nextLi.className = 'page-item';
+  const nextLink = document.createElement('a');
+  nextLink.className = 'page-link';
+  nextLink.href = '#';
+  nextLink.setAttribute('aria-label', 'Next');
+  nextLink.innerHTML = '<span aria-hidden="true">&raquo;</span>';
+  nextLi.appendChild(nextLink);
+  pagination.appendChild(nextLi);
+}
+
+// Filter books based on search term and genre
+function filterBooks(booksArray, searchTerm, genre) {
+  return booksArray.filter(book => {
+    const matchesSearch = 
+      book.title.toLowerCase().includes(searchTerm) || 
+      book.author.toLowerCase().includes(searchTerm);
+    
+    const matchesGenre = !genre || book.genre === genre;
+    
+    return matchesSearch && matchesGenre;
+  });
+}
+
+// Sort books based on selected option
+function sortBooks(booksArray, sortOption) {
+  const books = [...booksArray]; // Create a copy to avoid modifying original
+  
+  switch (sortOption) {
+    case 'title-asc':
+      return books.sort((a, b) => a.title.localeCompare(b.title));
+    case 'title-desc':
+      return books.sort((a, b) => b.title.localeCompare(a.title));
+    case 'rating-desc':
+      // Since ratings are random in this example, we'll need to 
+      // generate them consistently for sorting
+      return books.sort((a, b) => {
+        const ratingA = parseFloat((Math.random() * 1.5 + 3.5).toFixed(1));
+        const ratingB = parseFloat((Math.random() * 1.5 + 3.5).toFixed(1));
+        return ratingB - ratingA;
+      });
+    case 'rating-asc':
+      return books.sort((a, b) => {
+        const ratingA = parseFloat((Math.random() * 1.5 + 3.5).toFixed(1));
+        const ratingB = parseFloat((Math.random() * 1.5 + 3.5).toFixed(1));
+        return ratingA - ratingB;
+      });
+    case 'year-desc':
+      // In a real app, we would sort by publication year
+      // Here we'll just randomize for demo purposes
+      return books.sort(() => Math.random() - 0.5);
+    case 'year-asc':
+      return books.sort(() => Math.random() - 0.5);
+    default:
+      return books;
+  }
+}
+
+// Event handlers
+document.addEventListener('DOMContentLoaded', () => {
+  const booksPerPage = 12;
+  
+  // Initial display
+  const initialBooks = books.slice(0, booksPerPage);
+  displayBooks(initialBooks, 'books-container');
+  
+  // Setup pagination
+  setupPagination(books, booksPerPage);
+  
+  // Update results count
+  document.getElementById('results-count').textContent = `Showing ${initialBooks.length} of ${books.length} books`;
+  
+  // Search button click handler
+  document.getElementById('search-btn').addEventListener('click', () => {
+    const searchTerm = document.getElementById('search-input').value.toLowerCase();
+    const genreFilter = '';
+
+    const sortBy = document.getElementById('sort-by').value;
+    
+    // Show loading spinner
+    document.getElementById('loading-spinner').style.display = 'block';
+    
+    // Simulate loading delay
+    setTimeout(() => {
+      let filteredBooks = filterBooks(books, searchTerm, genreFilter);
+      filteredBooks = sortBooks(filteredBooks, sortBy);
+      
+      // Display first page
+      displayBooks(filteredBooks.slice(0, booksPerPage), 'books-container');
+      
+      // Update pagination
+      setupPagination(filteredBooks, booksPerPage);
+      
+      // Update results count
+      document.getElementById('results-count').textContent = 
+        `Showing ${Math.min(booksPerPage, filteredBooks.length)} of ${filteredBooks.length} books`;
+      
+      // Hide loading spinner
+      document.getElementById('loading-spinner').style.display = 'none';
+    }, 500);
+  });
+  
+
+  
+  // Sort by change handler
+  document.getElementById('sort-by').addEventListener('change', () => {
+    document.getElementById('search-btn').click();
+  });
+  
+  // Enter key in search input
+  document.getElementById('search-input').addEventListener('keyup', (e) => {
+    if (e.key === 'Enter') {
+      document.getElementById('search-btn').click();
+    }
+  });
+  
+
+  // Back to top button
+  const topButton = document.getElementById('top-btn');
+  
+  window.addEventListener('scroll', () => {
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+      topButton.style.display = 'block';
+    } else {
+      topButton.style.display = 'none';
+    }
+  });
+  
+  topButton.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
