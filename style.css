@@ -4,6 +4,11 @@ body {
     background-color: #101010;
     color: #333;
 }
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 .navbar{
     background-color: rgb(0, 71, 71);
 }
@@ -49,6 +54,10 @@ body {
     color: #ffffff;
     margin-left: 5vh;
 }
+.book-images {
+    padding: 0 10px;
+}
+
 
 .btn-explore {
     background-color: #008066;
@@ -137,9 +146,10 @@ body {
     border-radius: 10px;
     padding: 20px;
     min-height: 180px;
-    width: 90vh;
-    margin-left: 5vh;
+    width: 100%;
+    margin-left: 0;
 }
+
 .book-image {
     width: 50%;
     height: 250px;
@@ -457,11 +467,11 @@ body {
 }
 
 @media (max-width: 768px) {
-    /* Hero Section */
     .hero-section {
         margin: 5vh !important;
-        padding: 40px 0;
+        padding: 40px 15px;       
     }
+    
     
     .hero-title {
         font-size: 2rem;
