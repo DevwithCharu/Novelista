@@ -469,7 +469,8 @@ html, body {
 @media (max-width: 768px) {
     .hero-section {
         margin: 5vh !important;
-        padding: 40px 15px;       
+        padding: 40px 15px;
+        right:0;
     }
     
     
