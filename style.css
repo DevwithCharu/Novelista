@@ -40,24 +40,25 @@ html, body {
 }
 
 /* Hero Section */
- .hero-section {
-    padding: 60px 0;
+.hero-section {
+    padding: 60px 40px;
     margin: 9.5vh !important;
 }
 .hero-title {
     font-size: 3rem;
     font-weight: bold;
     margin-left: 5vh;
+    margin-right: 5vh;
 }
 .hero-text {
     font-size: 1.2rem;
     color: #ffffff;
     margin-left: 5vh;
+    margin-right: 5vh;
 }
 .book-images {
     padding: 0 10px;
 }
-
 
 .btn-explore {
     background-color: #008066;
@@ -90,8 +91,6 @@ html, body {
 .book-images img {
     animation: bounce 3s ease-in-out infinite;
 }
-
-
 
 /* Featured Books */
 .card {
@@ -136,8 +135,8 @@ html, body {
     gap: 10px;
     max-width: 100%;
     margin:0px !important;
-
 }
+
 .book-section {
     display: flex;
     align-items: center;
@@ -281,9 +280,8 @@ html, body {
     padding: 10px;
     border-radius: 50%;
 }
-/* General Testimonials Section */
-/* General Testimonials Section */
-/* General Testimonials Section */
+
+/* Testimonials Section */
 .testimonials-section {
     background: #111;
     color: #fff;
@@ -449,6 +447,7 @@ html, body {
     padding-top: 10px;
     font-size: 12px;
 }
+
 /* General Responsiveness */
 @media (max-width: 992px) {
     .hero-title {
@@ -469,19 +468,19 @@ html, body {
 @media (max-width: 768px) {
     .hero-section {
         margin: 5vh !important;
-        padding: 40px 15px;
-        right:0;
+        padding: 40px 15px !important;       
     }
-    
     
     .hero-title {
         font-size: 2rem;
         margin-left: 2vh;
+        margin-right: 2vh;
     }
     
     .hero-text {
         font-size: 1rem;
         margin-left: 2vh;
+        margin-right: 2vh;
     }
     
     .btn-explore, .btn-join {
@@ -528,18 +527,30 @@ html, body {
     
     /* Hero Section */
     .hero-section {
-        margin: 3vh !important;
-        padding: 30px 0;
+        padding: 60px 40px;
+        margin: 9.5vh 9.5vh !important;
+        width: auto;
+        box-sizing: border-box;
     }
     
     .hero-title {
-        font-size: 1.8rem;
-        margin-left: 1vh;
+        font-size: 3rem;
+        font-weight: bold;
+        margin-left: 5vh;
+        margin-right: 5vh;
     }
     
     .hero-text {
-        font-size: 0.9rem;
-        margin-left: 1vh;
+        font-size: 1.2rem;
+        color: #ffffff;
+        margin-left: 5vh;
+        margin-right: 5vh;
+    }
+    
+    .book-images {
+        padding: 0 10px;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .btn-explore, .btn-join {
@@ -574,18 +585,97 @@ html, body {
 }
 
 /* Fix for Swiper on Mobile */
+@media (max-width: 992px) {
+    .hero-section {
+        padding: 50px 30px;
+        margin: 7vh 7vh !important;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-text {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        margin: 5vh 5vh !important;
+        padding: 40px 20px !important;
+        width: auto;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+        margin-left: 2vh;
+        margin-right: 2vh;
+    }
+    
+    .hero-text {
+        font-size: 1rem;
+        margin-left: 2vh;
+        margin-right: 2vh;
+    }
+    
+    .btn-explore, .btn-join {
+        margin-left: 2vh;
+        padding: 10px 15px;
+    }
+    
+    .book-images {
+        padding: 0;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    /* Hero Section */
+    .hero-section {
+        margin: 3vh 3vh !important;
+        padding: 30px 15px !important;
+        width: auto;
+        max-width: 100%;
+        overflow: hidden;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    .hero-text {
+        font-size: 0.9rem;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    .btn-explore, .btn-join {
+        margin-left: 0;
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+    
+    .book-images {
+        padding: 0;
+    }
+}
+
 @media (max-width: 480px) {
-    .swiper-slide img {
-        width: 150px;
-        height: 225px;
+    .hero-section {
+        margin: 2vh 2vh !important;
+        padding: 20px 10px !important;
+        width: calc(100% - 4vh);
+        overflow: hidden;
     }
     
-    .book-title {
-        font-size: 18px;
-    }
-    
-    .book-description {
-        font-size: 14px;
+    .hero-title, .hero-text {
+        padding-right: 0;
+        margin-right: 0;
     }
 }
 
